@@ -1,0 +1,10 @@
+.card-title {
+    font-weight: bold;
+    color: #002060;
+}
+.card-header img {
+    height: 22px;
+}
+.card-header .btn {
+    font-weight: bold;
+}
