@@ -379,3 +379,5 @@ Route::middleware(['auth','admin'])->prefix('app')->group(function () {
 
 Route::get('/', 'App\Http\Controllers\Frontend\IndexController@index')->name('index');
 Route::get('/notice/{id}', 'App\Http\Controllers\Frontend\IndexController@notice')->name('notice');
+
+?>
