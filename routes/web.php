@@ -84,7 +84,7 @@ Route::get('/reset-verify-notification', [AuthController::class, 'resetVerifyNot
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 
-Route::middleware(['auth','admin'])->prefix('app')->group(function () {
+Route::middleware(['auth','admin'])->prefix('admin')->group(function () {
     // Route::post('/logged_in', [LoginController::class, 'authenticate']);
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
     Route::get('/visitor_info', [DashboardController::class, 'VisitorInfo'])->name('VisitorInfo');

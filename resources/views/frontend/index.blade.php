@@ -50,8 +50,8 @@
                         @endif --}}
                         <h4 class="text-center">Please sign in</h4>
                         <form method="POST" action="{{ route('loginProcess') }}">
-                            {{-- @csrf --}}
-                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                            @csrf
+                            {{-- <input type="hidden" name="_token" value="{{ csrf_token() }}"> --}}
                             <div class="form-row align-items-center">
                                 <div class="col-auto">
                                     <label class="sr-only" for="inlineFormInputGroup">Email</label>
