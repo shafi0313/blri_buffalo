@@ -21,7 +21,7 @@
 </div>
 
 <div class="form-group col-md-3 subFarmDiv" style="display: none">
-    <label for="">Farm Id <span class="t_r">*</span></label>
+    <label for="community_id">Farm Id <span class="t_r">*</span></label>
     <select name="community_id" id="subFarm" class="form-control valReset select2"></select>
 </div>
 
