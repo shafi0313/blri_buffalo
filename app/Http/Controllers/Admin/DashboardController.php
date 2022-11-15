@@ -12,6 +12,8 @@ class DashboardController extends Controller
 {
     public function index()
     {
+         toast('Success','success');
+        //  return back();
         if (Auth::user()->permission == 1) {
 
             $animalInfos = AnimalInfo::with(['getFarmInfo','getCommunityInfo','milkYields' => function($q){

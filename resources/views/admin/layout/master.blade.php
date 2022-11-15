@@ -13,21 +13,16 @@
     {{-- <!-- Fonts and icons --> --}}
     <script src="{{ asset('backend/js/plugin/webfont/webfont.min.js') }}"></script>
     <script>
-        WebFont.load({
-            google: {
-                "families": ["Open+Sans:300,400,600,700"]
-            },
-            custom: {
-                "families": ["Flaticon", "Font Awesome 5 Solid", "Font Awesome 5 Regular",
-                    "Font Awesome 5 Brands"
-                ],
-                urls: ['{{ asset("backend/css/fonts.css") }}']
-            },
-            active: function () {
-                sessionStorage.fonts = true;
-            }
-        });
+		WebFont.load({
+			google: {"families":["Open+Sans:300,400,600,700"]},
+			custom: {"families":["Flaticon", "Font Awesome 5 Solid", "Font Awesome 5 Regular", "Font Awesome 5 Brands"], urls: ['{{ asset("backend/assets/css/fonts.css") }}']},
+			active: function() {
+				sessionStorage.fonts = true;
+			}
+		});
     </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
         integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
         crossorigin="anonymous" />
@@ -96,10 +91,13 @@
     <!-- jQuery Sparkline -->
     <script src="{{ asset('backend/js/plugin/jquery.sparkline/jquery.sparkline.min.js') }}"></script>
 
+    @include('sweetalert::alert')
+
     <!-- Azzara JS -->
     <script src="{{ asset('backend/js/ready.min.js') }}"></script>
     <script src="{{ asset('backend/datepicker/js/bootstrap-datepicker.min.js') }}"></script>
-    @include('sweetalert::alert')
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <script>
         // Select 2
         $(document).ready(function () {
@@ -112,5 +110,6 @@
         })
     </script>
     @stack('custom_scripts')
+
 </body>
 </html>

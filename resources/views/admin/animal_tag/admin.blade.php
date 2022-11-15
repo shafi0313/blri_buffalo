@@ -2,7 +2,7 @@
     <label for="community_cat_id">Area <span class="t_r">*</span></label>
     <select name="farmOrCommunityId" id="farm"
         class="form-control @error('community_cat_id') is-invalid @enderror select2">
-        <option selected >Select</option>
+        <option value="" selected>Select</option>
         @foreach ($farms as $farm)
             <option value="{{ $farm->id }}f">{{ $farm->name }}</option>
         @endforeach
@@ -39,7 +39,7 @@
 </div>
 
 @if ($animalExtraInfo == 1)
-    <div class="form-group col-md-3">
+    {{-- <div class="form-group col-md-3">
         <label for="">Sex <span class="t_r">*</span></label>
         <input type="text" class="form-control" id="sex" value="" readonly>
     </div>
@@ -47,12 +47,12 @@
     <div class="form-group col-md-3">
         <label for="">Coat Color <span class="t_r">*</span></label>
         <input type="text" class="form-control" id="color" value="" readonly>
-    </div>
+    </div> --}}
 
-    <div class="form-group col-md-3">
+    {{-- <div class="form-group col-md-3">
         <label for="">Body Wt. (Kg) <span class="t_r">*</span></label>
         <input type="text" class="form-control" id="birth_wt" readonly>
-    </div>
+    </div> --}}
 @endif
 
 
@@ -152,7 +152,7 @@
                         res = $.parseJSON(res);
                         $('#sex').val(res.sex);
                         $('#animal_sl').val(res.animal_sl);
-                        $('#birth_wt').val(res.birth_wt);
+                        // $('#birth_wt').val(res.birth_wt);
                         $('#color').val(res.color);
                     }
                 })
@@ -169,11 +169,12 @@
                         res = $.parseJSON(res);
                         $('#sex').val(res.sex);
                         $('#animal_sl').val(res.animal_sl);
-                        $('#birth_wt').val(res.birth_wt);
+                        // $('#birth_wt').val(res.birth_wt);
                         $('#color').val(res.color);
                     }
                 })
             });
         })
     </script>
+    @include('admin.animal_tag.admin_js')
 @endpush

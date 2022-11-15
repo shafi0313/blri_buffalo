@@ -187,6 +187,7 @@ return [
          */
         \Torann\GeoIP\GeoIPServiceProvider::class,
 
+
         /*
          * Application Service Providers...
          */

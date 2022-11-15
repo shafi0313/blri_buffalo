@@ -85,7 +85,6 @@ class MorphometricController extends Controller
             $data['community_id'] = $request->community_id;
         }
 
-
         try{
             Morphometric::create($data);
             DB::commit();

@@ -88,7 +88,7 @@
 
 @push('custom_scripts')
 <script>
-    $('.heart_girth,.body_lenght').keyup(function(){
+    $('.heart_girth, .body_lenght').keyup(function(){
         let bodyLength = $('.body_lenght').val();
         let heartGirth = $('.heart_girth').val();
         let bodyWt = (bodyLength * (heartGirth*heartGirth)/300) * 0.45;

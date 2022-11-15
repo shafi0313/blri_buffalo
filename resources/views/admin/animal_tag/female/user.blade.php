@@ -100,4 +100,5 @@
             });
         })
     </script>
+    @include('admin.animal_tag.user_js')
 @endpush
