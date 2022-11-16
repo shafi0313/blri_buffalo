@@ -37,6 +37,7 @@
                                         <tr class="text-center">
                                             <th style="width: 35px">SL</th>
                                             <th>Tag No</th>
+                                            <th>Tattoo No</th>
                                             <th>Calving Date</th>
                                             <th class="no-sort" style="text-align:center;width:80px" >Action</th>
                                         </tr>
@@ -50,6 +51,7 @@
                                         <tr class="text-center">
                                             <td>{{ $x++ }} </td>
                                             <td>{{ $milkComposition->animalInfo->animal_tag }} </td>
+                                            <td>{{ $milkComposition->animalInfo->tattoo_no }} </td>
                                             <td>{{ \Carbon\Carbon::parse($milkComposition->calving_date)->format('d/m/Y') }} </td>
                                             <td>
                                                 <div class="form-button-action">

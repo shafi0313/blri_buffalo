@@ -37,6 +37,7 @@
                                         <tr class="text-center">
                                             <th style="width: 35px">SL</th>
                                             <th>Tag No</th>
+                                            <th>Tattoo No</th>
                                             <th>Date of Milking</th>
                                             <th>Milk Production (kg)</th>
                                             <th>Peak Milk Production (kg)</th>
@@ -54,6 +55,7 @@
                                         <tr class="text-center">
                                             <td>{{ $x++ }} </td>
                                             <td>{{ $milkProduction->animalInfo->animal_tag }} </td>
+                                            <td>{{ $milkProduction->animalInfo->tattoo_no }} </td>
                                             <td>{{ bdDate($milkProduction->date_of_milking) }} </td>
                                             <td>{{ $milkProduction->milk_production }} </td>
                                             <td>{{ $milkProduction->peak_milk_production }} </td>

@@ -3,6 +3,7 @@
         <tr class="text-center">
             <th style="width: 35px">SL</th>
             <th>Tag no</th>
+            <th>Tattoo no</th>
             <th>Sex</th>
             <th>Date</th>
             <th>Body length (inch)</th>
@@ -21,6 +22,7 @@
         <tr class="text-center">
             <td>{{ $x++ }} </td>
             <td>{{ $morphometric->animalInfo->animal_tag }} </td>
+            <td>{{ $morphometric->animalInfo->tattoo_no }} </td>
             <td>{{ $morphometric->animalInfo->sex }} </td>
             <td>{{ bdDate($morphometric->age) }} </td>
             <td>{{ $morphometric->body_lenght }} </td>

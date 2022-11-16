@@ -3,6 +3,7 @@
         <tr>
             <th style="width: 35px">SL</th>
             <th>Tag No</th>
+            <th>Tattoo No</th>
             <th>Calving Date</th>
             <th>Milking Date</th>
             <th>Milk Production</th>
@@ -15,6 +16,7 @@
         <tr class="text-center">
             <td>{{ $x++ }} </td>
             <td>{{ $milkComposition->animalInfo->animal_tag }} </td>
+            <td>{{ $milkComposition->animalInfo->tattoo_no }} </td>
             <td>{{ \Carbon\Carbon::parse($milkComposition->calving_date)->format('d/m/Y') }} </td>
             <td>{{ \Carbon\Carbon::parse($milkComposition->date)->format('d/m/Y') }} </td>
             <td>{{ $milkComposition->production }} </td>
