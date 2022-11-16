@@ -16,12 +16,12 @@ class DashboardController extends Controller
             $animalInfos = AnimalInfo::with(['getFarmInfo','getCommunityInfo','milkYields' => function($q){
                     $q->where('milk_production', '>=', 4);
                 }])->whereIs_culling(0)->get();
-            $milkProduction = MilkProduction::whereNotIn('animal_info_id',isCulling())->where('milk_production', '>=', 4)->count();
+            $milkProduction = MilkProduction::whereNotIn('animal_info_id',isCulling())->where('milk_production', '>=', 4)->groupBy('animal_info_id')->count();
         } else {
             $animalInfos = AnimalInfo::with(['getFarmInfo','getCommunityInfo','milkYields' => function($q){
                 $q->where('milk_production', '>=', 4);
             }])->whereIs_culling(0)->whereUser_id(Auth::user()->id)->get();
-            $milkProduction = MilkProduction::whereUser_id(auth::user()->id)->whereNotIn('animal_info_id',isCullingUser())->where('milk_production', '>=', 4)->count();
+            $milkProduction = MilkProduction::whereUser_id(auth::user()->id)->whereNotIn('animal_info_id',isCullingUser())->where('milk_production', '>=', 4)->groupBy('animal_info_id')->count();
         }
         return view('admin.dashboard', compact('animalInfos','milkProduction'));
     }

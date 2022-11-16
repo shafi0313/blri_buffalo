@@ -65,13 +65,8 @@
                                         <td>{{ $animalInfo->where('sex', 'M')->count() }}</td>
                                         <td>{{ $animalInfo->where('sex', 'F')->count() }}</td>
                                         <td>{{ $animalInfo->count() }}</td>
-                                        @foreach ($animalInfo as $milkYield)
-                                            @php $milkYie += $milkYield->milkYields->count(); @endphp
-                                            {{-- @foreach ($milkYield->milkYields as $milkYiel)
-                                            @if ($milkYiel->milk_production >= 4)
-                                                @php $milkYie++ @endphp
-                                            @endif
-                                        @endforeach --}}
+                                        @foreach ($animalInfo->groupBy('animal_info_id') as $milkYield)
+                                            @php $milkYie += $milkYield->first()->milkYields->count(); @endphp
                                         @endforeach
                                         <td>{{ $milkYie }}</td>
                                     </tr>
@@ -87,8 +82,8 @@
                                         <td>{{ $animalInfo->where('sex', 'F')->count() }}</td>
                                         <td>{{ $animalInfo->count() }}</td>
                                         @php $milkYie2 = 0; @endphp
-                                        @foreach ($animalInfo as $milkYieldss)
-                                            @php $milkYie2 += $milkYieldss->milkYields->count(); @endphp
+                                        @foreach ($animalInfo->groupBy('animal_info_id') as $milkYieldss)
+                                            @php $milkYie2 += $milkYieldss->first()->milkYields->count(); @endphp
                                         @endforeach
                                         <td>{{ $milkYie2 }}</td>
                                     </tr>
