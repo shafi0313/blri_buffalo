@@ -22,7 +22,7 @@ class ReproductionReportController extends Controller
             return view('admin.report.reproduction.select', compact('farms', 'communityCats'));
         } else {
             $reproductions = Reproduction::where('user_id', Auth::user()->id)->whereNotIn('animal_info_id', isCullingUser())->get();
-            return view('admin.reproduction.index', compact('reproductions'));
+            return view('admin.report.reproduction.report', compact('reproductions'));
         }
     }
 
@@ -37,7 +37,7 @@ class ReproductionReportController extends Controller
                 $reproductions = Reproduction::whereCommunity_cat_id($farmOrComId)->whereNotIn('animal_info_id', isCullingUser())->get();
             }
         }
-        return view('admin.reproduction.index', compact('reproductions'));
+        return view('admin.report.reproduction.report', compact('reproductions'));
     }
 
     public function excel($farmId, $communityCatId)

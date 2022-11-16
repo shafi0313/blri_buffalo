@@ -22,7 +22,7 @@ class BodyWeightReportController extends Controller
             return view('admin.report.body_weight.select', compact('farms', 'communityCats'));
         } else {
             $productionRecords = BodyWeight::where('user_id', Auth::user()->id)->whereNotIn('animal_info_id', isCullingUser())->get();
-            return view('admin.body_weight.index', compact('productionRecords'));
+            return view('admin.report.body_weight.report', compact('productionRecords'));
         }
         // return view('admin.report.animal_info_select', compact('productionRecords'));
     }
@@ -38,7 +38,7 @@ class BodyWeightReportController extends Controller
                 $productionRecords = BodyWeight::whereCommunity_cat_id($farmOrComId)->whereNotIn('animal_info_id', isCullingUser())->get();
             }
         }
-        return view('admin.body_weight.index', compact('productionRecords'));
+        return view('admin.report.body_weight.report', compact('productionRecords'));
     }
 
     public function excel($farmId, $communityCatId)
