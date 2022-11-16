@@ -184,40 +184,40 @@
                 }
             })
 
-            $('#animal_info').on('change', function(e) {
-                var animalInfoId = $(this).val();
-                $.ajax({
-                    url: '{{ route('get.getAnimalInfo') }}',
-                    type: "get",
-                    data: {
-                        animalInfoId: animalInfoId
-                    },
-                    success: function(res) {
-                        res = $.parseJSON(res);
-                        $('#sex').val(res.sex);
-                        $('#animal_sl').val(res.animal_sl);
-                        $('#birth_wt').val(res.birth_wt);
-                        $('#color').val(res.color);
-                    }
-                })
-            });
-            $('#tattooNo').on('change', function(e) {
-                var animalInfoId = $(this).val();
-                $.ajax({
-                    url: '{{ route('get.getAnimalInfo') }}',
-                    type: "get",
-                    data: {
-                        animalInfoId: animalInfoId
-                    },
-                    success: function(res) {
-                        res = $.parseJSON(res);
-                        $('#sex').val(res.sex);
-                        $('#animal_sl').val(res.animal_sl);
-                        $('#birth_wt').val(res.birth_wt);
-                        $('#color').val(res.color);
-                    }
-                })
-            });
+            // $('#animal_info').on('change', function(e) {
+            //     var animalInfoId = $(this).val();
+            //     $.ajax({
+            //         url: '{{ route('get.getAnimalInfo') }}',
+            //         type: "get",
+            //         data: {
+            //             animalInfoId: animalInfoId
+            //         },
+            //         success: function(res) {
+            //             res = $.parseJSON(res);
+            //             $('#sex').val(res.sex);
+            //             $('#animal_sl').val(res.animal_sl);
+            //             $('#birth_wt').val(res.birth_wt);
+            //             $('#color').val(res.color);
+            //         }
+            //     })
+            // });
+            // $('#tattooNo').on('change', function(e) {
+            //     var animalInfoId = $(this).val();
+            //     $.ajax({
+            //         url: '{{ route('get.getAnimalInfo') }}',
+            //         type: "get",
+            //         data: {
+            //             animalInfoId: animalInfoId
+            //         },
+            //         success: function(res) {
+            //             res = $.parseJSON(res);
+            //             $('#sex').val(res.sex);
+            //             $('#animal_sl').val(res.animal_sl);
+            //             $('#birth_wt').val(res.birth_wt);
+            //             $('#color').val(res.color);
+            //         }
+            //     })
+            // });
         })
     </script>
 @endpush
