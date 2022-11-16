@@ -70,33 +70,6 @@
                                         @enderror
                                     </div>
 
-                                    {{-- <div class="form-group col-md-3">
-                                        <label for="name">Female Buffalo ID;<span class="t_r">*</span></label>
-                                        <select name="animal_info_id" id="animalInfo" class="form-control @error('animal_info_id') is-invalid @enderror">
-                                            <option value="">Select</option>
-                                            @foreach ($animalInfos->where('sex','F') as $animalInfo)
-                                            <option value="{{$animalInfo->id}}">{{$animalInfo->animal_tag}}</option>
-                                            @endforeach
-                                        </select>
-                                        @error('animal_info_id')
-                                            <div class="alert alert-danger">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-
-
-                                    <div class="form-group col-md-3">
-                                        <label for="name">Bull Tag<span class="t_r">*</span></label>
-                                        <select name="bull_id" id="animalInfo" class="form-control @error('bull_id') is-invalid @enderror">
-                                            <option value="">Select</option>
-                                            @foreach ($animalInfos->where('sex','M') as $animalInfo)
-                                            <option value="{{$animalInfo->id}}">{{$animalInfo->animal_tag}}</option>
-                                            @endforeach
-                                        </select>
-                                        @error('bull_id')
-                                            <div class="alert alert-danger">{{ $message }}</div>
-                                        @enderror
-                                    </div> --}}
-
                                     <div class="form-group col-md-3">
                                         <label for="date_of_service">Date of Service</label>
                                         <input  name="date_of_service" type="date" id="date_of_service" class="form-control @error('date_of_service') is-invalid @enderror" value="{{old('date_of_service')}}">
@@ -238,6 +211,38 @@
         })
     });
 </script> --}}
+<script>
+    let farm = $("#farm").val()
+    $("form").on('submit', function(e){
+            let farm = $("#subFarm").val()
+            let animal_info = $("#animal_info").val()
+            let bull_id = $("#bull_id").val()
+            if(farm == null || farm == ""){
+                Swal.fire(
+                'Data Missing?',
+                'Area Missing',
+                'question'
+                )
+                return false;
+            }
+            if(animal_info == null || animal_info == 0){
+                Swal.fire(
+                'Data Missing?',
+                'Female Buffalo ID Missing',
+                'question'
+                )
+                return false;
+            }
+            if(bull_id == null || bull_id == 0){
+                Swal.fire(
+                'Data Missing?',
+                'Buffalo Bull ID Missing',
+                'question'
+                )
+                return false;
+            }
+        });
+</script>
 @endpush
 @endsection
 

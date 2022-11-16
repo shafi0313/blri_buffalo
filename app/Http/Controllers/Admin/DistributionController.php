@@ -99,7 +99,7 @@ class DistributionController extends Controller
         try {
             Distribution::create($data);
             if ($request->dis_type=='Semen') {
-                AnimalInfo::whereId($request->animal_info_id)->first()->update([
+                AnimalInfo::whereId($request->animal_info_id ?? $request->tattoo_no)->first()->update([
                     'status' => 2, // Distribution
                 ]);
             }

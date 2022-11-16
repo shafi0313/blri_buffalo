@@ -57,15 +57,17 @@ class SemenAnalysisController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'animal_info_id' => 'required_if:tattoo_no,==,NULL',
-            'date' => 'required',
-            'volume' => 'required',
-            'semen_color' => 'required',
-            'semen_type' => 'required',
-            'total_mortality' => 'required',
+            // 'animal_info_id'        => 'required_if:tattoo_no,==,NULL',
+            'date'                  => 'required',
+            'volume'                => 'required',
+            'semen_color'           => 'required',
+            'semen_type'            => 'required',
+            'total_mortality'       => 'required',
             'progressive_mortality' => 'required',
-            'sperm_concentration' => 'required',
+            'sperm_concentration'   => 'required',
+            'straw_prepared'        => 'required',
         ]);
+        $data['animal_info_id'] = $request->animal_info_id ?? $request->tattoo_no;
         $data['user_id'] = Auth::user()->id;
 
         $fOrC = preg_replace('/[^a-z A-Z]/', '', $request->farmOrCommunityId);
@@ -74,15 +76,15 @@ class SemenAnalysisController extends Controller
 
         if (Auth::user()->permission == 1) {
             if ($fOrC=='f') {
-                $data['farm_id'] = $farmOrComId;
+                $data['farm_id']      = $farmOrComId;
                 $data['community_id'] = $request->community_id;
             } else {
                 $data['community_cat_id'] = $farmOrComId;
-                $data['community_id'] = $request->community_id;
+                $data['community_id']     = $request->community_id;
             }
         } else {
-            $data['community_cat_id'] = $communityCat->id; // for community
-            $data['community_id'] = $request->community_id;
+            $data['community_cat_id'] = $communityCat->id;       // for community
+            $data['community_id']     = $request->community_id;
         }
 
         DB::beginTransaction();
@@ -93,6 +95,7 @@ class SemenAnalysisController extends Controller
             return redirect()->route('semen-analysis.index');
         } catch(\Exception $ex) {
             DB::rollBack();
+            return $ex->getMessage();
             toast('Error', 'error');
             return redirect()->back();
         }

@@ -60,11 +60,12 @@ class DeadCulledController extends Controller
     public function store(Request $request)
     {
         $data = $this->validate($request, [
-            'animal_info_id' => 'required_if:tattoo_no,==,NULL',
+            // 'animal_info_id' => 'required_if:tattoo_no,==,NULL',
             'reason'  => 'required|max:196',
             'date_dead_culled'  => 'required|date',
         ]);
         $data['user_id'] = Auth::user()->id;
+        $data['animal_info_id'] = $request->animal_info_id ?? $request->tattoo_no;
 
         $fOrC = preg_replace('/[^a-z A-Z]/', '', $request->farmOrCommunityId);
         $farmOrComId = preg_replace('/[^0-9]/', '', $request->farmOrCommunityId);
@@ -91,7 +92,7 @@ class DeadCulledController extends Controller
                 'Not suitable for research' => '4',
                 'Breeding' => '5',
             };
-            AnimalInfo::whereId($request->animal_info_id)->first()->update([
+            AnimalInfo::whereId($request->animal_info_id ?? $request->tattoo_no)->first()->update([
                 'status' => $status,
                 'is_culling' => 1,
             ]);

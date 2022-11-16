@@ -59,7 +59,7 @@
                                     </div>
 
                                     <div class="form-group col-md-3">
-                                        <label for="name">Female Buffalo ID; <span class="t_r">*</span></label>
+                                        <label for="name">Female Buffalo ID <span class="t_r">*</span></label>
                                         <select name="animal_info_id" id="animal_info" class="form-control valReset select2 @error('animal_info_id') is-invalid @enderror"></select>
                                         @error('animal_info_id')
                                             <div class="alert alert-danger">{{ $message }}</div>
@@ -73,33 +73,6 @@
                                             <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
-
-                                    {{-- <div class="form-group col-md-3">
-                                        <label for="name">Female Buffalo ID;<span class="t_r">*</span></label>
-                                        <select name="animal_info_id" id="animalInfo" class="form-control @error('animal_info_id') is-invalid @enderror">
-                                            <option value="">Select</option>
-                                            @foreach ($animalInfos->where('sex','F') as $animalInfo)
-                                            <option value="{{$animalInfo->id}}">{{$animalInfo->animal_tag}}</option>
-                                            @endforeach
-                                        </select>
-                                        @error('animal_info_id')
-                                            <div class="alert alert-danger">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-
-
-                                    <div class="form-group col-md-3">
-                                        <label for="name">Bull Tag<span class="t_r">*</span></label>
-                                        <select name="bull_id" id="animalInfo" class="form-control @error('bull_id') is-invalid @enderror">
-                                            <option value="">Select</option>
-                                            @foreach ($animalInfos->where('sex','M') as $animalInfo)
-                                            <option value="{{$animalInfo->id}}">{{$animalInfo->animal_tag}}</option>
-                                            @endforeach
-                                        </select>
-                                        @error('bull_id')
-                                            <div class="alert alert-danger">{{ $message }}</div>
-                                        @enderror
-                                    </div> --}}
 
                                     <div class="form-group col-md-3">
                                         <label for="date_of_service">Date of Service</label>
@@ -264,7 +237,38 @@
         // alert(sessionBirth)
     });
 </script>
-
+<script>
+    let farm = $("#farm").val()
+    $("form").on('submit', function(e){
+            let farm = $("#farm").val()
+            let animal_info = $("#animal_info").val()
+            let bull_id = $("#bull_id").val()
+            if(farm == null || farm == ""){
+                Swal.fire(
+                'Data Missing?',
+                'Area Missing',
+                'question'
+                )
+                return false;
+            }
+            if(animal_info == null || animal_info == 0){
+                Swal.fire(
+                'Data Missing?',
+                'Female Buffalo ID Missing',
+                'question'
+                )
+                return false;
+            }
+            if(bull_id == null || bull_id == 0){
+                Swal.fire(
+                'Data Missing?',
+                'Buffalo Bull ID Missing',
+                'question'
+                )
+                return false;
+            }
+        });
+</script>
 @endpush
 @endsection
 

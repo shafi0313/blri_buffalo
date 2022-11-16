@@ -114,15 +114,6 @@
                         )
                         return false;
                     }
-                    // if ((animal_info == null || animal_info == 0) && (tattooNo == null ||
-                    //         tattooNo == 0)) {
-                    //     Swal.fire(
-                    //         'Data Missing?',
-                    //         'Tag No or Tattoo No Missing',
-                    //         'question'
-                    //     )
-                    //     return false;
-                    // }
                 });
             })
 
