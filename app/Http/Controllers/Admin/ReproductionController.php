@@ -63,7 +63,7 @@ class ReproductionController extends Controller
 
         DB::beginTransaction();
 
-        $data['animal_info_id'] = $request->animal_info_id;
+        $data['animal_info_id'] = $request->animal_info_id ?? $request->tattoo_no;
         $data['puberty_age'] = $request->puberty_age;
         $data['user_id'] = Auth::user()->id;
         if ($getReproduction != null) {
@@ -151,7 +151,7 @@ class ReproductionController extends Controller
 
         DB::beginTransaction();
 
-        $data['animal_info_id'] = $request->animal_info_id;
+        $data['animal_info_id'] = $request->animal_info_id ?? $request->tattoo_no;
         $data['puberty_age'] = $request->puberty_age;
         $data['user_id'] = Auth::user()->id;
         if ($getReproduction != null) {

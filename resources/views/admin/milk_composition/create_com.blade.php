@@ -45,7 +45,7 @@
                                 {{-- <input type="hidden" name="animal_info_id" value="{{  $animalInfo->id }}"> --}}
 
                                 <div class="row">
-                                    <div class="form-group col-md-3">
+                                    {{-- <div class="form-group col-md-3">
                                         <label for="community_cat">Farm Id <span class="t_r">*</span></label>
                                         <select name="community_cat" id="subFarm" class="form-control @error('community_cat') is-invalid @enderror">
                                             <option selected disabled value>Select</option>
@@ -64,15 +64,8 @@
                                         @error('animal_info_id')
                                             <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
-                                    </div>
-
-
-
-                                    {{-- <div class="form-group col-md-3">
-                                        <label for="name">Tag no <span class="t_r">*</span></label>
-                                        <input type="text" class="form-control" value="{{ $animalInfo->animal_tag }}" required readonly>
-
                                     </div> --}}
+                                    @include('admin.animal_tag.female.user')
 
                                     @if ($milkCompositions->count() < 1)
                                         <div class="form-group col-md-3">
@@ -216,62 +209,40 @@
 </div>
 
 @push('custom_scripts')
-<script>
-    // $('#animalInfo').on('change',function(e) {
-    //     var animalInfoId = $(this).val();
-    //     $.ajax({
-    //         url:'{{ route("get.getMilkComposition") }}',
-    //         type:"get",
-    //         data: {
-    //             animalInfoId: animalInfoId
-    //             },
-    //         success:function (res) {
-    //             res = $.parseJSON(res);
-    //             $('#calving_date').val(res.calving_date);
-    //             $('#milkCount').val(res.milkCount);
-
-    //             // if(res.calving_date == NULL){
-    //             //     alert('Calving date')
-    //             //     $('#calving_date').attr('readonly',true);
-    //             // }
-    //         }
-    //     })
-    // });
-</script>
 
 <script>
-    $('#subFarm').on('change',function(e) {
-            var community_id = $(this).val()
-            $.ajax({
-                url:'{{ route("get.animalF") }}',
-                type:"get",
-                data: {
-                    community_id: community_id
-                    },
-                success:function (res) {
-                    res = $.parseJSON(res);
-                    $('#animal_info').html(res.name);
-                }
-            })
-        });
+    // $('#subFarm').on('change',function(e) {
+    //         var community_id = $(this).val()
+    //         $.ajax({
+    //             url:'{{ route("get.animalF") }}',
+    //             type:"get",
+    //             data: {
+    //                 community_id: community_id
+    //                 },
+    //             success:function (res) {
+    //                 res = $.parseJSON(res);
+    //                 $('#animal_info').html(res.name);
+    //             }
+    //         })
+    //     });
 
-        $('#animal_info').on('change',function(e) {
-            var animalInfoId = $(this).val();
-            $.ajax({
-                url:'{{ route("get.getAnimalInfo") }}',
-                type:"get",
-                data: {
-                    animalInfoId: animalInfoId
-                    },
-                success:function (res) {
-                    res = $.parseJSON(res);
-                    $('#sex').val(res.sex);
-                    $('#animal_sl').val(res.animal_sl);
-                    $('#birth_wt').val(res.birth_wt);
-                    $('#color').val(res.color);
-                }
-            })
-        });
+        // $('#animal_info').on('change',function(e) {
+        //     var animalInfoId = $(this).val();
+        //     $.ajax({
+        //         url:'{{ route("get.getAnimalInfo") }}',
+        //         type:"get",
+        //         data: {
+        //             animalInfoId: animalInfoId
+        //             },
+        //         success:function (res) {
+        //             res = $.parseJSON(res);
+        //             $('#sex').val(res.sex);
+        //             $('#animal_sl').val(res.animal_sl);
+        //             $('#birth_wt').val(res.birth_wt);
+        //             $('#color').val(res.color);
+        //         }
+        //     })
+        // });
     </script>
 @endpush
 @endsection

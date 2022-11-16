@@ -29,27 +29,6 @@
     @enderror
 </div>
 
-
-@if ($animalExtraInfo == 1)
-    <div class="form-group col-md-3">
-        <label for="">Sex <span class="t_r">*</span></label>
-        <input type="text" class="form-control" id="sex" value="" readonly>
-    </div>
-
-    <div class="form-group col-md-3">
-        <label for="">Coat Color <span class="t_r">*</span></label>
-        <input type="text" class="form-control" id="color" value="" readonly>
-    </div>
-
-    <div class="form-group col-md-3">
-        <label for="">Body Wt. (Kg) <span class="t_r">*</span></label>
-        <input type="text" class="form-control" id="birth_wt" readonly>
-    </div>
-@endif
-
-
-
-
 @push('custom_scripts')
     <script>
         $(document).ready(function() {

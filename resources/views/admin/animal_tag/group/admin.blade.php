@@ -1,4 +1,5 @@
 <div class="form-group col-md-3 single" style="display: none">
+    <input type="hidden" class="single">
     <label for="community_cat_id">Area <span class="t_r">*</span></label>
     <select name="farmOrCommunityId" id="farm"
         class="form-control select2 @error('community_cat_id') is-invalid @enderror singleInput">
@@ -14,8 +15,6 @@
         <div class="alert alert-danger">{{ $message }}</div>
     @enderror
 </div>
-
-
 
 <div class="form-group col-md-3 single" style="display: none">
     <label for="name">Tag no <span class="t_r">*</span></label>
@@ -34,7 +33,6 @@
         <div class="alert alert-danger">{{ $message }}</div>
     @enderror
 </div>
-
 
 <div class="form-group col-md-3 group" style="display: none">
     <label for="community_cat_id">Area <span class="t_r">*</span></label>
@@ -58,28 +56,6 @@
     <select name="community_id" id="subFarm" class="form-control valReset select2"></select>
 </div>
 
-{{-- <div class="form-group col-md-3 subFarmDiv group" style="display: none">
-    <label for="">Farm Id <span class="t_r">*</span></label>
-    <select name="community_id" id="subFarm" class="form-control valReset select2 groupInput"></select>
-</div> --}}
-
-{{-- <div class="form-group col-md-3 group" style="display: none">
-    <label for="name">Tag no <span class="t_r">*</span></label>
-    <select name="animal_info_id" id="animal_info" class="form-control valReset @error('animal_info_id') is-invalid @enderror select2 groupInput"></select>
-    @error('animal_info_id')
-        <div class="alert alert-danger">{{ $message }}</div>
-    @enderror
-</div>
-
-<div class="form-group col-md-3 group" style="display: none">
-    <label for="tattoo_no">Tattoo no <span class="t_r">*</span></label>
-    <select name="tattoo_no" id="tattooNo" class="form-control valReset @error('tattoo_no') is-invalid @enderror select2 groupInput"></select>
-    @error('tattoo_no')
-        <div class="alert alert-danger">{{ $message }}</div>
-    @enderror
-</div> --}}
-
-
 @push('custom_scripts')
     <script>
         $(document).ready(function() {
@@ -91,6 +67,29 @@
                 $(".group").hide();
                 $(".singleInput").attr('disabled', false);
                 $(".groupInput").attr('disabled', true);
+                let farm = $("#farm").val()
+                $("form").on('submit', function(e) {
+                    let farm = $("#farm").val()
+                    let animal_info = $("#animal_info").val()
+                    let tattooNo = $("#tattooNo").val()
+                    if (farm == null || farm == "") {
+                        Swal.fire(
+                            'Data Missing?',
+                            'Area Missing',
+                            'question'
+                        )
+                        return false;
+                    }
+                    if ((animal_info == null || animal_info == 0) && (tattooNo == null ||
+                            tattooNo == 0)) {
+                        Swal.fire(
+                            'Data Missing?',
+                            'Tag No or Tattoo No Missing',
+                            'question'
+                        )
+                        return false;
+                    }
+                });
             })
 
             $("#group").on("click", function() {
@@ -102,13 +101,35 @@
                 $(".singleInput").attr('disabled', true);
                 $(".groupInput").attr('disabled', false);
                 $(".total_vaccinated").show();
+                let farm = $("#farm").val()
+                $("form").on('submit', function(e) {
+                    let farm = $("#farm").val()
+                    let animal_info = $("#animal_info").val()
+                    let tattooNo = $("#tattooNo").val()
+                    if (farm == null || farm == "") {
+                        Swal.fire(
+                            'Data Missing?',
+                            'Area Missing',
+                            'question'
+                        )
+                        return false;
+                    }
+                    // if ((animal_info == null || animal_info == 0) && (tattooNo == null ||
+                    //         tattooNo == 0)) {
+                    //     Swal.fire(
+                    //         'Data Missing?',
+                    //         'Tag No or Tattoo No Missing',
+                    //         'question'
+                    //     )
+                    //     return false;
+                    // }
+                });
             })
 
             $('#farm, #farmGroup').on('change', function() {
                 let farm = $(this).val().slice(-1);
                 if (farm == 'c') {
                     $('.subFarmDiv').show();
-                    // $('#farm').on('change',function(e) {
                     var farmOrComId = $(this).val()
                     $.ajax({
                         url: '{{ route('get.subFarm') }}',
@@ -121,7 +142,6 @@
                             $('#subFarm').html(res.name);
                         }
                     })
-                    // });
 
                     // For community Farm
                     $('#subFarm').on('change', function(e) {
@@ -154,7 +174,6 @@
                 } else {
                     $('.subFarmDiv').hide();
                     // For research Farm
-                    // $('#farm').on('select2:select', function () {
                     // Tag No
                     let farm_id = $(this).val().slice(0, -1)
                     $.ajax({
@@ -180,7 +199,6 @@
                             $('#tattooNo').html(res.tattooNo);
                         }
                     })
-                    // });
                 }
             })
 

@@ -183,4 +183,5 @@
             // });
         });
     </script>
+    @include('admin.animal_tag.admin_js')
 @endpush
