@@ -35,7 +35,7 @@
     @enderror
 </div>
 
-<div class="form-group col-md-3">
+<div class="form-group col-md-3 single" style="display: none">
     <label for="tattoo_no">Tattoo no <span class="t_r">*</span></label>
     <select name="tattoo_no" id="tattooNo"
         class="form-control valReset @error('tattoo_no') is-invalid @enderror select2"></select>
@@ -57,6 +57,28 @@
                 $(".group").hide();
                 $(".singleInput").attr('disabled', false);
                 $(".groupInput").attr('disabled', true);
+                $("form").on('submit', function(e) {
+                    let community_id = $("#subFarm").val()
+                    let animal_info = $("#animal_info").val()
+                    let tattooNo = $("#tattooNo").val()
+                    if (community_id == null || community_id == "") {
+                        Swal.fire(
+                            'Data Missing?',
+                            'Farm ID Missing',
+                            'question'
+                        )
+                        return false;
+                    }
+                    if ((animal_info == null || animal_info == 0) && (tattooNo == null ||
+                            tattooNo == 0)) {
+                        Swal.fire(
+                            'Data Missing?',
+                            'Tag no or Tattoo no',
+                            'question'
+                        )
+                        return false;
+                    }
+                });
             })
 
             $("#group").on("click", function() {
@@ -68,6 +90,19 @@
                 $(".singleInput").attr('disabled', true);
                 $(".groupInput").attr('disabled', false);
                 $(".total_vaccinated").show();
+                $("form").on('submit', function(e) {
+                    let community_id = $("#subFarmGroup").val()
+                    let animal_info = $("#animal_info").val()
+                    let tattooNo = $("#tattooNo").val()
+                    if (community_id == null || community_id == "") {
+                        Swal.fire(
+                            'Data Missing?',
+                            'Farm ID Missing',
+                            'question'
+                        )
+                        return false;
+                    }
+                });
             })
 
             // $(document).ready(function() {
@@ -115,7 +150,7 @@
             //         }
             //     })
             // });
-        // })
+            // })
 
             // $('#subFarm, #subFarmGroup').on('change', function(e) {
             //     var community_id = $(this).val()
@@ -151,5 +186,5 @@
             // });
         })
     </script>
-    @include('admin.animal_tag.user_js')
+    {{-- @include('admin.animal_tag.user_js') --}}
 @endpush

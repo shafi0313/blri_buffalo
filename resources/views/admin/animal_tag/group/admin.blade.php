@@ -103,7 +103,7 @@
                 $(".total_vaccinated").show();
                 let farm = $("#farm").val()
                 $("form").on('submit', function(e) {
-                    let farm = $("#farm").val()
+                    let farm = $("#farmGroup").val()
                     let animal_info = $("#animal_info").val()
                     let tattooNo = $("#tattooNo").val()
                     if (farm == null || farm == "") {

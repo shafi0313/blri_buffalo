@@ -38,41 +38,14 @@
                                 @csrf
                                 <input type="hidden" name="type" id="type">
                                 <div class="row">
-                                    {{-- <div class="form-group col-md-3">
-                                        <label for="name">Tag No <span class="t_r">*</span></label>
-                                        <select name="animal_info_id" id="animalInfo" class="form-control @error('animal_info_id') is-invalid @enderror">
-                                            <option value="">Select</option>
-                                            @foreach ($animalInfos as $animalInfo)
-                                            <option value="{{$animalInfo->id}}">{{$animalInfo->animal_tag}}</option>
-                                            @endforeach
-                                        </select>
-                                        @error('animal_info_id')
-                                            <div class="alert alert-danger">{{ $message }}</div>
-                                        @enderror
-                                    </div> --}}
-
-                                    {{-- <div class="form-group col-md-3">
-                                        <label for="">Breed <span class="t_r">*</span></label>
-                                        <input type="text" class="form-control" id="breed"  value="" readonly>
-                                    </div>
-
-                                    <div class="form-group col-md-3">
-                                        <label for="">Sex <span class="t_r">*</span></label>
-                                        <input type="text" class="form-control" id="sex"  value="" readonly>
-                                    </div>
-
-                                    <div class="form-group col-md-3">
-                                        <label for="">Age <span class="t_r">*</span></label>
-                                        <p style="color:#008CBA" id="result"></p>
-                                    </div> --}}
                                     <div class="form-check col-md-3">
                                         <label>Deworming Type <span class="t_r">*</span></label><br>
                                         <label class="form-radio-label">
-                                            <input class="form-radio-input" type="radio" name="dew_type" value="single" id="single">
+                                            <input class="form-radio-input" type="radio" name="dew_type" value="single" id="single" required>
                                             <span class="form-radio-sign">Single</span>
                                         </label>
                                         <label class="form-radio-label ml-3">
-                                            <input class="form-radio-input" type="radio" name="dew_type" value="group" id="group">
+                                            <input class="form-radio-input" type="radio" name="dew_type" value="group" id="group" required>
                                             <span class="form-radio-sign">Group</span>
                                         </label>
                                     </div>
@@ -83,45 +56,6 @@
                                     @else
                                         @include('admin.animal_tag.group.user')
                                     @endif
-
-                                    {{-- <div class="form-group col-md-3 group" style="display: none">
-                                        <label for="name">Tag no From <span class="t_r">*</span></label>
-                                        <select name="to" id="to" class="form-control @error('animal_info_id') is-invalid @enderror">
-                                            <option value="">Select</option>
-                                            @foreach ($animalInfos as $animalInfo)
-                                            <option value="{{$animalInfo->id}}">{{$animalInfo->animal_tag}}</option>
-                                            @endforeach
-                                        </select>
-                                        @error('animal_info_id')
-                                            <div class="alert alert-danger">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-
-                                    <div class="form-group col-md-3 group" style="display: none">
-                                        <label for="name">Tag no To <span class="t_r">*</span></label>
-                                        <select name="from" id="from" class="form-control @error('animal_info_id') is-invalid @enderror">
-                                            <option value="">Select</option>
-                                            @foreach ($animalInfos as $animalInfo)
-                                            <option value="{{$animalInfo->id}}">{{$animalInfo->animal_tag}}</option>
-                                            @endforeach
-                                        </select>
-                                        @error('animal_info_id')
-                                            <div class="alert alert-danger">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-
-                                    <div class="form-group col-md-3 single" style="display: none">
-                                        <label for="name">Tag no<span class="t_r">*</span></label>
-                                        <select name="single" id="single_input" class="form-control @error('animal_info_id') is-invalid @enderror">
-                                            <option value="">Select</option>
-                                            @foreach ($animalInfos as $animalInfo)
-                                            <option value="{{$animalInfo->id}}">{{$animalInfo->animal_tag}}</option>
-                                            @endforeach
-                                        </select>
-                                        @error('animal_info_id')
-                                            <div class="alert alert-danger">{{ $message }}</div>
-                                        @enderror
-                                    </div> --}}
 
                                     <div class="form-group col-md-3">
                                         <label for="medicine_name">Name of Medicine <span class="t_r">*</span></label>
@@ -165,22 +99,6 @@
 
 @push('custom_scripts')
 <script>
-    // $("#single").on("click", function(){
-    //     $(".single").show();
-    //     $("#single_input").attr("disabled", false);
-    //     $("#single_input").attr("required", true);
-    //     $("#to, #from").attr("disabled", true);
-    //     $(".group").hide();
-    // })
-
-    // $("#group").on("click", function(){
-    //     $(".single").hide();
-    //     $("#single_input").attr("disabled", true);
-    //     $("#to, #from").attr("disabled", false);
-    //     $("#to, #from").attr("required", true);
-    //     $(".group").show();
-    // })
-
     $('#animalInfo').on('change',function(e) {
         var animalInfoId = $(this).val();
         $.ajax({

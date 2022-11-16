@@ -56,6 +56,7 @@ class SemenAnalysisController extends Controller
 
     public function store(Request $request)
     {
+        DB::beginTransaction();
         $data = $request->validate([
             // 'animal_info_id'        => 'required_if:tattoo_no,==,NULL',
             'date'                  => 'required',
@@ -87,7 +88,7 @@ class SemenAnalysisController extends Controller
             $data['community_id']     = $request->community_id;
         }
 
-        DB::beginTransaction();
+
         try {
             SemenAnalysis::create($data);
             DB::commit();
