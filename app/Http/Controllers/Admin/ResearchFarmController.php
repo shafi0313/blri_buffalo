@@ -40,7 +40,7 @@ class ResearchFarmController extends Controller
             toast('Farm Added','success');
             return redirect()->route('research-farm.index');
         }catch(\Exception $ex){
-            return $ex->getMessage();
+            // return $ex->getMessage();
             toast('Farm Added Failed','error');
             return redirect()->back();
         }
@@ -72,7 +72,7 @@ class ResearchFarmController extends Controller
             toast('Farm Updated','success');
             return redirect()->route('research-farm.index');
         }catch(\Exception $ex){
-            return $ex->getMessage();
+            // return $ex->getMessage();
             toast('Farm Update Failed','error');
             return redirect()->back();
         }

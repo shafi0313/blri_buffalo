@@ -92,7 +92,7 @@ class ParasiteController extends Controller
             toast('Success', 'success');
             return redirect()->route('parasite.index');
         } catch(\Exception $ex) {
-            return $ex->getMessage();
+            // return $ex->getMessage();
             toast('Failed', 'error');
             return redirect()->back();
         }
@@ -147,7 +147,7 @@ class ParasiteController extends Controller
             toast('Success', 'success');
             return redirect()->route('parasite.index');
         } catch(\Exception $ex) {
-            return $ex->getMessage();
+            // return $ex->getMessage();
             toast('Failed', 'error');
             return redirect()->back();
         }

@@ -312,7 +312,7 @@ class AnimalInfoController extends Controller
             toast('Success', 'success');
             return redirect()->route('animal-info.index');
         } catch (\Exception $ex) {
-            return $ex->getMessage();
+            // // return $ex->getMessage();
             DB::rollBack();
             toast('Error', 'error');
             return redirect()->back();
@@ -492,7 +492,7 @@ class AnimalInfoController extends Controller
             toast('Success', 'success');
             return redirect()->route('animal-info.index');
         } catch (\Exception $ex) {
-            return $ex->getMessage();
+            // return $ex->getMessage();
             DB::rollBack();
             toast('Error', 'error');
             return redirect()->back();

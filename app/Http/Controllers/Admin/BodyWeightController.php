@@ -106,7 +106,7 @@ class BodyWeightController extends Controller
             toast('Success', 'success');
             return redirect()->route('body-weight.index');
         } catch(\Exception $ex) {
-            return $ex->getMessage();
+            // return $ex->getMessage();
             DB::rollBack();
             toast($ex->getMessage(), 'Error', 'error');
             return redirect()->back();
@@ -177,7 +177,7 @@ class BodyWeightController extends Controller
             toast('Success', 'success');
             return redirect()->route('body-weight.index');
         } catch(\Exception $ex) {
-            return $ex->getMessage();
+            // return $ex->getMessage();
             DB::rollBack();
             toast($ex->getMessage(), 'Error', 'error');
             return redirect()->back();

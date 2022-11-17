@@ -96,7 +96,7 @@ class SemenAnalysisController extends Controller
             return redirect()->route('semen-analysis.index');
         } catch(\Exception $ex) {
             DB::rollBack();
-            return $ex->getMessage();
+            // return $ex->getMessage();
             toast('Error', 'error');
             return redirect()->back();
         }

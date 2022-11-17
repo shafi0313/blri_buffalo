@@ -99,7 +99,7 @@ class DeadCulledController extends Controller
             toast('Success', 'success');
             return redirect()->route('dead-culled.index');
         } catch(\Exception $ex) {
-            return $ex->getMessage();
+            // return $ex->getMessage();
             toast('Failed', 'error');
             return redirect()->back();
         }
@@ -160,7 +160,7 @@ class DeadCulledController extends Controller
             toast('Success', 'success');
             return redirect()->route('dead-culled.index');
         } catch(\Exception $ex) {
-            return $ex->getMessage();
+            // return $ex->getMessage();
             toast('Failed', 'error');
             return redirect()->back();
         }

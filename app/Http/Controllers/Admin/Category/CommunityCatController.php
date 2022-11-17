@@ -127,7 +127,7 @@ class CommunityCatController extends Controller
             toast('Success!','success');
             return redirect()->route('community-cat.index');
         }catch(\Exception $ex){
-            return $ex->getMessage();
+            // return $ex->getMessage();
             toast('Farm Update Failed','error');
             return redirect()->back();
         }

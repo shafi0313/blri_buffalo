@@ -107,7 +107,7 @@ class DistributionController extends Controller
             toast('Success', 'success');
             return redirect()->route('distribution.index');
         } catch(\Exception $ex) {
-            return $ex->getMessage();
+            // return $ex->getMessage();
             DB::rollBack();
             toast('Error', 'error');
             return redirect()->back();
@@ -180,7 +180,7 @@ class DistributionController extends Controller
             toast('Success', 'success');
             return redirect()->route('distribution.index');
         } catch(\Exception $ex) {
-            return $ex->getMessage();
+            // return $ex->getMessage();
             DB::rollBack();
             toast('Error', 'error');
             return redirect()->back();

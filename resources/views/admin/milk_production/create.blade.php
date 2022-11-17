@@ -61,13 +61,13 @@
                                         @enderror
                                     </div>
 
-                                    <div class="form-group col-md-3">
+                                    {{-- <div class="form-group col-md-3">
                                         <label for="peak_milk_production">Peak Milk Production (Kg) </label>
                                         <input name="peak_milk_production" type="number" step="any" class="form-control @error('peak_milk_production') is-invalid @enderror" value="{{old('peak_milk_production')}}">
                                         @error('peak_milk_production')
                                             <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
-                                    </div>
+                                    </div> --}}
                                 </div>
 
                                 <div align="center" class="mr-auto card-action">

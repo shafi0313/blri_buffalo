@@ -60,7 +60,7 @@ class MilkProductionController extends Controller
     {
         $this->validate($request, [
             'animal_info_id' => 'required_if:tattoo_no,==,NULL',
-            'date_of_milking' => 'required',
+            'date_of_milking' => 'required|date',
             'milk_production' => 'required',
         ]);
 
@@ -106,7 +106,7 @@ class MilkProductionController extends Controller
             // return redirect()->route('milk-production.index');
             return back();
         } catch(\Exception $ex) {
-            return $ex->getMessage();
+            // // return $ex->getMessage();
             DB::rollBack();
             toast('Error', 'error');
             return back();
@@ -183,7 +183,7 @@ class MilkProductionController extends Controller
             toast('Success', 'success');
             return redirect()->route('milk-production.index');
         } catch(\Exception $ex) {
-            return $ex->getMessage();
+            // return $ex->getMessage();
             DB::rollBack();
             toast('Error', 'error');
             return redirect()->back();
