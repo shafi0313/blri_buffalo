@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use PDF;
 use Browser;
 use App\Models\Farm;
 use App\Models\Location;
@@ -13,7 +14,6 @@ use App\Models\CommunityCat;
 use App\Models\Reproduction;
 use Illuminate\Http\Request;
 use App\Exports\AnimalInfoExport;
-use PDF;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -263,19 +263,19 @@ class AnimalInfoController extends Controller
 
         if (!is_null($request->birth_wt)) {
             $bodyWt = [
-                'user_id' => Auth::user()->id,
+                'user_id'        => Auth::user()->id,
                 'animal_info_id' => $animalInfo->id,
-                'day_0' => $request->birth_wt,
+                'day_0'          => $request->birth_wt,
             ];
             if (Auth::user()->permission == 1) {
-                $bodyWt['farm_id'] = $request->farm_id;
+                $bodyWt['farm_id']          = $request->farm_id;
                 $bodyWt['community_cat_id'] = $request->community_cat_id;
             // $bodyWt['community_id'] = $request->community_id;
             } else {
                 $bodyWt['community_cat_id'] = $communityCat->id;
-                $bodyWt['community_id'] = $request->community_id;
-                $bodyWt['animal_tag'] = $animal_tag;
-                $bodyWt['ear_tag'] = $request->ear_tag;
+                $bodyWt['community_id']     = $request->community_id;
+                $bodyWt['animal_tag']       = $animal_tag;
+                $bodyWt['ear_tag']          = $request->ear_tag;
             }
             BodyWeight::create($bodyWt);
         }
@@ -358,25 +358,25 @@ class AnimalInfoController extends Controller
             'user_id' => auth()->user()->id,
             // 'animal_cat_id' => $request->animal_cat_id,
             // 'animal_sub_cat_id' => $animal_sub_cat_id,
-            'sire' => $request->sire,
-            'dam' => $request->dam,
-            'type' => $request->type,
+            'sire'              => $request->sire,
+            'dam'               => $request->dam,
+            'type'              => $request->type,
             'identification_no' => $request->identification_no,
-            'buffalo_id' => $request->buffalo_id,
-            'tattoo_no' => $request->tattoo_no,
-            'animal_sl' => $animalSl,
-            'color' => $request->color,
-            'age_distribution' => $request->age_distribution,
-            'sex' => $request->sex,
-            'birth_wt' => $request->birth_wt,
-            'generation' => $request->generation,
-            'paity' => $request->paity,
-            'dam_milk' => $request->dam_milk,
-            'd_o_b' => $request->d_o_b,
-            'season_o_birth' => $request->season_o_birth,
-            'death_date' => $request->death_date,
-            'age_distribution' => $request->age_distribution,
-            'remark' => $request->remark,
+            'buffalo_id'        => $request->buffalo_id,
+            'tattoo_no'         => $request->tattoo_no,
+            'animal_sl'         => $animalSl,
+            'color'             => $request->color,
+            'age_distribution'  => $request->age_distribution,
+            'sex'               => $request->sex,
+            'birth_wt'          => $request->birth_wt,
+            'generation'        => $request->generation,
+            'paity'             => $request->paity,
+            'dam_milk'          => $request->dam_milk,
+            'd_o_b'             => $request->d_o_b,
+            'season_o_birth'    => $request->season_o_birth,
+            'death_date'        => $request->death_date,
+            'age_distribution'  => $request->age_distribution,
+            'remark'            => $request->remark,
         ];
 
         if (!empty($request->animal_cat_id)) {

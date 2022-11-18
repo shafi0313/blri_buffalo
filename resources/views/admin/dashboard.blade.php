@@ -56,7 +56,7 @@
                                     $x = 1;
                                     $milkYie = 0;
                                 @endphp
-                                @foreach ($animalInfos->whereNotNull('farm_id')->groupBy('farm_id') as $animalInfo)
+                                @foreach ($animalInfos->whereNotNull('farm_id')->groupBy('farm_id') as $k => $animalInfo)
                                     <tr>
                                         <td style="color: #002060 !important; font-weight:bold">{{ $x++ }}.</td>
                                         <td class="text-left">{{ $animalInfo->first()->getFarmInfo->name }},
@@ -65,8 +65,12 @@
                                         <td>{{ $animalInfo->where('sex', 'M')->count() }}</td>
                                         <td>{{ $animalInfo->where('sex', 'F')->count() }}</td>
                                         <td>{{ $animalInfo->count() }}</td>
-                                        @foreach ($animalInfo as $milkYield)
-                                            @php $milkYie += $milkYield->milkYields->count(); @endphp
+                                        @foreach ($animalInfo as $item)
+                                            @if ($item->milkYields->count() > 0)
+                                                @foreach ($item->milkYields->groupBy('animal_info_id') as $milkYield)
+                                                    @php $milkYie += ++$loop->index; @endphp
+                                                @endforeach
+                                            @endif
                                         @endforeach
                                         <td>{{ $milkYie }}</td>
                                     </tr>
@@ -82,8 +86,12 @@
                                         <td>{{ $animalInfo->where('sex', 'F')->count() }}</td>
                                         <td>{{ $animalInfo->count() }}</td>
                                         @php $milkYie2 = 0; @endphp
-                                        @foreach ($animalInfo as $milkYieldss)
-                                            @php $milkYie2 += $milkYieldss->first()->milkYields->count(); @endphp
+                                        @foreach ($animalInfo as $items)
+                                            @if ($items->milkYields->count() > 0)
+                                                @foreach ($items->milkYields->groupBy('animal_info_id') as $milkYield)
+                                                    @php $milkYie2 += ++$loop->index; @endphp
+                                                @endforeach
+                                            @endif
                                         @endforeach
                                         <td>{{ $milkYie2 }}</td>
                                     </tr>
