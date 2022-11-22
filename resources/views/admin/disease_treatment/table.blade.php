@@ -8,8 +8,6 @@
             <th>Breed</th>
             <th>Name of Disease</th>
             <th>Clinical Sign</th>
-            {{-- <th>Season of Disease</th> --}}
-            {{-- <th>Medicine Prescribed</th> --}}
             <th>Symptom/Sign Visible Date</th>
             <th>Treatment Starting Date</th>
             <th>Recovered/ Dead</th>
@@ -28,7 +26,7 @@
                 <td>{{ $diseaseTreatment->animalInfo->tattoo_no }} </td>
                 <td>{{ $diseaseTreatment->animalInfo->sex }} </td>
                 <td>{{ $diseaseTreatment->animalInfo->breed }} </td>
-                <td>{{ $diseaseTreatment->diseaseSign->disease->name }} </td>
+                <td>{{ $diseaseTreatment->diseaseSign->disease->name ?? ''}} </td>
                 <td>
                     <table>
                         @foreach ($diseaseTreatment->diseaseSigns as $clinicalSign)
@@ -41,9 +39,6 @@
                         @endisset
                     </table>
                 </td>
-                {{-- <td>{{ $diseaseTreatment->clinicalSign->name }} </td> --}}
-                {{-- <td>{{ $diseaseTreatment->disease_season }} </td> --}}
-                {{-- <td>{{ $diseaseTreatment->medicine_prescribed }} </td> --}}
                 <td>{{ bdDate($diseaseTreatment->symptom_date) }} </td>
                 <td>{{ bdDate($diseaseTreatment->disease_date) }} </td>
                 <td>{{ $diseaseTreatment->recovered_dead }} </td>
