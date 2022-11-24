@@ -20,10 +20,32 @@
                         <div class="card-header">
                             <div class="d-flex align-items-center">
                                 <h4 class="card-title">Parasite</h4>
-                                <a href="{{route('parasite.exportIntoPdf')}}" class="btn btn-round ml-auto"><img src="{{asset('files/images/icon/pdf.png')}}" alt="PDF Logo"> PDF</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                                {{-- <a href="{{route('parasite.exportIntoPdf')}}" class="btn btn-round ml-auto"><img src="{{asset('files/images/icon/pdf.png')}}" alt="PDF Logo"> PDF</a>&nbsp;&nbsp;&nbsp;&nbsp;
                                 <a href="{{route('parasite.exportIntoExcel')}}" class="btn btn-round"><img src="{{asset('files/images/icon/excel.png')}}" alt="Excel Logo"> Excel</a>&nbsp;&nbsp;
-                                <a href="{{route('parasite.create')}}" class="btn btn-primary btn-round text-light"><i class="fa fa-plus"></i> Add New</a>
+                                <a href="{{route('parasite.create')}}" class="btn btn-primary btn-round text-light"><i class="fa fa-plus"></i> Add New</a> --}}
+                                @if (request()->routeIs('parasite.index'))
+                                        <a href="{{ route('parasite.exportIntoPdf') }}"
+                                            class="btn btn-round ml-auto"><img
+                                                src="{{ asset('files/images/icon/pdf.png') }}" alt="PDF Logo">
+                                            PDF</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <a href="{{ route('parasite.exportIntoExcel') }}" class="btn btn-round"><img
+                                                src="{{ asset('files/images/icon/excel.png') }}" alt="Excel Logo">
+                                            Excel</a>&nbsp;&nbsp;
+                                        <a href="{{ route('parasite.create') }}"
+                                            class="btn btn-primary btn-round text-light"><i class="fa fa-plus"></i> Add
+                                            New</a>
+                                    @else
+                                        <a href="{{ route('report.parasite.pdf', [$parasites->first()->farm_id ?? 0, $parasites->first()->community_cat_id ?? 0]) }}"
+                                            class="btn btn-round ml-auto"><img
+                                                src="{{ asset('files/images/icon/pdf.png') }}" alt="PDF Logo">
+                                            PDF</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <a href="{{ route('report.parasite.excel', [$parasites->first()->farm_id ?? 0, $parasites->first()->community_cat_id ?? 0]) }}"
+                                            class="btn btn-round"><img src="{{ asset('files/images/icon/excel.png') }}"
+                                                alt="Excel Logo"> Excel</a>&nbsp;&nbsp;
+                                    @endif
                             </div>
+
+
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">

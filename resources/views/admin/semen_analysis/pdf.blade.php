@@ -28,8 +28,8 @@
 <body style="font-size: 14px !important">
     <div class="table">
         @php
-                                    $editable = 0;
-                                @endphp
+            $editable = 0;
+        @endphp
         @include('admin.semen_analysis.table')
     </div>
 </body>

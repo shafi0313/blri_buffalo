@@ -296,6 +296,7 @@
                         'report.diseaseTreatment.*',
                         'report.vaccination.*',
                         'report.deworming.*',
+                        'report.parasite.*',
                     ]) }}">
                     <a data-toggle="collapse" href="#report.animalInfo">
                         <i class="fas fa-heartbeat"></i>
@@ -316,6 +317,7 @@
                         'report.diseaseTreatment.*',
                         'report.vaccination.*',
                         'report.deworming.*',
+                        'report.parasite.*',
                     ]) }}"
                         id="report.animalInfo">
                         <ul class="nav nav-collapse">
@@ -382,6 +384,11 @@
                             <li class="{{ activeNav('report.deworming.*') }}">
                                 <a href="{{ route('report.deworming.select') }}">
                                     <span class="sub-item">Deworming</span>
+                                </a>
+                            </li>
+                            <li class="{{ activeNav('report.parasite.*') }}">
+                                <a href="{{ route('report.parasite.select') }}">
+                                    <span class="sub-item">Parasite</span>
                                 </a>
                             </li>
                         </ul>

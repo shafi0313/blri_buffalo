@@ -39,6 +39,7 @@ use App\Http\Controllers\Admin\Category\AnimalCatController;
 use App\Http\Controllers\Admin\Report\KidMortalityController;
 use App\Http\Controllers\Admin\Report\ServiceReportController;
 use App\Http\Controllers\Admin\Category\CommunityCatController;
+use App\Http\Controllers\Admin\Report\ParasiteReportController;
 use App\Http\Controllers\Admin\Report\DewormingReportController;
 use App\Http\Controllers\Admin\Report\AnimalInfoReportController;
 use App\Http\Controllers\Admin\Report\BlriKidMortalityController;
@@ -314,6 +315,13 @@ Route::middleware(['auth','admin'])->prefix('admin')->group(function () {
             Route::get('pdf-export/{farmId}/{community_cat_id}', 'pdf')->name('pdf');
         });
         Route::controller(DewormingReportController::class)->prefix('deworming')->name('report.deworming.')->group(function () {
+            Route::get('select', 'select')->name('select');
+            Route::get('report', 'report')->name('report');
+            Route::get('excel-export/{farmId}/{community_cat_id}', 'excel')->name('excel');
+            Route::get('pdf-export/{farmId}/{community_cat_id}', 'pdf')->name('pdf');
+        });
+
+        Route::controller(ParasiteReportController::class)->prefix('parasite')->name('report.parasite.')->group(function () {
             Route::get('select', 'select')->name('select');
             Route::get('report', 'report')->name('report');
             Route::get('excel-export/{farmId}/{community_cat_id}', 'excel')->name('excel');

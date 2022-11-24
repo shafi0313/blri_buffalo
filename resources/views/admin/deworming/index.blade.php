@@ -48,9 +48,6 @@
                                         @php $deworming =  $dewormin->first() @endphp
                                         <tr class="text-center">
                                             <td>{{ $x++ }} </td>
-                                            {{-- <td>{{ $deworming->animalInfo->animal_tag }} </td>
-                                            <td>{{ $deworming->animalInfo->sex }} </td>
-                                            <td>{{ $deworming->animalInfo->breed }} </td> --}}
                                             <td>{{ $deworming->medicine_name }}</td>
                                             <td>{{ bdDate($deworming->deworming_date) }}</td>
                                             <td>{{ $deworming->dose }}</td>

@@ -53,7 +53,7 @@
                         <td>{{ $milkProduction->animalInfo->tattoo_no }} </td>
                         <td>{{ \Carbon\Carbon::parse($milkProduction->date_of_milking)->format('d/m/Y') }} </td>
                         <td>{{ $milkProduction->milk_production }} </td>
-                        <td>{{ $milkProduction->peak_milk_production }} </td>
+                        <td>{{ $milkProduction->milk_production }} </td>
                         <td>{{ number_format($milkProductions->where('animal_info_id', $milkProduction->animal_info_id)->sum('milk_production') / $milkProducti->count(), 2) }}
                         </td>
                         <td>{{ $milkProduction->lactation_length }}</td>
