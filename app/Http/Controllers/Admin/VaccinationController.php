@@ -98,7 +98,7 @@ class VaccinationController extends Controller
         } else {
             if (Auth::user()->permission == 1) {
                 if ($fOrC=='f') {
-                    $animals = AnimalInfo::where('farm_id', $farmOrComId)->whereNull('community_cat_id')->whereCommunity_id($request->community_id)->get()->pluck('id');
+                    $animals = AnimalInfo::where('farm_id', $farmOrComId)->whereNull('community_cat_id')->get()->pluck('id');
                 } else {
                     $animals = AnimalInfo::where('community_cat_id', $farmOrComId)->whereNull('farm_id')->whereCommunity_id($request->community_id)->get()->pluck('id');
                 }
