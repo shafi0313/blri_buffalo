@@ -109,7 +109,7 @@ class DistributionController extends Controller
         } catch(\Exception $ex) {
             // return $ex->getMessage();
             DB::rollBack();
-            toast('Error', 'error');
+            toast('Error'. $ex->getMessage(), 'error');
             return redirect()->back();
         }
     }
@@ -182,7 +182,7 @@ class DistributionController extends Controller
         } catch(\Exception $ex) {
             // return $ex->getMessage();
             DB::rollBack();
-            toast('Error', 'error');
+            toast('Error'. $ex->getMessage(), 'error');
             return redirect()->back();
         }
     }

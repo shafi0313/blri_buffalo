@@ -34,7 +34,7 @@ class DiseaseHealthController extends Controller
             return redirect()->route('disease-and-health.index');
         } catch (\Exception $ex) {
             DB::rollBack();
-            toast('Error', 'error');
+            toast('Error'. $ex->getMessage(), 'error');
             return redirect()->back();
         }
     }

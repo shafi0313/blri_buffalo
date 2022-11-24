@@ -97,7 +97,7 @@ class SemenAnalysisController extends Controller
         } catch(\Exception $ex) {
             DB::rollBack();
             // return $ex->getMessage();
-            toast('Error', 'error');
+            toast('Error'. $ex->getMessage(), 'error');
             return redirect()->back();
         }
     }
@@ -161,7 +161,7 @@ class SemenAnalysisController extends Controller
             return redirect()->route('semen-analysis.index');
         } catch(\Exception $ex) {
             DB::rollBack();
-            toast('Error', 'error');
+            toast('Error'. $ex->getMessage(), 'error');
             return redirect()->back();
         }
     }
