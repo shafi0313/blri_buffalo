@@ -63,9 +63,9 @@
                                             <td>{{ $milkComposition->salt }}</td>
                                             <td>
                                                 <div class="form-button-action">
-                                                    {{-- <a href="{{route('milk-composition.show', $milkComposition->animal_info_id)}}" title="Show" class="btn btn-link btn-primary btn-lg">
-                                                        show
-                                                    </a> --}}
+                                                    <a href="{{route('milk-composition.edit', $milkComposition->id)}}" title="Edit" class="btn btn-link btn-primary btn-lg">
+                                                        Edit
+                                                    </a>
                                                     <form action="{{ route('milk-composition.destroy', $milkComposition->id) }}" method="POST">
                                                         @csrf @method('DELETE')
                                                         <button type="submit" title="Delete" class="btn btn-link btn-danger" onclick="return confirm('Are you sure?')">

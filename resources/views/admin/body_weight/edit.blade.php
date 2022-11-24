@@ -11,7 +11,7 @@
                     <li class="separator"><i class="flaticon-right-arrow"></i></li>
                     <li class="nav-item"><a href="{{ route('animal-info.index')}}">Body Weight</a></li>
                     <li class="separator"><i class="flaticon-right-arrow"></i></li>
-                    <li class="nav-item active">Add Body Weight</li>
+                    <li class="nav-item active">Edit Body Weight</li>
                 </ul>
             </div>
             <div class="divider1"></div>
@@ -21,7 +21,7 @@
                         {{-- Page Content Start --}}
                         <div class="card-header">
                             <div class="d-flex align-items-center">
-                                <h4 class="card-title">Add New</h4>
+                                <h4 class="card-title">Edit</h4>
                             </div>
                         </div>
                         <div class="card-body">

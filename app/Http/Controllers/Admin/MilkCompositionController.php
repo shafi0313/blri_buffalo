@@ -61,13 +61,13 @@ class MilkCompositionController extends Controller
         if (Auth::user()->permission == 1) {
             $animalInfos = AnimalInfo::all();
             $milkCompositions = MilkComposition::where('user_id', Auth::user()->id)->latest()->get();
-            $farms = Farm::all(['id','name']);
-            $communityCats = CommunityCat::select(['id','name'])->get();
+            $farms = Farm::all(['id', 'name']);
+            $communityCats = CommunityCat::select(['id', 'name'])->get();
             return view('admin.milk_composition.create', compact('milkCompositions', 'animalInfos', 'farms', 'communityCats'));
         } else {
             $milkCompositions = MilkComposition::where('user_id', Auth::user()->id)->latest()->get();
             $milkData = MilkComposition::where('user_id', Auth::user()->id)->wherePeriod_count(0)->latest()->first();
-            $communities = Community::whereCommunity_cat_id(CommunityCat::whereUser_id(Auth::user()->id)->first('id')->id)->get(['id','no','name']);
+            $communities = Community::whereCommunity_cat_id(CommunityCat::whereUser_id(Auth::user()->id)->first('id')->id)->get(['id', 'no', 'name']);
             return view('admin.milk_composition.create_com', compact('milkCompositions', 'milkData', 'communities'));
         }
     }
@@ -114,7 +114,7 @@ class MilkCompositionController extends Controller
             ];
 
             if (Auth::user()->permission == 1) {
-                if ($fOrC=='f') {
+                if ($fOrC == 'f') {
                     $data['farm_id'] = $farmOrComId;
                     $data['community_id'] = $request->community_id;
                 } else {
@@ -162,9 +162,9 @@ class MilkCompositionController extends Controller
                     'type' => 2,
                     'remark' => $request->remark,
                 ];
-                if ($fOrC=='f') {
+                if ($fOrC == 'f') {
                     $data['farm_id'] = $farmOrComId;
-                // $data['community_id'] = $request->community_id;
+                    // $data['community_id'] = $request->community_id;
                 } else {
                     $data['community_cat_id'] = $farmOrComId;
                     // $data['community_id'] = $request->community_id;
@@ -179,13 +179,161 @@ class MilkCompositionController extends Controller
             toast('Success', 'success');
             // return redirect()->route('milk-composition.index');
             return back();
-        } catch(\Exception $ex) {
+        } catch (\Exception $ex) {
             // return $ex->getMessage();
             DB::rollBack();
-            toast('Error'. $ex->getMessage(), 'error');
+            toast('Error' . $ex->getMessage(), 'error');
             return redirect()->back();
         }
     }
+    public function edit($id)
+    {
+        if (Auth::user()->permission == 1) {
+            $animalInfos = AnimalInfo::all();
+            $milkComposition = MilkComposition::with('animalInfo')->find($id);
+            $farms = Farm::all(['id', 'name']);
+            $communityCats = CommunityCat::select(['id', 'name'])->get();
+            return view('admin.milk_composition.edit', compact('milkComposition', 'animalInfos', 'farms', 'communityCats'));
+        } else {
+            $milkComposition = MilkComposition::with('animalInfo')->find($id);
+            $milkData = MilkComposition::where('user_id', Auth::user()->id)->wherePeriod_count(0)->latest()->first();
+            $communities = Community::whereCommunity_cat_id(CommunityCat::whereUser_id(Auth::user()->id)->first('id')->id)->get(['id', 'no', 'name']);
+            return view('admin.milk_composition.edit_com', compact('milkComposition', 'milkData', 'communities'));
+        }
+        // $milkComposition = MilkComposition::with('animalInfo')->find($id);
+        // return view('admin.milk_composition.edit', compact('milkComposition'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $this->validate($request, [
+            // 'animal_info_id' => 'required_if:tattoo_no,==,NULL',
+            'date' => 'required',
+            'production' => 'required',
+            'fat' => 'required',
+            'density' => 'required',
+            'lactose' => 'required',
+            'snf' => 'required',
+            'protein' => 'required',
+            'water' => 'required',
+            'temperature' => 'required',
+            'freezing_point' => 'required',
+            'salt' => 'required',
+        ]);
+        $data = [
+            'date'           => $request->date,
+            'production'     => $request->production,
+            'fat'            => $request->fat,
+            'density'        => $request->density,
+            'lactose'        => $request->lactose,
+            'snf'            => $request->snf,
+            'protein'        => $request->protein,
+            'water'          => $request->water,
+            'temperature'    => $request->temperature,
+            'freezing_point' => $request->freezing_point,
+            'salt'           => $request->salt,
+            'remark'         => $request->remark,
+        ];
+        // $milkComposition = MilkComposition::where('animal_info_id', $request->animal_info_id)->latest();
+
+
+        // $fOrC = preg_replace('/[^a-z A-Z]/', '', $request->farmOrCommunityId);
+        // $farmOrComId = preg_replace('/[^0-9]/', '', $request->farmOrCommunityId);
+        // $communityCat = CommunityCat::where('user_id', Auth::user()->id)->first();
+
+        // if ($request->milk_type == 'ind' || Auth::user()->permission == 2) {
+        //     $data = [
+        //         'animal_info_id' => $request->animal_info_id ?? $request->tattoo_no,
+        //         'user_id' => Auth::user()->id,
+        //         'date' => $request->date,
+        //         'production' => $request->production,
+        //         'fat' => $request->fat,
+        //         'density' => $request->density,
+        //         'lactose' => $request->lactose,
+        //         'snf' => $request->snf,
+        //         'protein' => $request->protein,
+        //         'water' => $request->water,
+        //         'temperature' => $request->temperature,
+        //         'freezing_point' => $request->freezing_point,
+        //         'salt' => $request->salt,
+        //         'remark' => $request->remark,
+        //     ];
+
+        //     if (Auth::user()->permission == 1) {
+        //         if ($fOrC=='f') {
+        //             $data['farm_id'] = $farmOrComId;
+        //             $data['community_id'] = $request->community_id;
+        //         } else {
+        //             $data['community_cat_id'] = $farmOrComId;
+        //             $data['community_id'] = $request->community_id;
+        //         }
+        //     } else {
+        //         $data['community_cat_id'] = $communityCat->id; // for community
+        //         $data['community_id'] = $request->community_id;
+        //     }
+
+
+        //     if ($milkComposition->count() > 0) {
+        //         $data['calving_date'] = $milkComposition->first()->calving_date;
+        //     } else {
+        //         $data['calving_date'] = $request->calving_date;
+        //     }
+
+        //     if (Auth::user()->permission == 1) {
+        //         $data['type'] = 1;
+        //         $data['day_count'] = $milkComposition->count() + 1;
+        //     } else {
+        //         $data['type'] = 2;
+        //         $data['day_count'] = $request->day_count;
+        //     }
+
+        //     MilkComposition::create($data);
+        // } else {
+        //     $animalInfos = AnimalInfo::whereFarm_id($request->farm_id)->get()->pluck('id');
+        //     foreach ($animalInfos as $key => $value) {
+        //         $data = [
+        //             'animal_info_id' => $value,
+        //             'user_id' => Auth::user()->id,
+        //             'date' => $request->date,
+        //             'production' => $request->production,
+        //             'fat' => $request->fat,
+        //             'density' => $request->density,
+        //             'lactose' => $request->lactose,
+        //             'snf' => $request->snf,
+        //             'protein' => $request->protein,
+        //             'water' => $request->water,
+        //             'temperature' => $request->temperature,
+        //             'freezing_point' => $request->freezing_point,
+        //             'salt' => $request->salt,
+        //             'type' => 2,
+        //             'remark' => $request->remark,
+        //         ];
+        //         if ($fOrC=='f') {
+        //             $data['farm_id'] = $farmOrComId;
+        //         // $data['community_id'] = $request->community_id;
+        //         } else {
+        //             $data['community_cat_id'] = $farmOrComId;
+        //             // $data['community_id'] = $request->community_id;
+        //         }
+        //         MilkComposition::create($data);
+        //     }
+        // }
+
+        DB::beginTransaction();
+        try {
+            MilkComposition::find($id)->update($data);
+            DB::commit();
+            toast('Success', 'success');
+            // return redirect()->route('milk-composition.index');
+            return back();
+        } catch (\Exception $ex) {
+            // return $ex->getMessage();
+            DB::rollBack();
+            toast('Error' . $ex->getMessage(), 'error');
+            return redirect()->back();
+        }
+    }
+
 
     public function show($id)
     {
@@ -198,13 +346,13 @@ class MilkCompositionController extends Controller
         $animalInfoId = $request->animalInfoId;
         $milkCompositions = MilkComposition::where('animal_info_id', $animalInfoId)->get();
         $milkCount = $milkCompositions->count();
-        if ($milkCompositions->count()>0) {
+        if ($milkCompositions->count() > 0) {
             foreach ($milkCompositions as $milkComposition) {
                 $calving_date = $milkComposition->calving_date;
-                return json_encode(['calving_date'=>$calving_date, 'milkCount'=>$milkCount]);
+                return json_encode(['calving_date' => $calving_date, 'milkCount' => $milkCount]);
             }
         } else {
-            return json_encode(['calving_date'=>'', 'milkCount' => '']);
+            return json_encode(['calving_date' => '', 'milkCount' => '']);
         }
     }
 

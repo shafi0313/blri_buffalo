@@ -14,7 +14,7 @@
                         <li class="separator"><i class="flaticon-right-arrow"></i></li>
                         <li class="nav-item"><a href="{{ route('milk-production.index') }}">Milk Production</a></li>
                         <li class="separator"><i class="flaticon-right-arrow"></i></li>
-                        <li class="nav-item active">Add Milk Production</li>
+                        <li class="nav-item active">Edit Milk Production</li>
                     </ul>
                 </div>
                 <div class="divider1"></div>
@@ -72,16 +72,6 @@
                                                 class="form-control @error('milk_production') is-invalid @enderror"
                                                 value="{{ $data->milk_production }}" required>
                                             @error('milk_production')
-                                                <div class="alert alert-danger">{{ $message }}</div>
-                                            @enderror
-                                        </div>
-
-                                        <div class="form-group col-md-3">
-                                            <label for="peak_milk_production">Peak Milk Production (Kg) </label>
-                                            <input name="peak_milk_production" type="number" step="any"
-                                                class="form-control @error('peak_milk_production') is-invalid @enderror"
-                                                value="{{ $data->peak_milk_production }}">
-                                            @error('peak_milk_production')
                                                 <div class="alert alert-danger">{{ $message }}</div>
                                             @enderror
                                         </div>

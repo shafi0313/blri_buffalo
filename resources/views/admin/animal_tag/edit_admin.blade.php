@@ -48,7 +48,7 @@
     @enderror
 </div>
 
-@if ($animalExtraInfo == 1)
+{{-- @if ($animalExtraInfo == 1)
     <div class="form-group col-md-3">
         <label for="">Sex <span class="t_r">*</span></label>
         <input type="text" class="form-control" id="sex" value="" readonly>
@@ -63,7 +63,7 @@
         <label for="">Body Wt. (Kg) <span class="t_r">*</span></label>
         <input type="text" class="form-control" id="birth_wt" readonly>
     </div>
-@endif
+@endif --}}
 
 
 @push('custom_scripts')
@@ -150,40 +150,40 @@
             })
 
 
-            $('#animal_info').on('change', function(e) {
-                var animalInfoId = $(this).val();
-                $.ajax({
-                    url: '{{ route('get.getAnimalInfo') }}',
-                    type: "get",
-                    data: {
-                        animalInfoId: animalInfoId
-                    },
-                    success: function(res) {
-                        res = $.parseJSON(res);
-                        $('#sex').val(res.sex);
-                        $('#animal_sl').val(res.animal_sl);
-                        $('#birth_wt').val(res.birth_wt);
-                        $('#color').val(res.color);
-                    }
-                })
-            });
-            $('#tattooNo').on('change', function(e) {
-                var animalInfoId = $(this).val();
-                $.ajax({
-                    url: '{{ route('get.getAnimalInfo') }}',
-                    type: "get",
-                    data: {
-                        animalInfoId: animalInfoId
-                    },
-                    success: function(res) {
-                        res = $.parseJSON(res);
-                        $('#sex').val(res.sex);
-                        $('#animal_sl').val(res.animal_sl);
-                        $('#birth_wt').val(res.birth_wt);
-                        $('#color').val(res.color);
-                    }
-                })
-            });
+            // $('#animal_info').on('change', function(e) {
+            //     var animalInfoId = $(this).val();
+            //     $.ajax({
+            //         url: '{{ route('get.getAnimalInfo') }}',
+            //         type: "get",
+            //         data: {
+            //             animalInfoId: animalInfoId
+            //         },
+            //         success: function(res) {
+            //             res = $.parseJSON(res);
+            //             $('#sex').val(res.sex);
+            //             $('#animal_sl').val(res.animal_sl);
+            //             $('#birth_wt').val(res.birth_wt);
+            //             $('#color').val(res.color);
+            //         }
+            //     })
+            // });
+            // $('#tattooNo').on('change', function(e) {
+            //     var animalInfoId = $(this).val();
+            //     $.ajax({
+            //         url: '{{ route('get.getAnimalInfo') }}',
+            //         type: "get",
+            //         data: {
+            //             animalInfoId: animalInfoId
+            //         },
+            //         success: function(res) {
+            //             res = $.parseJSON(res);
+            //             $('#sex').val(res.sex);
+            //             $('#animal_sl').val(res.animal_sl);
+            //             $('#birth_wt').val(res.birth_wt);
+            //             $('#color').val(res.color);
+            //         }
+            //     })
+            // });
         })
     </script>
 @endpush

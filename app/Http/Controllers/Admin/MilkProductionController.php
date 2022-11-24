@@ -69,7 +69,6 @@ class MilkProductionController extends Controller
             'animal_info_id' => $request->animal_info_id ?? $request->tattoo_no,
             'date_of_milking' => $request->date_of_milking,
             'milk_production' => $request->milk_production,
-            'peak_milk_production' => $request->peak_milk_production,
             'lactation_length' => MilkProduction::whereAnimal_info_id($request->animal_info_id)->wherePeriod_count(0)->count()+1,
         ];
 
@@ -146,7 +145,6 @@ class MilkProductionController extends Controller
             'animal_info_id' => $request->animal_info_id ?? $request->tattoo_no,
             'date_of_milking' => $request->date_of_milking,
             'milk_production' => $request->milk_production,
-            'peak_milk_production' => $request->peak_milk_production,
             'lactation_length' => MilkProduction::whereAnimal_info_id($request->animal_info_id)->wherePeriod_count(0)->count()+1,
         ];
 
