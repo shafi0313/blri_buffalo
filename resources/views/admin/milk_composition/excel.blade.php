@@ -3,7 +3,8 @@
         <tr>
             <th style="width: 35px">SL</th>
             <th>Area</th>
-            <th>Animal ID</th>
+            <th>Tag no</th>
+            <th>Tattoo no</th>
             <th>Calving Date</th>
             <th>Milking Date</th>
             <th>Milk Production</th>
@@ -23,8 +24,11 @@
                 <td>{{ $milkComposition->farm ? $milkComposition->farm->name : $milkComposition->communityCat->name }}
                 </td>
                 <td>{{ $milkComposition->animalInfo->animal_tag }} </td>
-                <td>{{ \Carbon\Carbon::parse($milkComposition->calving_date)->format('d/m/Y') }} </td>
-                <td>{{ \Carbon\Carbon::parse($milkComposition->date)->format('d/m/Y') }} </td>
+                <td>{{ $milkComposition->animalInfo->tattoo_no }} </td>
+                <td>{{ \Carbon\Carbon::parse($milkComposition->calving_date)->format('d/m/Y') }}
+                </td>
+                <td>{{ \Carbon\Carbon::parse($milkComposition->date)->format('d/m/Y') }}
+                </td>
                 <td>{{ $milkComposition->production }} </td>
                 <td>{{ $milkComposition->fat }}</td>
                 <td>{{ $milkComposition->density }}</td>
