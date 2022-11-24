@@ -287,7 +287,7 @@ class AnimalInfoController extends Controller
                 * cos(radians(lon) - radians(" . $request->lon . "))
                 + sin(radians(" .$request->lat. "))
                 * sin(radians(lat))) AS distance"))
-                ->groupBy("id")
+                // ->groupBy("id")
                 ->orderBy("distance")
                 ->whereNotNull('lat')
                 ->first();
