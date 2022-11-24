@@ -40,7 +40,7 @@
                                             <th>Date of Vaccination</th>
                                             <th>Dose</th>
                                             <th>Total animal vaccinated</th>
-                                            <th class="no-sort" style="text-align:center;width:80px" >Action</th>
+                                            <th class="no-sort" style="text-align:center;width:120px" >Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -58,13 +58,12 @@
                                                     <a href="{{route('vaccination.show',$vaccination->group)}}" title="Show Details">
                                                         Show Details
                                                     </a>
-                                                    {{-- <form action="{{ route('vaccination.destroy', $vaccination->id) }}" method="POST">
-                                                        @csrf
-                                                        @method('DELETE')
+                                                    <form action="{{ route('vaccination.destroyGroup', $vaccination->group) }}" method="POST">
+                                                        @csrf @method('DELETE')
                                                         <button type="submit" title="Delete" class="btn btn-link btn-danger" onclick="return confirm('Are you sure?')">
                                                             <i class="fa fa-times"></i>
                                                         </button>
-                                                    </form> --}}
+                                                    </form>
                                                 </div>
                                             </td>
                                         </tr>

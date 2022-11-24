@@ -34,6 +34,7 @@
                                             <th>Name of Vaccine</th>
                                             <th>Date of Vaccination</th>
                                             <th>Dose</th>
+                                            <th class="no-sort" style="text-align:center;width:80px" >Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -46,6 +47,15 @@
                                             <td>{{ $vaccination->vaccine_name }} </td>
                                             <td>{{ $vaccination->vaccine_date }} </td>
                                             <td>{{ $vaccination->dose }} </td>
+                                            <td>
+                                                    <form action="{{ route('vaccination.destroy', $vaccination->id) }}" method="POST">
+                                                        @csrf @method('DELETE')
+                                                        <button type="submit" title="Delete" class="btn btn-link btn-danger" onclick="return confirm('Are you sure?')">
+                                                            <i class="fa fa-times"></i>
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                            </td>
                                         </tr>
                                         @endforeach
                                     </tbody>

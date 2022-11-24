@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use PDF;
 use App\Models\Farm;
 use App\Models\Community;
 use App\Models\AnimalInfo;
@@ -9,10 +10,10 @@ use App\Models\Vaccination;
 use App\Models\CommunityCat;
 use Illuminate\Http\Request;
 use App\Exports\VaccinationExport;
-use PDF;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class VaccinationController extends Controller
 {
@@ -148,10 +149,41 @@ class VaccinationController extends Controller
         return view('admin.vaccination.report', compact('vaccinations'));
     }
 
+    // public function destroy($id)
+    // {
+    //     Vaccination::find($id)->delete();
+    //     toast('Success', 'success');
+    //     return redirect()->back();
+    // }
+
     public function destroy($id)
     {
-        Vaccination::find($id)->delete();
-        toast('Success', 'success');
-        return redirect()->back();
+        $check = Vaccination::whereAnimal_info_id(Vaccination::find($id)->animal_info_id)->count();
+        try {
+            if ($check > 1) {
+                Vaccination::find($id)->delete();
+                Alert::success('Success', 'Successfully Deleted');
+                return back();
+            } else {
+                Vaccination::find($id)->delete();
+                Alert::success('Success', 'Successfully Deleted');
+                return redirect()->route('milk-composition.index');
+            }
+        } catch (\Exception $ex) {
+            Alert::error('Oops...', 'Delete Failed');
+            return back();
+        }
+    }
+
+    public function destroyGroup($id)
+    {
+        try {
+            $vaccination = Vaccination::whereGroup($id)->delete();
+            Alert::success('Success', 'Successfully Deleted');
+            return back();
+        } catch (\Exception $ex) {
+            Alert::error('Oops...', 'Delete Failed');
+            return back();
+        }
     }
 }

@@ -186,6 +186,7 @@ Route::middleware(['auth','admin'])->prefix('admin')->group(function () {
 
     // Vaccination
     Route::resource('/vaccination', VaccinationController::class);
+    Route::delete('/vaccination-destroy-group/{id}', [VaccinationController::class, 'destroyGroup'])->name('vaccination.destroyGroup');
     Route::get('/vaccination-excel', [VaccinationController::class, 'exportIntoExcel'])->name('vaccination.exportIntoExcel');
     Route::get('/vaccination-pdf', [VaccinationController::class, 'exportIntoPdf'])->name('vaccination.exportIntoPdf');
 
