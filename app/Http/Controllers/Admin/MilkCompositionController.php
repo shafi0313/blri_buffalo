@@ -76,7 +76,7 @@ class MilkCompositionController extends Controller
     {
         $this->validate($request, [
             // 'animal_info_id' => 'required_if:tattoo_no,==,NULL',
-            'date' => 'required',
+            'date' => 'required|date',
             'production' => 'required',
             'fat' => 'required',
             'density' => 'required',
