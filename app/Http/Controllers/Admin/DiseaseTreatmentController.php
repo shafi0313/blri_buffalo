@@ -107,15 +107,16 @@ class DiseaseTreatmentController extends Controller
         }
         $diseaseTreatment = DiseaseTreatment::create($diseaseTreatmentData);
 
-        foreach ($request->clinical_sign_id as $key => $value) {
-            $sign = [
-                'disease_treatment_id' =>  $diseaseTreatment->id,
-                'disease_id' => $request->disease_id,
-                'clinical_sign_id' => $request->clinical_sign_id[$key],
-            ];
-            DiseaseSign::create($sign);
+        if(isset($request->clinical_sign_id)){
+            foreach ($request->clinical_sign_id as $key => $value) {
+                $sign = [
+                    'disease_treatment_id' =>  $diseaseTreatment->id,
+                    'disease_id' => $request->disease_id,
+                    'clinical_sign_id' => $request->clinical_sign_id[$key],
+                ];
+                DiseaseSign::create($sign);
+            }
         }
-
         try {
             toast('Success', 'success');
             return redirect()->route('disease-and-treatment.index');
