@@ -97,7 +97,8 @@ class DeadCulledController extends Controller
                 'is_culling' => 1,
             ]);
             toast('Success', 'success');
-            return redirect()->route('dead-culled.index');
+            // return redirect()->route('dead-culled.index');
+            return back();
         } catch(\Exception $ex) {
             // return $ex->getMessage();
             toast('Failed', 'error');

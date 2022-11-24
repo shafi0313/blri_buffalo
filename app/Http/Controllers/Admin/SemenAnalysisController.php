@@ -93,7 +93,8 @@ class SemenAnalysisController extends Controller
             SemenAnalysis::create($data);
             DB::commit();
             toast('Success', 'success');
-            return redirect()->route('semen-analysis.index');
+            // return redirect()->route('semen-analysis.index');
+            return back();
         } catch(\Exception $ex) {
             DB::rollBack();
             // return $ex->getMessage();

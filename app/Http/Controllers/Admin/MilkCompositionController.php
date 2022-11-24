@@ -173,15 +173,12 @@ class MilkCompositionController extends Controller
             }
         }
 
-
-
-        // return $milkComposition->first()->calving_date;
-
         DB::beginTransaction();
         try {
             DB::commit();
             toast('Success', 'success');
-            return redirect()->route('milk-composition.index');
+            // return redirect()->route('milk-composition.index');
+            return back();
         } catch(\Exception $ex) {
             // return $ex->getMessage();
             DB::rollBack();

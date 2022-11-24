@@ -38,7 +38,8 @@ class ResearchFarmController extends Controller
         try{
             Farm::create($data);
             toast('Farm Added','success');
-            return redirect()->route('research-farm.index');
+            // return redirect()->route('research-farm.index');
+            return back();
         }catch(\Exception $ex){
             // return $ex->getMessage();
             toast('Farm Added Failed','error');

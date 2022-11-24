@@ -160,7 +160,8 @@ class DewormingController extends Controller
         try {
             // Deworming::create($data);
             toast('Success', 'success');
-            return redirect()->route('deworming.index');
+            // return redirect()->route('deworming.index');
+            return back();
         } catch(\Exception $ex) {
             toast('Failed', 'error');
             return redirect()->back();

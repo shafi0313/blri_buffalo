@@ -54,7 +54,8 @@ class DippingController extends Controller
         try{
             Dipping::create($data);
             toast('Success','success');
-            return redirect()->route('dipping.index');
+            // return redirect()->route('dipping.index');
+            return back();
         }catch(\Exception $ex){
             toast('Failed','error');
             return redirect()->back();

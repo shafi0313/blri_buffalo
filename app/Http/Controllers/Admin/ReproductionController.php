@@ -121,7 +121,8 @@ class ReproductionController extends Controller
         try{
             DB::commit();
             toast('Success','success');
-            return redirect()->route('reproduction-record.index');
+            // return redirect()->route('reproduction-record.index');
+            return back();
         }catch(\Exception $ex){
             // return $ex->getMessage();
             DB::rollBack();

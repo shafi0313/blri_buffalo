@@ -34,7 +34,8 @@ class CastrationRecordController extends Controller
         try{
             CastrationRecord::create($data);
             toast('Success','success');
-            return redirect()->route('castration-record.index');
+            // return redirect()->route('castration-record.index');
+            return back();
         }catch(\Exception $ex){
             toast('Failed','error');
             return redirect()->back();

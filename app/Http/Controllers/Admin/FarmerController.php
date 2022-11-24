@@ -64,7 +64,8 @@ class FarmerController extends Controller
             DB::table('model_has_roles')->insert($permission);
             DB::commit();
             toast('Farmer Successfully Inserted', 'success');
-            return redirect()->route('farmer.index');
+            // return redirect()->route('farmer.index');
+            return back();
         } catch (\Exception $ex) {
             DB::rollBack();
             toast($ex->getMessage().'Farmer Inserted Failed', 'error');

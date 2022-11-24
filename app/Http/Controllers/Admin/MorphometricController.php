@@ -89,7 +89,8 @@ class MorphometricController extends Controller
             Morphometric::create($data);
             DB::commit();
             toast('Success','success');
-            return redirect()->route('morphometric.index');
+            // return redirect()->route('morphometric.index');
+            return back();
         }catch(\Exception $ex){
             // return $ex->getMessage();
             DB::rollBack();

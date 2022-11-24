@@ -105,7 +105,8 @@ class DistributionController extends Controller
             }
             DB::commit();
             toast('Success', 'success');
-            return redirect()->route('distribution.index');
+            // return redirect()->route('distribution.index');
+            return back();
         } catch(\Exception $ex) {
             // return $ex->getMessage();
             DB::rollBack();

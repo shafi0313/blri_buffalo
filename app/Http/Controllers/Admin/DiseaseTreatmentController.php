@@ -119,7 +119,8 @@ class DiseaseTreatmentController extends Controller
         }
         try {
             toast('Success', 'success');
-            return redirect()->route('disease-and-treatment.index');
+            // return redirect()->route('disease-and-treatment.index');
+            return back();
         } catch(\Exception $ex) {
             toast($ex->getMessage().'Failed', 'error');
             return redirect()->back();

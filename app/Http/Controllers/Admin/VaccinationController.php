@@ -134,7 +134,8 @@ class VaccinationController extends Controller
 
         try {
             toast('Success', 'success');
-            return redirect()->route('vaccination.index');
+            // return redirect()->route('vaccination.index');
+            return back();
         } catch(\Exception $ex) {
             toast('Failed', 'error');
             return redirect()->back();

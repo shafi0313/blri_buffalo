@@ -31,7 +31,8 @@ class DiseaseHealthController extends Controller
             DiseaseHealth::create($data);
             DB::commit();
             toast('Success', 'success');
-            return redirect()->route('disease-and-health.index');
+            // return redirect()->route('disease-and-health.index');
+            return back();
         } catch (\Exception $ex) {
             DB::rollBack();
             toast('Error'. $ex->getMessage(), 'error');

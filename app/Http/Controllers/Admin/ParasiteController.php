@@ -90,7 +90,8 @@ class ParasiteController extends Controller
         try {
             Parasite::create($data);
             toast('Success', 'success');
-            return redirect()->route('parasite.index');
+            // return redirect()->route('parasite.index');
+            return back();
         } catch(\Exception $ex) {
             // return $ex->getMessage();
             toast('Failed', 'error');

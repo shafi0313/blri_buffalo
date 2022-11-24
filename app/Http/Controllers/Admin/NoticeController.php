@@ -31,7 +31,8 @@ class NoticeController extends Controller
         try{
             Notice::create($data);
             toast('Inserted','success');
-            return redirect()->route('notice.index');
+            // return redirect()->route('notice.index');
+            return back();
         } catch(\Exception $ex) {
             toast('Failed','error');
             return redirect()->back();

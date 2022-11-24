@@ -44,7 +44,8 @@ class SliderController extends Controller
         try{
             Slider::create($data);
             toast('Inserted','success');
-            return redirect()->route('slider.index');
+            // return redirect()->route('slider.index');
+            return back();
         } catch(\Exception $ex) {
             toast('Failed','error');
             return redirect()->back();

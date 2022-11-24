@@ -104,7 +104,8 @@ class BodyWeightController extends Controller
             BodyWeight::where('animal_info_id', $animal_info_id)->update($data) || BodyWeight::create($data);
             DB::commit();
             toast('Success', 'success');
-            return redirect()->route('body-weight.index');
+            // return redirect()->route('body-weight.index');
+            return back();
         } catch(\Exception $ex) {
             // return $ex->getMessage();
             DB::rollBack();

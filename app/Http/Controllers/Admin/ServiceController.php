@@ -154,7 +154,8 @@ class ServiceController extends Controller
             Service::where('animal_info_id', $animal_info_id)->where('id', '!=', $service->id)->update(['is_pregnant' => 0]);
             DB::commit();
             toast('Success', 'success');
-            return redirect()->route('service.index');
+            // return redirect()->route('service.index');
+            return back();
         } catch(\Exception $ex) {
             // return $ex->getMessage();
             DB::rollBack();

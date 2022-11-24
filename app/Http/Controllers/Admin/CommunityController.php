@@ -51,7 +51,8 @@ class CommunityController extends Controller
         try{
             Community::create($data);
             toast('Success','success');
-            return redirect()->route('community.index');
+            // return redirect()->route('community.index');
+            return back();
         }catch(\Exception $ex){
             toast('Failed','error');
         }
