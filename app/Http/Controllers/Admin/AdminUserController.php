@@ -124,7 +124,8 @@ class AdminUserController extends Controller
             DB::table('model_has_roles')->where('model_id', $id)->update($permission);
             DB::commit();
             toast('User Successfully Updated','success');
-            return redirect()->route('admin-user.index');
+            // return redirect()->route('admin-user.index');
+            return back();
         } catch (\Exception $ex) {
             DB::rollBack();
             toast($ex->getMessage().'User Updated Failed','error');

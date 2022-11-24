@@ -310,7 +310,8 @@ class AnimalInfoController extends Controller
         try {
             DB::commit();
             toast('Success', 'success');
-            return redirect()->route('animal-info.index');
+            // return redirect()->route('animal-info.index');
+            return back();
         } catch (\Exception $ex) {
             // // return $ex->getMessage();
             DB::rollBack();
