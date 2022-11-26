@@ -192,6 +192,7 @@ Route::middleware(['auth','admin'])->prefix('admin')->group(function () {
 
     // Deworming
     Route::resource('/deworming', DewormingController::class);
+    Route::delete('/deworming-destroy-group/{id}', [DewormingController::class, 'destroyGroup'])->name('deworming.destroyGroup');
     Route::get('/deworming-excel', [DewormingController::class, 'exportIntoExcel'])->name('deworming.exportIntoExcel');
     Route::get('/deworming-pdf', [DewormingController::class, 'exportIntoPdf'])->name('deworming.exportIntoPdf');
 

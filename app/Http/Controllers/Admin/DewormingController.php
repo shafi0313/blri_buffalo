@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use PDF;
 use App\Models\Farm;
 use App\Models\Community;
 use App\Models\Deworming;
@@ -9,10 +10,10 @@ use App\Models\AnimalInfo;
 use App\Models\CommunityCat;
 use Illuminate\Http\Request;
 use App\Exports\DewormingExport;
-use PDF;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class DewormingController extends Controller
 {
@@ -168,6 +169,40 @@ class DewormingController extends Controller
         }
     }
 
+    public function edit($id)
+    {
+        $deworming = Deworming::find($id);
+        return view('admin.deworming.edit', compact('deworming'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $this->validate($request, [
+            'medicine_name'  => 'required|max:100',
+            'deworming_date'  => 'required|date',
+            'dose'  => 'required|max:100',
+        ]);
+            $data = [
+                // 'animal_info_id' => $request->animal_info_id ?? $request->tattoo_no,
+                // 'user_id' => Auth::user()->id,
+                // 'group' => $getGroup,
+                'medicine_name' => $request->medicine_name,
+                'deworming_date' => $request->deworming_date,
+                'dose' => $request->dose,
+                // 'total_vaccinated' => 1,
+            ];
+
+        try {
+            Deworming::find($id)->update($data);
+            toast('Success', 'success');
+            // return redirect()->route('deworming.index');
+            return back();
+        } catch(\Exception $ex) {
+            toast('Failed', 'error');
+            return redirect()->back();
+        }
+    }
+
     public function show($group)
     {
         $dewormings = Deworming::whereGroup($group)->get();
@@ -176,8 +211,32 @@ class DewormingController extends Controller
 
     public function destroy($id)
     {
-        Deworming::find($id)->delete();
-        toast('Success', 'success');
-        return redirect()->back();
+        $check = Deworming::whereAnimal_info_id(Deworming::find($id)->animal_info_id)->count();
+        try {
+            if ($check > 1) {
+                Deworming::find($id)->delete();
+                Alert::success('Success', 'Successfully Deleted');
+                return back();
+            } else {
+                Deworming::find($id)->delete();
+                Alert::success('Success', 'Successfully Deleted');
+                return redirect()->route('milk-composition.index');
+            }
+        } catch (\Exception $ex) {
+            Alert::error('Oops...', 'Delete Failed');
+            return back();
+        }
+    }
+
+    public function destroyGroup($id)
+    {
+        try {
+            Deworming::whereGroup($id)->delete();
+            Alert::success('Success', 'Successfully Deleted');
+            return back();
+        } catch (\Exception $ex) {
+            Alert::error('Oops...', 'Delete Failed');
+            return back();
+        }
     }
 }

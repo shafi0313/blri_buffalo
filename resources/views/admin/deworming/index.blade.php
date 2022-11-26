@@ -54,15 +54,14 @@
                                             <td>
                                                 <div class="form-button-action">
                                                     <a href="{{route('deworming.show',$deworming->group)}}" title="Show Details">
-                                                        Show Details
+                                                        Show
                                                     </a>
-                                                    {{-- <form action="{{ route('deworming.destroy', $deworming->id) }}" method="POST">
-                                                        @csrf
-                                                        @method('DELETE')
+                                                    <form action="{{ route('deworming.destroyGroup', $deworming->group) }}" method="POST">
+                                                        @csrf @method('DELETE')
                                                         <button type="submit" title="Delete" class="btn btn-link btn-danger" onclick="return confirm('Are you sure?')">
                                                             <i class="fa fa-times"></i>
                                                         </button>
-                                                    </form> --}}
+                                                    </form>
                                                 </div>
                                             </td>
                                         </tr>

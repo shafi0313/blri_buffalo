@@ -57,7 +57,6 @@ class VaccinationController extends Controller
         }
     }
 
-
     public function store(Request $request)
     {
         $this->validate($request, [
@@ -143,18 +142,45 @@ class VaccinationController extends Controller
         }
     }
 
+    public function edit($id)
+    {
+        $vaccine = Vaccination::find($id);
+        return view('admin.vaccination.edit', compact('vaccine'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $this->validate($request, [
+            'vaccine_name' => 'required|max:155',
+            'vaccine_date' => 'required|date',
+            'dose' => 'nullable|max:155',
+            'total_vaccinated' => 'nullable|max:155',
+        ]);
+
+        $data = [
+            // 'animal_info_id' => $request->animal_info_id ?? $request->tattoo_no,
+            'vaccine_name' => $request->vaccine_name,
+            'vaccine_date' => $request->vaccine_date,
+            'dose' => $request->dose,
+            'total_vaccinated' => 1,
+        ];
+        Vaccination::find($id)->update($data);
+
+        try {
+            toast('Success', 'success');
+            // return redirect()->route('vaccination.index');
+            return back();
+        } catch(\Exception $ex) {
+            toast('Failed', 'error');
+            return redirect()->back();
+        }
+    }
+
     public function show($group)
     {
         $vaccinations = Vaccination::whereGroup($group)->get();
         return view('admin.vaccination.report', compact('vaccinations'));
     }
-
-    // public function destroy($id)
-    // {
-    //     Vaccination::find($id)->delete();
-    //     toast('Success', 'success');
-    //     return redirect()->back();
-    // }
 
     public function destroy($id)
     {
