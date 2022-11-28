@@ -32,10 +32,10 @@ class AnimalInfo extends Model
         return $this->belongsTo(CommunityCat::class, 'community_cat_id');
     }
 
-    // public function getCommunity()
-    // {
-    //     return $this->belongsTo(Community::class, 'community_id');
-    // }
+    public function getCommunity()
+    {
+        return $this->belongsTo(Community::class, 'community_id');
+    }
 
     public function diseaseTreatment()
     {

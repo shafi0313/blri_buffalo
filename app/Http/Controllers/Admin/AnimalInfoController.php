@@ -97,9 +97,9 @@ class AnimalInfoController extends Controller
         // }
 
         if (Auth::user()->permission == 1) {
-            $animalInfos = AnimalInfo::with(['location.getLocation','animalCat'])->get();
+            $animalInfos = AnimalInfo::with(['location.getLocation','animalCat','getCommunity'])->get();
         } else {
-            $animalInfos = AnimalInfo::with(['location.getLocation','animalCat'])->where('user_id', Auth::user()->id)->get();
+            $animalInfos = AnimalInfo::with(['location.getLocation','animalCat','getCommunity'])->where('user_id', Auth::user()->id)->get();
         }
         return view('admin.animal_info.index', compact('animalInfos'));
     }

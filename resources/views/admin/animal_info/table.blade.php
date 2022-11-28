@@ -34,7 +34,7 @@
                 <td class="text-center">{{ $x++ }} </td>
                 <td>{{ $animalInfo->identification_no }} </td>
                 <td>{{ $animalInfo->buffalo_id }} </td>
-                <td>{{ $animalInfo->community_id }} </td>
+                <td>{{ $animalInfo->getCommunity ? $animalInfo->getCommunity->no : ''}} </td>
                 <td>{{ $animalInfo->farm_id != '' ? $animalInfo->animal_tag : $animalInfo->ear_tag }} </td>
                 <td>{{ $animalInfo->tattoo_no }} </td>
                 <td>{{ $animalInfo->type == 1 ? 'Swamp' : 'River' }} </td>
