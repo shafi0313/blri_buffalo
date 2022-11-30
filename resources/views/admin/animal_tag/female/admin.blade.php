@@ -101,7 +101,7 @@
                         })
                         // tattoo No
                         $.ajax({
-                            url: '{{ route('get.tattooNo') }}',
+                            url: '{{ route('get.tattooNoF') }}',
                             type: "get",
                             data: {
                                 community_id: community_id
@@ -132,7 +132,7 @@
                     })
                     // tattoo No
                     $.ajax({
-                        url: '{{ route('get.tattooNoResearch') }}',
+                        url: '{{ route('get.tattooNoResearchF') }}',
                         type: "get",
                         data: {
                             farm_id: farm_id

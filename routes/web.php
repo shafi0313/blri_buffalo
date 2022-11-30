@@ -377,8 +377,13 @@ Route::middleware(['auth','admin'])->prefix('admin')->group(function () {
     Route::get('/tag-no-research', [GlobalController::class, 'tagNoResearch'])->name('get.tagNoResearch');
     Route::get('/tattoo-no-research', [GlobalController::class, 'tattooNoResearch'])->name('get.tattooNoResearch');
 
+    Route::get('/tag-no-research-f', [GlobalController::class, 'tagNoResearchF'])->name('get.tagNoResearchF');
+    Route::get('/tattoo-no-research-f', [GlobalController::class, 'tattooNoResearchF'])->name('get.tattooNoResearchF');
+
     Route::get('/tag-no', [GlobalController::class, 'tagNo'])->name('get.tagNo');
     Route::get('/tattoo-no', [GlobalController::class, 'tattooNo'])->name('get.tattooNo');
+    Route::get('/tag-no-f', [GlobalController::class, 'tagNoF'])->name('get.tagNoF');
+    Route::get('/tattoo-no-f', [GlobalController::class, 'tattooNoF'])->name('get.tattooNoF');
     Route::get('/animal-male', [GlobalController::class, 'animalMale'])->name('get.animalM');
     Route::get('/animal-female', [GlobalController::class, 'animalFemale'])->name('get.animalF');
     Route::get('/animal-sub-cat', [GlobalController::class, 'animalSubCat'])->name('animalSubCat');

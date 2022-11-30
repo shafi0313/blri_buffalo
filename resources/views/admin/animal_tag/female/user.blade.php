@@ -47,7 +47,7 @@
                 })
                 // tattoo No
                 $.ajax({
-                    url: '{{ route('get.tattooNo') }}',
+                    url: '{{ route('get.tattooNoF') }}',
                     type: "get",
                     data: {
                         community_id: community_id

@@ -69,10 +69,30 @@ class GlobalController extends Controller
         }
         return json_encode(['name' => $name]);
     }
+    public function tagNoResearchF(Request $request)
+    {
+        $animals = AnimalInfo::where('farm_id',  $request->farm_id)->whereSex('F')->whereIs_culling(0)->get();
+        $name = '<option value="">Select</option>';
+        foreach ($animals as $animal) {
+            $select = $request->animal_info_id == $animal->id ? 'selected' : '';
+            $name .= "<option value='$animal->id'  $select>$animal->animal_tag</option>";
+        }
+        return json_encode(['name' => $name]);
+    }
 
     public function tattooNoResearch(Request $request)
     {
         $animals = AnimalInfo::where('farm_id',  $request->farm_id)->whereIs_culling(0)->get();
+        $tattooNo = '<option value="">Select</option>';
+        foreach ($animals as $animal) {
+            $select = $request->animal_info_id == $animal->id ? 'selected' : '';
+            $tattooNo .= "<option value='$animal->id' $select>$animal->tattoo_no</option>";
+        }
+        return json_encode(['tattooNo' => $tattooNo]);
+    }
+    public function tattooNoResearchF(Request $request)
+    {
+        $animals = AnimalInfo::where('farm_id',  $request->farm_id)->whereSex('F')->whereIs_culling(0)->get();
         $tattooNo = '<option value="">Select</option>';
         foreach ($animals as $animal) {
             $select = $request->animal_info_id == $animal->id ? 'selected' : '';
@@ -92,10 +112,30 @@ class GlobalController extends Controller
         }
         return json_encode(['name' => $name]);
     }
+    public function tagNoF(Request $request)
+    {
+        $animals = AnimalInfo::where('community_id',  $request->community_id)->whereSex('F')->whereIs_culling(0)->get();
+        $name = '<option value="">Select</option>';
+        foreach ($animals as $animal) {
+            $select = $request->animal_info_id == $animal->id ? 'selected' : '';
+            $name .= "<option value='$animal->id'  $select>$animal->animal_tag</option>";
+        }
+        return json_encode(['name' => $name]);
+    }
 
     public function tattooNo(Request $request)
     {
         $animals = AnimalInfo::where('community_id',  $request->community_id)->whereIs_culling(0)->get();
+        $tattooNo = '<option value="">Select</option>';
+        foreach ($animals as $animal) {
+            $select = $request->animal_info_id == $animal->id ? 'selected' : '';
+            $tattooNo .= "<option value='$animal->id' $select>$animal->tattoo_no</option>";
+        }
+        return json_encode(['tattooNo' => $tattooNo]);
+    }
+    public function tattooNoF(Request $request)
+    {
+        $animals = AnimalInfo::where('community_id',  $request->community_id)->whereSex('F')->whereIs_culling(0)->get();
         $tattooNo = '<option value="">Select</option>';
         foreach ($animals as $animal) {
             $select = $request->animal_info_id == $animal->id ? 'selected' : '';
