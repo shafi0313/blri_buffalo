@@ -108,7 +108,7 @@ class GlobalController extends Controller
         $name = '<option value="">Select</option>';
         foreach ($animals as $animal) {
             $select = $request->animal_info_id == $animal->id ? 'selected' : '';
-            $name .= "<option value='$animal->id'  $select>$animal->animal_tag</option>";
+            $name .= "<option value='$animal->id'  $select>$animal->ear_tag</option>";
         }
         return json_encode(['name' => $name]);
     }
@@ -118,7 +118,7 @@ class GlobalController extends Controller
         $name = '<option value="">Select</option>';
         foreach ($animals as $animal) {
             $select = $request->animal_info_id == $animal->id ? 'selected' : '';
-            $name .= "<option value='$animal->id'  $select>$animal->animal_tag</option>";
+            $name .= "<option value='$animal->id'  $select>$animal->ear_tag</option>";
         }
         return json_encode(['name' => $name]);
     }
@@ -154,7 +154,8 @@ class GlobalController extends Controller
         $name = '<option value="">Select</option>';
         foreach ($animals as $animal) {
             $select = $request->animal_info_id == $animal->id ? 'selected' : '';
-            $name .= "<option value='$animal->id'  $select>$animal->animal_tag</option>";
+            $tag = $animal->farm_id != "" ? $animal->animal_tag : $animal->ear_tag;
+            $name .= "<option value='$animal->id'  $select>$tag</option>";
         }
         return json_encode(['name' => $name]);
     }
