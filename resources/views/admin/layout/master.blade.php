@@ -100,13 +100,14 @@
 
     <script>
         // Select 2
-        $(document).ready(function () {
-            $('.select2').select2();
-        });
+        // $(document).ready(function () {
+        //     $('.select2').select2();
+        // });
 
         // Value Reset
         $('#farm').on('change', function () {
             $(".valReset").empty().trigger('change')
+            $('.valReset').val('').change();
         })
     </script>
     @stack('custom_scripts')
