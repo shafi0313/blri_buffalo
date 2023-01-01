@@ -3,7 +3,7 @@
     <select name="community_cat" id="subFarm" class="form-control select2 @error('community_cat') is-invalid @enderror">
         <option selected disabled value>Select</option>
         @foreach ($communities as $community)
-            <option value="{{ $community->id }}f">{{ $community->no }}-{{ $community->name }}</option>
+            <option value="{{ $community->id }}f">{{ $community->no }}</option>
         @endforeach
     </select>
     @error('community_cat')

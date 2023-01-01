@@ -4,7 +4,7 @@
         <option disabled value>Select</option>
         @foreach ($communities as $community)
             <option value="{{ $community->id }}" {{ $data->community_id == $community->id ? 'selected' : '' }}>
-                {{ $community->no }}-{{ $community->name }}</option>
+                {{ $community->no }}</option>
         @endforeach
     </select>
     @error('community_id')
