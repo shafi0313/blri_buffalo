@@ -1,7 +1,7 @@
 <div class="form-group col-md-3">
     <label for="community_id">Farm Id <span class="t_r">*</span></label>
     <select name="community_id" id="subFarm" class="form-control @error('community_id') is-invalid @enderror">
-        <option disabled value>Select</option>
+        <option value>Select</option>
         @foreach ($communities as $community)
             <option value="{{ $community->id }}" {{ $data->community_id == $community->id ? 'selected' : '' }}>
                 {{ $community->no }}</option>

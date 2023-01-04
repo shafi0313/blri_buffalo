@@ -1,12 +1,12 @@
 <div class="form-group col-md-3">
-    <label for="community_cat">Farm Id <span class="t_r">*</span></label>
-    <select name="community_cat" id="subFarm" class="form-control select2 @error('community_cat') is-invalid @enderror">
+    <label for="community_id">Farm Id <span class="t_r">*</span></label>
+    <select name="community_id" id="subFarm" class="form-control select2 @error('community_id') is-invalid @enderror">
         <option selected disabled value>Select</option>
         @foreach ($communities as $community)
             <option value="{{ $community->id }}f">{{ $community->no }}</option>
         @endforeach
     </select>
-    @error('community_cat')
+    @error('community_id')
         <div class="alert alert-danger">{{ $message }}</div>
     @enderror
 </div>
