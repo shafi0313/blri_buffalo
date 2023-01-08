@@ -98,7 +98,7 @@
 
                                         <div class="form-group col-md-3 bulk" style="display: none">
                                             <label for="community_cat_id">Area <span class="t_r">*</span></label>
-                                            <select name="farmOrCommunityId" 
+                                            <select name="farmOrCommunityId"
                                                 class="form-control bulk_val select2 @error('community_cat_id') is-invalid @enderror">
                                                 <option selected disabled value>Select</option>
                                                 @foreach ($farms as $farm)
@@ -270,6 +270,7 @@
             });
 
             $("#ind").on("click", function() {
+                // $(".bulk_val").empty().trigger('change')
                 $(".ind").show();
                 $("#calving_date_div").show();
                 $(".bulk").hide();
@@ -278,7 +279,7 @@
                 $(".ind_val").prop('disabled', false);
                 let farm = $("#farm").val()
                 $("form").on('submit', function(e) {
-                    let farm = $("#farm").val()
+                    let farm = $(".ind_val").val()
                     let animal_info = $("#animal_info").val()
                     let tattooNo = $("#tattooNo").val()
                     if (farm == null || farm == "") {
@@ -300,6 +301,7 @@
                 });
             })
             $("#bulk").on("click", function() {
+                // $(".valReset").empty().trigger('change')
                 $(".ind").hide();
                 $(".subFarmDiv").hide();
                 $(".ind_val").val('');
@@ -405,91 +407,6 @@
                     // });
                 }
             })
-
-
-            $('#animal_info').on('change', function(e) {
-                var animalInfoId = $(this).val();
-                $.ajax({
-                    url: '{{ route('get.getAnimalInfo') }}',
-                    type: "get",
-                    data: {
-                        animalInfoId: animalInfoId
-                    },
-                    success: function(res) {
-                        res = $.parseJSON(res);
-                        $('#sex').val(res.sex);
-                        $('#animal_sl').val(res.animal_sl);
-                        $('#birth_wt').val(res.birth_wt);
-                        $('#color').val(res.color);
-                    }
-                })
-            });
-            $('#tattooNo').on('change', function(e) {
-                var animalInfoId = $(this).val();
-                $.ajax({
-                    url: '{{ route('get.getAnimalInfo') }}',
-                    type: "get",
-                    data: {
-                        animalInfoId: animalInfoId
-                    },
-                    success: function(res) {
-                        res = $.parseJSON(res);
-                        $('#sex').val(res.sex);
-                        $('#animal_sl').val(res.animal_sl);
-                        $('#birth_wt').val(res.birth_wt);
-                        $('#color').val(res.color);
-                    }
-                })
-            });
         </script>
-        {{-- <script>
-    $('#farm').on('change',function(e) {
-        var farmOrComId = $(this).val()
-        $.ajax({
-            url:'{{ route("get.subFarm") }}',
-            type:"get",
-            data: {
-                farmOrComId: farmOrComId
-                },
-            success:function (res) {
-                res = $.parseJSON(res);
-                $('#subFarm').html(res.name);
-            }
-        })
-    });
-
-    $('#subFarm').on('change',function(e) {
-        var community_id = $(this).val()
-        $.ajax({
-            url:'{{ route("get.animalF") }}',
-            type:"get",
-            data: {
-                community_id: community_id
-                },
-            success:function (res) {
-                res = $.parseJSON(res);
-                $('#animal_info').html(res.name);
-            }
-        })
-    });
-
-    $('#animal_info').on('change',function(e) {
-        var animalInfoId = $(this).val();
-        $.ajax({
-            url:'{{ route("get.getAnimalInfo") }}',
-            type:"get",
-            data: {
-                animalInfoId: animalInfoId
-                },
-            success:function (res) {
-                res = $.parseJSON(res);
-                $('#sex').val(res.sex);
-                $('#animal_sl').val(res.animal_sl);
-                $('#birth_wt').val(res.birth_wt);
-                $('#color').val(res.color);
-            }
-        })
-    });
-</script> --}}
     @endpush
 @endsection
