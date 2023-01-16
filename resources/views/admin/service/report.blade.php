@@ -1,5 +1,5 @@
 @extends('admin.layout.master')
-@section('title', 'Milk Production')
+@section('title', 'Service')
 @section('content')
 @php $p='animalRecord'; $sm="service"; @endphp
 <div class="main-panel">
@@ -54,13 +54,12 @@
                                                     <a href="{{ route('service.edit', $service->id) }}" title="Edit" class="btn btn-link btn-primary btn-lg">
                                                         <i class="fa fa-edit"></i>
                                                     </a>
-                                                    {{-- <form action="{{ route('farm.destroy', $service->id) }}" method="POST">
-                                                        @csrf
-                                                        @method('DELETE')
+                                                    <form action="{{ route('service.destroy', $service->id) }}" method="POST">
+                                                        @csrf @method('DELETE')
                                                         <button type="submit" title="Delete" class="btn btn-link btn-danger" data-original-title="Remove" onclick="return confirm('Are you sure?')">
                                                             <i class="fa fa-times"></i>
                                                         </button>
-                                                    </form> --}}
+                                                    </form>
                                                 </div>
                                             </td>
                                         </tr>

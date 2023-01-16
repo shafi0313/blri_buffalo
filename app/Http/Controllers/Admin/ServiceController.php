@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use PDF;
 use Carbon\Carbon;
 use App\Models\Farm;
 use App\Models\Service;
@@ -10,11 +11,11 @@ use App\Models\CommunityCat;
 use App\Models\Reproduction;
 use Illuminate\Http\Request;
 use App\Exports\ServiceExport;
-use PDF;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class ServiceController extends Controller
 {
@@ -243,6 +244,20 @@ class ServiceController extends Controller
             DB::rollBack();
             toast('Error'. $ex->getMessage(), 'error');
             return redirect()->back();
+        }
+    }
+
+    public function destroy(Request $request, $id)
+    {
+        try {
+            Reproduction::whereAnimal_info_id(Service::find($id)->animal_info_id)->delete();
+            Service::find($id)->delete();
+            Alert::success('Success', 'Successfully Deleted');
+            return redirect()->route('service.index');
+        } catch (\Exception $ex) {
+            return $ex->getMessage();
+            Alert::error('Oops...', 'Delete Failed');
+            return back();
         }
     }
 }
