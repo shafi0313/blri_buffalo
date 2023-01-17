@@ -138,9 +138,9 @@
                                         <label for="age_distribution">Age Distribution <span class="t_r">*</span></label>
                                         <select name="age_distribution" class="form-control" id="age_distribution" required>
                                             {{-- <option>Select</option> --}}
-                                            <option value="1" {{ $animalInfo->age_distribution==1?'checked':'' }}>Newborn calf</option>
-                                            <option value="2" {{ $animalInfo->age_distribution==2?'checked':'' }}>Heifer</option>
-                                            <option value="3" {{ $animalInfo->age_distribution==3?'checked':'' }}>Buffalo Cow</option>
+                                            <option value="1" {{ $animalInfo->age_distribution==1?'selected':'' }}>Newborn calf</option>
+                                            <option value="2" {{ $animalInfo->age_distribution==2?'selected':'' }}>Heifer</option>
+                                            <option value="3" {{ $animalInfo->age_distribution==3?'selected':'' }}>Buffalo Cow</option>
                                         </select>
                                         @error('age_distribution')
                                             <div class="alert alert-danger">{{ $message }}</div>
