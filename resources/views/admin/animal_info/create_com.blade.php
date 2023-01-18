@@ -148,6 +148,7 @@
                                             <option value="1">Newborn calf</option>
                                             <option value="2">Heifer</option>
                                             <option value="3">Buffalo Cow</option>
+                                            <option value="4">Bull</option>
                                         </select>
                                         @error('age_distribution')
                                             <div class="alert alert-danger">{{ $message }}</div>

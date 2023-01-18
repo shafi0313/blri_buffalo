@@ -172,6 +172,7 @@
                                             <option value="1">Newborn calf</option>
                                             <option value="2">Heifer</option>
                                             <option value="3">Buffalo Cow</option>
+                                            <option value="4">Bull</option>
                                         </select>
                                         @error('age_distribution')
                                             <div class="alert alert-danger">{{ $message }}</div>
@@ -182,7 +183,7 @@
                                     <div class="form-group col-md-3">
                                         <label for="sex">Sex <span class="t_r">*</span></label>
                                         <select name="sex" id="sex" class="form-control @error('sex') is-invalid @enderror" required>
-                                            <option  selected disabled>Select</option>
+                                            <option selected disabled>Select</option>
                                             <option value="M">M</option>
                                             <option value="F">F</option>
                                         </select>

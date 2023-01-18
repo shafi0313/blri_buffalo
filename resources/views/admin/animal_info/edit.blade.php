@@ -182,6 +182,7 @@
                                             <option value="1" {{ $animalInfo->age_distribution==1?'selected':'' }}>Newborn calf</option>
                                             <option value="2" {{ $animalInfo->age_distribution==2?'selected':'' }}>Heifer</option>
                                             <option value="3" {{ $animalInfo->age_distribution==3?'selected':'' }}>Buffalo Cow</option>
+                                            <option value="4" {{ $animalInfo->age_distribution==4?'selected':'' }}>Bull</option>
                                         </select>
                                         @error('age_distribution')
                                             <div class="alert alert-danger">{{ $message }}</div>
