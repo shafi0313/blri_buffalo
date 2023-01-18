@@ -12,11 +12,11 @@ class SemenAnalysisExport implements FromView
     {
         if (auth()->user()->permission == 1) {
             return view('admin.semen_analysis.excel', [
-                'semenAnalyses' => SemenAnalysis::whereNotIn('animal_info_id',isCulling())->get()
+                'semenAnalyses' => SemenAnalysis::all()
             ]);
         } else {
             return view('admin.semen_analysis.excel', [
-                'semenAnalyses' => SemenAnalysis::where('user_id', auth()->user()->id)->whereNotIn('animal_info_id',isCullingUser())->get()
+                'semenAnalyses' => SemenAnalysis::where('user_id', auth()->user()->id)->get()
             ]);
         }
     }

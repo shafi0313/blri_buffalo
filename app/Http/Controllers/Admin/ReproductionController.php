@@ -25,9 +25,9 @@ class ReproductionController extends Controller
     public function exportIntoPdf()
     {
         if (Auth::user()->permission == 1) {
-            $reproductions = Reproduction::whereNotIn('animal_info_id',isCulling())->get();
+            $reproductions = Reproduction::all();
         } else {
-            $reproductions = Reproduction::where('user_id', Auth::user()->id)->whereNotIn('animal_info_id',isCullingUser())->get();
+            $reproductions = Reproduction::where('user_id', Auth::user()->id)->get();
         }
 
         $pdf = PDF::loadView('admin.reproduction.pdf', compact('reproductions'))->setPaper('a4', 'landscape');
@@ -37,9 +37,9 @@ class ReproductionController extends Controller
     public function index()
     {
         if (Auth::user()->permission == 1) {
-            $reproductions = Reproduction::whereNotIn('animal_info_id',isCulling())->get();
+            $reproductions = Reproduction::all();
         } else {
-            $reproductions = Reproduction::where('user_id', Auth::user()->id)->whereNotIn('animal_info_id',isCullingUser())->get();
+            $reproductions = Reproduction::where('user_id', Auth::user()->id)->get();
         }
         return view('admin.reproduction.index', compact('reproductions'));
     }

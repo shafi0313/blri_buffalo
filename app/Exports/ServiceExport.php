@@ -12,11 +12,11 @@ class ServiceExport implements FromView
     {
         if (auth()->user()->permission == 1) {
             return view('admin.service.excel', [
-                'services' => Service::whereNotIn('animal_info_id',isCulling())->get()
+                'services' => Service::all()
             ]);
         } else {
             return view('admin.service.excel', [
-                'services' => Service::where('user_id', auth()->user()->id)->whereNotIn('animal_info_id',isCullingUser())->get()
+                'services' => Service::where('user_id', auth()->user()->id)->get()
             ]);
         }
     }

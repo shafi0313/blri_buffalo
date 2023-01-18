@@ -13,11 +13,11 @@ class DewormingExport implements FromView
     {
         if (auth()->user()->permission == 1) {
             return view('admin.deworming.excel', [
-                'dewormings' => Deworming::whereNotIn('animal_info_id',isCulling())->get()
+                'dewormings' => Deworming::all()
             ]);
         } else {
             return view('admin.deworming.excel', [
-                'dewormings' => Deworming::where('user_id', auth()->user()->id)->whereNotIn('animal_info_id',isCullingUser())->get()
+                'dewormings' => Deworming::where('user_id', auth()->user()->id)->get()
             ]);
         }
     }

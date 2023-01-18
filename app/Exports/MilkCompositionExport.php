@@ -12,11 +12,11 @@ class MilkCompositionExport implements FromView
     {
         if (auth()->user()->permission == 1) {
             return view('admin.milk_composition.excel', [
-                'milkCompositions' => MilkComposition::whereNotIn('animal_info_id',isCulling())->get()
+                'milkCompositions' => MilkComposition::all()
             ]);
         } else {
             return view('admin.milk_composition.excel', [
-                'milkCompositions' => MilkComposition::where('user_id', auth()->user()->id)->whereNotIn('animal_info_id',isCullingUser())->get()
+                'milkCompositions' => MilkComposition::where('user_id', auth()->user()->id)->get()
             ]);
         }
     }

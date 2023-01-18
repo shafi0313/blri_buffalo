@@ -12,11 +12,11 @@ class MilkProductionExport implements FromView
     {
         if (auth()->user()->permission == 1) {
             return view('admin.milk_production.excel', [
-                'milkProductions' => MilkProduction::whereNotIn('animal_info_id',isCulling())->get()
+                'milkProductions' => MilkProduction::all()
             ]);
         } else {
             return view('admin.milk_production.excel', [
-                'milkProductions' => MilkProduction::where('user_id', auth()->user()->id)->whereNotIn('animal_info_id',isCullingUser())->get()
+                'milkProductions' => MilkProduction::where('user_id', auth()->user()->id)->get()
             ]);
         }
     }

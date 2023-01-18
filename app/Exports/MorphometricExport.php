@@ -13,11 +13,11 @@ class MorphometricExport implements FromView
     {
         if (auth()->user()->permission == 1) {
             return view('admin.morphometric.excel', [
-                'morphometrics' => Morphometric::whereNotIn('animal_info_id',isCulling())->get()
+                'morphometrics' => Morphometric::all()
             ]);
         } else {
             return view('admin.morphometric.excel', [
-                'morphometrics' => Morphometric::where('user_id', auth()->user()->id)->whereNotIn('animal_info_id',isCullingUser())->get()
+                'morphometrics' => Morphometric::where('user_id', auth()->user()->id)->get()
             ]);
         }
     }

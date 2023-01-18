@@ -23,9 +23,9 @@ class MorphometricController extends Controller
     public function exportIntoPdf()
     {
         if (Auth::user()->permission == 1) {
-            $morphometrics = Morphometric::whereNotIn('animal_info_id',isCulling())->get();
+            $morphometrics = Morphometric::all();
         } else {
-            $morphometrics = Morphometric::where('user_id', Auth::user()->id)->whereNotIn('animal_info_id',isCullingUser())->get();
+            $morphometrics = Morphometric::where('user_id', Auth::user()->id)->get();
         }
 
         $pdf = PDF::loadView('admin.morphometric.pdf', compact('morphometrics'));
@@ -34,9 +34,9 @@ class MorphometricController extends Controller
     public function index()
     {
         if (Auth::user()->permission == 1) {
-            $morphometrics = Morphometric::whereNotIn('animal_info_id',isCulling())->get();
+            $morphometrics = Morphometric::all();
         } else {
-            $morphometrics = Morphometric::where('user_id', Auth::user()->id)->whereNotIn('animal_info_id',isCullingUser())->get();
+            $morphometrics = Morphometric::where('user_id', Auth::user()->id)->get();
         }
         return view('admin.morphometric.index', compact('morphometrics'));
     }

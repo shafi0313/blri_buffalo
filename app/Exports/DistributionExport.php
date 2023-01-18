@@ -12,11 +12,11 @@ class DistributionExport implements FromView
     {
         if (auth()->user()->permission == 1) {
             return view('admin.distribution.excel', [
-                'distributions' => Distribution::whereNotIn('animal_info_id',isCulling())->get()
+                'distributions' => Distribution::all()
             ]);
         } else {
             return view('admin.distribution.excel', [
-                'distributions' => Distribution::where('user_id', auth()->user()->id)->whereNotIn('animal_info_id',isCullingUser())->get()
+                'distributions' => Distribution::where('user_id', auth()->user()->id)->get()
             ]);
         }
     }

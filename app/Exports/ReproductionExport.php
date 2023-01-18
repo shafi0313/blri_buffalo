@@ -12,11 +12,11 @@ class ReproductionExport implements FromView
     {
         if (auth()->user()->permission == 1) {
             return view('admin.reproduction.excel', [
-                'reproductions' => Reproduction::whereNotIn('animal_info_id',isCulling())->get()
+                'reproductions' => Reproduction::all()
             ]);
         } else {
             return view('admin.reproduction.excel', [
-                'reproductions' => Reproduction::where('user_id', auth()->user()->id)->whereNotIn('animal_info_id',isCullingUser())->get()
+                'reproductions' => Reproduction::where('user_id', auth()->user()->id)->get()
             ]);
         }
     }

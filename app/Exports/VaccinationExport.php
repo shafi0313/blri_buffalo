@@ -12,11 +12,11 @@ class VaccinationExport implements FromView
     {
         if (auth()->user()->permission == 1) {
             return view('admin.vaccination.excel', [
-                'vaccinations' => Vaccination::whereNotIn('animal_info_id',isCulling())->get()
+                'vaccinations' => Vaccination::all()
             ]);
         } else {
             return view('admin.vaccination.excel', [
-                'vaccinations' => Vaccination::where('user_id', auth()->user()->id)->whereNotIn('animal_info_id',isCullingUser())->get()
+                'vaccinations' => Vaccination::where('user_id', auth()->user()->id)->get()
             ]);
         }
     }

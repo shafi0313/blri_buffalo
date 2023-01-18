@@ -12,11 +12,11 @@ class DiseaseTreatmentExport implements FromView
     {
         if (auth()->user()->permission == 1) {
             return view('admin.disease_treatment.excel', [
-                'diseaseTreatments' => DiseaseTreatment::whereNotIn('animal_info_id',isCulling())->get()
+                'diseaseTreatments' => DiseaseTreatment::all()
             ]);
         } else {
             return view('admin.disease_treatment.excel', [
-                'diseaseTreatments' => DiseaseTreatment::where('user_id', auth()->user()->id)->whereNotIn('animal_info_id',isCullingUser())->get()
+                'diseaseTreatments' => DiseaseTreatment::where('user_id', auth()->user()->id)->get()
             ]);
         }
     }

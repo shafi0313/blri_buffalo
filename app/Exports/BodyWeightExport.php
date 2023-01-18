@@ -13,7 +13,7 @@ class BodyWeightExport implements FromView
     {
         if (auth()->user()->permission == 1) {
             return view('admin.body_weight.excel', [
-                'productionRecords' => BodyWeight::whereNotIn('animal_info_id',isCulling())->get()
+                'productionRecords' => BodyWeight::all()
             ]);
         } else {
             return view('admin.body_weight.excel', [

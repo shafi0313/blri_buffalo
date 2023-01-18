@@ -61,7 +61,7 @@ class GlobalController extends Controller
     // For research
     public function tagNoResearch(Request $request)
     {
-        $animals = AnimalInfo::where('farm_id',  $request->farm_id)->whereIs_culling(0)->get();
+        $animals = AnimalInfo::where('farm_id',  $request->farm_id)->get();
         $name = '<option value="">Select</option>';
         foreach ($animals as $animal) {
             $select = $request->animal_info_id == $animal->id ? 'selected' : '';
@@ -71,7 +71,7 @@ class GlobalController extends Controller
     }
     public function tagNoResearchF(Request $request)
     {
-        $animals = AnimalInfo::where('farm_id',  $request->farm_id)->whereSex('F')->whereIs_culling(0)->get();
+        $animals = AnimalInfo::where('farm_id',  $request->farm_id)->whereSex('F')->get();
         $name = '<option value="">Select</option>';
         foreach ($animals as $animal) {
             $select = $request->animal_info_id == $animal->id ? 'selected' : '';
@@ -82,7 +82,7 @@ class GlobalController extends Controller
 
     public function tattooNoResearch(Request $request)
     {
-        $animals = AnimalInfo::where('farm_id',  $request->farm_id)->whereIs_culling(0)->get();
+        $animals = AnimalInfo::where('farm_id',  $request->farm_id)->get();
         $tattooNo = '<option value="">Select</option>';
         foreach ($animals as $animal) {
             $select = $request->animal_info_id == $animal->id ? 'selected' : '';
@@ -92,7 +92,7 @@ class GlobalController extends Controller
     }
     public function tattooNoResearchF(Request $request)
     {
-        $animals = AnimalInfo::where('farm_id',  $request->farm_id)->whereSex('F')->whereIs_culling(0)->get();
+        $animals = AnimalInfo::where('farm_id',  $request->farm_id)->whereSex('F')->get();
         $tattooNo = '<option value="">Select</option>';
         foreach ($animals as $animal) {
             $select = $request->animal_info_id == $animal->id ? 'selected' : '';
@@ -104,7 +104,7 @@ class GlobalController extends Controller
     // For community
     public function tagNo(Request $request)
     {
-        $animals = AnimalInfo::where('community_id',  $request->community_id)->whereIs_culling(0)->get();
+        $animals = AnimalInfo::where('community_id',  $request->community_id)->get();
         $name = '<option value="">Select</option>';
         foreach ($animals as $animal) {
             $select = $request->animal_info_id == $animal->id ? 'selected' : '';
@@ -114,7 +114,7 @@ class GlobalController extends Controller
     }
     public function tagNoF(Request $request)
     {
-        $animals = AnimalInfo::where('community_id',  $request->community_id)->whereSex('F')->whereIs_culling(0)->get();
+        $animals = AnimalInfo::where('community_id',  $request->community_id)->whereSex('F')->get();
         $name = '<option value="">Select</option>';
         foreach ($animals as $animal) {
             $select = $request->animal_info_id == $animal->id ? 'selected' : '';
@@ -125,7 +125,7 @@ class GlobalController extends Controller
 
     public function tattooNo(Request $request)
     {
-        $animals = AnimalInfo::where('community_id',  $request->community_id)->whereIs_culling(0)->get();
+        $animals = AnimalInfo::where('community_id',  $request->community_id)->get();
         $tattooNo = '<option value="">Select</option>';
         foreach ($animals as $animal) {
             $select = $request->animal_info_id == $animal->id ? 'selected' : '';
@@ -135,7 +135,7 @@ class GlobalController extends Controller
     }
     public function tattooNoF(Request $request)
     {
-        $animals = AnimalInfo::where('community_id',  $request->community_id)->whereSex('F')->whereIs_culling(0)->get();
+        $animals = AnimalInfo::where('community_id',  $request->community_id)->whereSex('F')->get();
         $tattooNo = '<option value="">Select</option>';
         foreach ($animals as $animal) {
             $select = $request->animal_info_id == $animal->id ? 'selected' : '';
@@ -147,9 +147,9 @@ class GlobalController extends Controller
     public function animalFemale(Request $request)
     {
         if ($request->filled('community_id')) {
-            $animals = AnimalInfo::where('community_id',  $request->community_id)->whereSex('F')->whereIs_culling(0)->get();
+            $animals = AnimalInfo::where('community_id',  $request->community_id)->whereSex('F')->get();
         } else {
-            $animals = AnimalInfo::where('farm_id',  $request->farm_id)->whereSex('F')->whereIs_culling(0)->get();
+            $animals = AnimalInfo::where('farm_id',  $request->farm_id)->whereSex('F')->get();
         }
         $name = '<option value="">Select</option>';
         foreach ($animals as $animal) {
@@ -163,9 +163,9 @@ class GlobalController extends Controller
     public function animalMale(Request $request)
     {
         if ($request->filled('community_id')) {
-            $animals = AnimalInfo::where('community_id',  $request->community_id)->whereSex('M')->whereIs_culling(0)->get();
+            $animals = AnimalInfo::where('community_id',  $request->community_id)->whereSex('M')->get();
         } else {
-            $animals = AnimalInfo::where('farm_id',  $request->farm_id)->whereSex('M')->whereIs_culling(0)->get();
+            $animals = AnimalInfo::where('farm_id',  $request->farm_id)->whereSex('M')->get();
         }
 
         $name = '<option value="">Select</option>';
