@@ -47,8 +47,8 @@
 
                                     <div class="form-group col-md-3">
                                         <label for="reason">Reason <span class="t_r">*</span></label>
-                                        <select class="form-control @error('reason') is-invalid @enderror" name="reason">
-                                            <option>Select</option>
+                                        <select class="form-control @error('reason') is-invalid @enderror" name="reason" required>
+                                            <option value="">Select</option>
                                             <option value="Not suitable for research">Not suitable for research</option>
                                             <option value="Death">Death</option>
                                             <option value="Breeding">Breeding</option>
@@ -62,7 +62,7 @@
 
                                     <div class="form-group col-md-3">
                                         <label for="date_dead_culled">Culling Date<span class="t_r">*</span></label>
-                                        <input type="date" class="form-control @error('date_dead_culled') is-invalid @enderror" name="date_dead_culled" value="{{old('date_dead_culled')}}">
+                                        <input type="date" class="form-control @error('date_dead_culled') is-invalid @enderror" name="date_dead_culled" value="{{old('date_dead_culled')}}" required>
                                         @error('date_dead_culled')
                                             <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
