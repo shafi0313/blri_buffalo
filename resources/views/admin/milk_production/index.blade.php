@@ -64,7 +64,7 @@
                                         </thead>
                                         <tbody>
                                             @php $x=1; @endphp
-                                            @foreach ($milkProductions->groupBy('animal_info_id') as $milkProducti)
+                                            @foreach ($milkProductions->groupBy('animal_info_id') as $milkProduction)
                                                 @php
                                                     $milkProduction = $milkProducti->first();
                                                 @endphp
@@ -75,7 +75,6 @@
                                                     <td>{{ bdDate($milkProduction->date_of_milking) }} </td>
                                                     <td>{{ $milkProduction->milk_production }} </td>
                                                     <td>{{ $milkProducti->max('milk_production') }} </td>
-                                                    {{-- <td>{{ $milkProducti->max('milk_production') }} --}}
                                                     <td>{{ number_format($milkProductions->where('animal_info_id', $milkProduction->animal_info_id)->sum('milk_production') / $milkProducti->count(), 2) }}
                                                     </td>
                                                     <td>{{ $milkProduction->lactation_length }}</td>

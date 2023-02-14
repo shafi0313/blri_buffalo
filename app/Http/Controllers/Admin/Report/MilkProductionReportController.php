@@ -63,9 +63,9 @@ class MilkProductionReportController extends Controller
         }
 
         if (Auth::user()->permission == 1) {
-            $milkProductions = MilkProduction::where($farm, '=', $farm_id)->whereNotIn('animal_info_id', isCulling())->get();
+            $milkProductions = MilkProduction::where($farm, '=', $farm_id)->get();
         } else {
-            $milkProductions = MilkProduction::where('user_id', Auth::user()->id)->whereNotIn('animal_info_id', isCullingUser())->get();
+            $milkProductions = MilkProduction::where('user_id', Auth::user()->id)->get();
         }
 
         $pdf = PDF::loadView('admin.milk_production.pdf', compact('milkProductions'));
