@@ -49,6 +49,7 @@
 @push('custom_scripts')
     <script>
         $(document).ready(function() {
+            let vac_type = $('input[name="vac_type"]:checked').val();
             $("#single").on("click", function() {
                 $(".single").show();
                 $("#single_input").attr("disabled", false);
@@ -61,22 +62,24 @@
                     let community_id = $("#subFarm").val()
                     let animal_info = $("#animal_info").val()
                     let tattooNo = $("#tattooNo").val()
-                    if (community_id == null || community_id == "") {
-                        Swal.fire(
-                            'Data Missing?',
-                            'Farm ID Missing',
-                            'question'
-                        )
-                        return false;
-                    }
-                    if ((animal_info == null || animal_info == 0) && (tattooNo == null ||
-                            tattooNo == 0)) {
-                        Swal.fire(
-                            'Data Missing?',
-                            'Tag no or Tattoo no',
-                            'question'
-                        )
-                        return false;
+                    if (vac_type == 'single') {
+                        if (community_id == null || community_id == "") {
+                            Swal.fire(
+                                'Data Missing?',
+                                'Farm ID Missing',
+                                'question'
+                            )
+                            return false;
+                        }
+                        if ((animal_info == null || animal_info == 0) && (tattooNo == null ||
+                                tattooNo == 0)) {
+                            Swal.fire(
+                                'Data Missing?',
+                                'Tag no or Tattoo no',
+                                'question'
+                            )
+                            return false;
+                        }
                     }
                 });
             })
@@ -94,7 +97,7 @@
                     let community_id = $("#subFarmGroup").val()
                     let animal_info = $("#animal_info").val()
                     let tattooNo = $("#tattooNo").val()
-                    if (community_id == null || community_id == "") {
+                    if (vac_type == 'group' && community_id == null || community_id == "") {
                         Swal.fire(
                             'Data Missing?',
                             'Farm ID Missing',
