@@ -64,7 +64,7 @@
                                         </thead>
                                         <tbody>
                                             @php $x=1; @endphp
-                                            @foreach ($milkProductions->groupBy('animal_info_id') as $milkProduction)
+                                            @foreach ($milkProductions->groupBy('animal_info_id') as $milkProducti)
                                                 @php
                                                     $milkProduction = $milkProducti->first();
                                                 @endphp
