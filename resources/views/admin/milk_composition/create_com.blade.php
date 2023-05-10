@@ -42,30 +42,23 @@
                                     @php $day_count = 14; @endphp
                                 @endisset
                                 <input type="hidden" name="day_count" value="{{ $day_count }}">
-                                {{-- <input type="hidden" name="animal_info_id" value="{{  $animalInfo->id }}"> --}}
 
                                 <div class="row">
-                                    {{-- <div class="form-group col-md-3">
-                                        <label for="community_cat">Farm Id <span class="t_r">*</span></label>
-                                        <select name="community_cat" id="subFarm" class="form-control @error('community_cat') is-invalid @enderror">
-                                            <option selected disabled value>Select</option>
-                                            @foreach ($communities as $community)
-                                            <option value="{{$community->id}}f">{{$community->no}}-{{$community->name}}</option>
-                                            @endforeach
-                                        </select>
-                                        @error('community_cat')
-                                            <div class="alert alert-danger">{{ $message }}</div>
-                                        @enderror
+                                    <div class="form-check">
+                                        <label>Milk Type</label><br>
+                                        <label class="form-radio-label">
+                                            <input class="form-radio-input" type="radio" name="milk_type"
+                                                value="ind" id="ind">
+                                            <span class="form-radio-sign">Individual</span>
+                                        </label>
+                                        <label class="form-radio-label ml-3">
+                                            <input class="form-radio-input" type="radio" name="milk_type"
+                                                value="bulk" id="bulk">
+                                            <span class="form-radio-sign">Bulk Milk</span>
+                                        </label>
                                     </div>
-
-                                    <div class="form-group col-md-3">
-                                        <label for="name">Tag no <span class="t_r">*</span></label>
-                                        <select name="animal_info_id" id="animal_info" class="form-control @error('animal_info_id') is-invalid @enderror"></select>
-                                        @error('animal_info_id')
-                                            <div class="alert alert-danger">{{ $message }}</div>
-                                        @enderror
-                                    </div> --}}
-                                    @include('admin.animal_tag.female.user')
+                                    
+                                    @include('admin.animal_tag.group.user_female')
 
                                     @if ($milkCompositions->count() < 1)
                                         <div class="form-group col-md-3">
@@ -77,16 +70,10 @@
                                         </div>
                                     @endif
 
-                                    {{-- @php
-                                            $dateText = '';
-                                            $$dateVal = '';
-                                    @endphp --}}
-
                                     @if ($milkCompositions->count() < 1)
                                         @php
                                             $dateText = '14th Day Date';
                                             $dateVal = \Carbon\Carbon::now()->format('Y-m-d');
-                                            // $dateVal = '';
                                         @endphp
                                     @else
                                         @php
@@ -94,7 +81,6 @@
                                             $dateVal =  \Carbon\Carbon::parse($milkData->date)->addDays(28)->format('Y-m-d');
                                         @endphp
                                     @endif
-
 
                                     <div class="form-group col-md-3">
                                         <label for="date">{{$dateText}} <span class="t_r">*</span></label>
@@ -207,43 +193,8 @@
     </div>
     @include('admin.layout.footer')
 </div>
-
 @push('custom_scripts')
 
-<script>
-    // $('#subFarm').on('change',function(e) {
-    //         var community_id = $(this).val()
-    //         $.ajax({
-    //             url:'{{ route("get.animalF") }}',
-    //             type:"get",
-    //             data: {
-    //                 community_id: community_id
-    //                 },
-    //             success:function (res) {
-    //                 res = $.parseJSON(res);
-    //                 $('#animal_info').html(res.name);
-    //             }
-    //         })
-    //     });
-
-        // $('#animal_info').on('change',function(e) {
-        //     var animalInfoId = $(this).val();
-        //     $.ajax({
-        //         url:'{{ route("get.getAnimalInfo") }}',
-        //         type:"get",
-        //         data: {
-        //             animalInfoId: animalInfoId
-        //             },
-        //         success:function (res) {
-        //             res = $.parseJSON(res);
-        //             $('#sex').val(res.sex);
-        //             $('#animal_sl').val(res.animal_sl);
-        //             $('#birth_wt').val(res.birth_wt);
-        //             $('#color').val(res.color);
-        //         }
-        //     })
-        // });
-    </script>
 @endpush
 @endsection
 

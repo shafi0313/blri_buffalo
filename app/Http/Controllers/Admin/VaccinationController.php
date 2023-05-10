@@ -73,27 +73,26 @@ class VaccinationController extends Controller
         $getGroup = Vaccination::max('group') + 1;
         if ($request->vac_type == 'single') {
             $data = [
-                'animal_info_id' => $request->animal_info_id ?? $request->tattoo_no,
-                'user_id' => Auth::user()->id,
-                'group' => $getGroup,
-                'vaccine_name' => $request->vaccine_name,
-                'vaccine_date' => $request->vaccine_date,
-                'dose' => $request->dose,
+                'animal_info_id'   => $request->animal_info_id ?? $request->tattoo_no,
+                'user_id'          => Auth::user()->id,
+                'group'            => $getGroup,
+                'vaccine_name'     => $request->vaccine_name,
+                'vaccine_date'     => $request->vaccine_date,
+                'dose'             => $request->dose,
                 'total_vaccinated' => 1,
             ];
             if (Auth::user()->permission == 1) {
                 if ($fOrC=='f') {
-                    $data['farm_id'] = $farmOrComId;
+                    $data['farm_id']      = $farmOrComId;
                     $data['community_id'] = $request->community_id;
                 } else {
                     $data['community_cat_id'] = $farmOrComId;
-                    $data['community_id'] = $request->community_id;
+                    $data['community_id']     = $request->community_id;
                 }
             } else {
-                $data['community_cat_id'] = $communityCat->id; // for community
-                $data['community_id'] = $request->community_id;
+                $data['community_cat_id'] = $communityCat->id;       // for community
+                $data['community_id']     = $request->community_id;
             }
-            // return $data;
             Vaccination::create($data);
         } else {
             if (Auth::user()->permission == 1) {
@@ -109,24 +108,24 @@ class VaccinationController extends Controller
             foreach ($animals as $key => $value) {
                 $data = [
                     'animal_info_id' => $animals[$key],
-                    'user_id' => Auth::user()->id,
-                    'group' => $getGroup,
-                    'vaccine_name' => $request->vaccine_name,
-                    'vaccine_date' => $request->vaccine_date,
-                    'dose' => $request->dose,
+                    'user_id'        => Auth::user()->id,
+                    'group'          => $getGroup,
+                    'vaccine_name'   => $request->vaccine_name,
+                    'vaccine_date'   => $request->vaccine_date,
+                    'dose'           => $request->dose,
                 ];
                 $data['total_vaccinated'] = count($animals);
                 if (Auth::user()->permission == 1) {
                     if ($fOrC=='f') {
-                        $data['farm_id'] = $farmOrComId;
+                        $data['farm_id']      = $farmOrComId;
                         $data['community_id'] = $request->community_id;
                     } else {
                         $data['community_cat_id'] = $farmOrComId;
-                        $data['community_id'] = $request->community_id;
+                        $data['community_id']     = $request->community_id;
                     }
                 } else {
-                    $data['community_cat_id'] = $communityCat->id; // for community
-                    $data['community_id'] = $request->community_id;
+                    $data['community_cat_id'] = $communityCat->id;       // for community
+                    $data['community_id']     = $request->community_id;
                 }
                 Vaccination::create($data);
             }
