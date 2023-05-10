@@ -24,6 +24,10 @@
                                 <a href="{{route('morphometric.exportIntoExcel')}}" class="btn btn-round"><img src="{{asset('files/images/icon/excel.png')}}" alt="Excel Logo"> Excel</a>&nbsp;&nbsp;
                                 <a href="{{route('morphometric.create')}}" class="btn btn-primary btn-round text-light"><i class="fa fa-plus"></i> Add New</a>
                             </div>
+                            <div class="formula">
+                                <span>Body wt. (Pound): <b>Body length * (Heart girth)<sup>2</sup> / 300</b></span> <br>
+                                <span>Body wt. (Kg): <b>Body length * (Heart girth)<sup>2</sup> / 300 * 0.45</b></span>                                
+                            </div>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">

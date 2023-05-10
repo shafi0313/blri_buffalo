@@ -29,6 +29,9 @@
                                 <a href="{{route('report.reproduction.excel', [$reproductions->first()->farm_id??0, $reproductions->first()->community_cat_id??0])}}" class="btn btn-round"><img src="{{asset('files/images/icon/excel.png')}}" alt="Excel Logo"> Excel</a>&nbsp;&nbsp;
                                 @endif
                             </div>
+                            <div class="formula">
+                                <span>calving Interval: <b>Service date deference calving date</b></span>                         
+                            </div>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
