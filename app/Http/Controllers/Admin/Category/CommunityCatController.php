@@ -16,7 +16,7 @@ class CommunityCatController extends Controller
 {
     public function index()
     {
-        $communityCats = CommunityCat::all();
+        $communityCats = CommunityCat::with('user')->get();
         return view('admin.community_cat.index', compact('communityCats'));
     }
 

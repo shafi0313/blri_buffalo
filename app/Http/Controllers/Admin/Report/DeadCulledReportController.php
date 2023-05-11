@@ -32,9 +32,9 @@ class DeadCulledReportController extends Controller
         $farmOrComId = preg_replace('/[^0-9]/', '', $request->farmOrCommunityId);
         if (Auth::user()->permission == 1) {
             if ($fOrC == 'f') {
-                $deadCulleds = DeadCulled::whereFarm_id($farmOrComId)->get();
+                $deadCulleds = DeadCulled::with(['animalInfo'])->whereFarm_id($farmOrComId)->get();
             } else {
-                $deadCulleds = DeadCulled::whereCommunity_cat_id($farmOrComId)->get();
+                $deadCulleds = DeadCulled::with(['animalInfo'])->whereCommunity_cat_id($farmOrComId)->get();
             }
         }
         return view('admin.dead_culled.index', compact('deadCulleds'));
@@ -63,9 +63,9 @@ class DeadCulledReportController extends Controller
         }
 
         if (Auth::user()->permission == 1) {
-            $deadCulleds = DeadCulled::where($farm, '=', $farm_id)->get();
+            $deadCulleds = DeadCulled::with(['animalInfo'])->where($farm, '=', $farm_id)->get();
         } else {
-            $deadCulleds = DeadCulled::where('user_id', Auth::user()->id)->get();
+            $deadCulleds = DeadCulled::with(['animalInfo'])->where('user_id', Auth::user()->id)->get();
         }
 
         $pdf = PDF::loadView('admin.dead_culled.pdf', compact('deadCulleds'));

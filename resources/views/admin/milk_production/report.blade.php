@@ -30,10 +30,10 @@
                                         <tr class="text-center">
                                             <th style="width: 35px">SL</th>
                                             <th>Tag No</th>
+                                            <th>Tattoo No</th>
                                             <th>Date of Milking</th>
                                             <th>Milk Production (kg)</th>
                                             <th>Peak Milk Production (kg)</th>
-                                            {{-- <th>Average milk production (Kg)</th> --}}
                                             <th>Lactation length</th>
                                             <th class="no-sort" style="text-align:center;width:80px" >Action</th>
                                         </tr>
@@ -44,9 +44,10 @@
                                         <tr class="text-center">
                                             <td>{{ $x++ }} </td>
                                             <td>{{ $milkProduction->animalInfo->animal_tag }} </td>
+                                            <td>{{ $milkProduction->animalInfo->tattoo_no }} </td>
                                             <td>{{ \Carbon\Carbon::parse($milkProduction->date_of_milking)->format('d/m/Y') }} </td>
                                             <td>{{ $milkProduction->milk_production }} </td>
-                                            <td>{{ $milkProduction->peak_milk_production }} </td>
+                                            <td></td>
                                             {{-- <td>{{$milkProductions->where('animal_info_id',$milkProduction->animal_info_id)->sum('milk_production')/$milkProduction->count()}}</td> --}}
                                             <td>{{ $milkProduction->lactation_length }}</td>
                                             <td>
@@ -70,6 +71,7 @@
                                         <tr>
                                             <th class="text-right" colspan="3">Average milk production (Kg)</th>
                                             <th class="text-center">{{ number_format($milkProductions->sum('milk_production')/$milkProductions->count(),2) }}</th>
+                                            <td class="text-center">{{ $milkProductions->max('milk_production') }} </td>
                                         </tr>
                                 </table>
                             </div>
@@ -82,8 +84,8 @@
     @include('admin.layout.footer')
 </div>
 
-@push('custom_scripts') @include('admin.include.data_table')
-@endpush
-
+    @push('custom_scripts') 
+        @include('admin.include.data_table')
+    @endpush
 @endsection
 

@@ -32,9 +32,9 @@ class SemenAnalysisReportController extends Controller
         $farmOrComId = preg_replace('/[^0-9]/', '', $request->farmOrCommunityId);
         if (Auth::user()->permission == 1) {
             if ($fOrC == 'f') {
-                $semenAnalyses = SemenAnalysis::whereFarm_id($farmOrComId)->whereNotIn('animal_info_id', isCulling())->get();
+                $semenAnalyses = SemenAnalysis::with(['animalInfo'])->whereFarm_id($farmOrComId)->whereNotIn('animal_info_id', isCulling())->get();
             } else {
-                $semenAnalyses = SemenAnalysis::whereCommunity_cat_id($farmOrComId)->whereNotIn('animal_info_id', isCullingUser())->get();
+                $semenAnalyses = SemenAnalysis::with(['animalInfo'])->whereCommunity_cat_id($farmOrComId)->whereNotIn('animal_info_id', isCullingUser())->get();
             }
         }
         return view('admin.semen_analysis.index', compact('semenAnalyses'));
@@ -63,9 +63,9 @@ class SemenAnalysisReportController extends Controller
         }
 
         if (Auth::user()->permission == 1) {
-            $semenAnalyses = SemenAnalysis::where($farm, '=', $farm_id)->whereNotIn('animal_info_id', isCulling())->get();
+            $semenAnalyses = SemenAnalysis::with(['animalInfo'])->where($farm, '=', $farm_id)->whereNotIn('animal_info_id', isCulling())->get();
         } else {
-            $semenAnalyses = SemenAnalysis::where('user_id', Auth::user()->id)->whereNotIn('animal_info_id', isCullingUser())->get();
+            $semenAnalyses = SemenAnalysis::with(['animalInfo'])->where('user_id', Auth::user()->id)->whereNotIn('animal_info_id', isCullingUser())->get();
         }
 
         $pdf = PDF::loadView('admin.semen_analysis.pdf', compact('semenAnalyses'));

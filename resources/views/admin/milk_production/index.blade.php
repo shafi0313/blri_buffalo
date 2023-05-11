@@ -25,16 +25,18 @@
                                 <div class="d-flex align-items-center">
                                     <h4 class="card-title">Milk Production</h4>
                                     @if (request()->routeIs('milk-production.index'))
-                                        <a href="{{ route('milkProduction.exportIntoPdf') }}"
-                                            class="btn btn-round ml-auto"><img
-                                                src="{{ asset('files/images/icon/pdf.png') }}" alt="PDF Logo">
-                                            PDF</a>&nbsp;&nbsp;&nbsp;&nbsp;
-                                        <a href="{{ route('milkProduction.exportIntoExcel') }}" class="btn btn-round"><img
-                                                src="{{ asset('files/images/icon/excel.png') }}" alt="Excel Logo">
-                                            Excel</a>&nbsp;&nbsp;
-                                        <a href="{{ route('milk-production.create') }}"
-                                            class="btn btn-primary btn-round text-light"><i class="fa fa-plus"></i> Add
-                                            New</a>
+                                        <a href="{{ route('milkProduction.exportIntoPdf') }}" class="btn btn-round ml-auto">
+                                            <img src="{{ asset('files/images/icon/pdf.png') }}" alt="PDF Logo">
+                                            PDF
+                                        </a>&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <a href="{{ route('milkProduction.exportIntoExcel') }}" class="btn btn-round">
+                                            <img src="{{ asset('files/images/icon/excel.png') }}" alt="Excel Logo">
+                                            Excel
+                                        </a>&nbsp;&nbsp;
+                                        <a href="{{ route('milk-production.create') }}" class="btn btn-primary btn-round text-light">
+                                            <i class="fa fa-plus"></i> Add
+                                            New
+                                        </a>
                                     @else
                                         <a href="{{ route('report.milkProduction.pdf', [$milkProductions->first()->farm_id ?? 0, $milkProductions->first()->community_cat_id ?? 0]) }}"
                                             class="btn btn-round ml-auto"><img
@@ -44,6 +46,9 @@
                                             class="btn btn-round"><img src="{{ asset('files/images/icon/excel.png') }}"
                                                 alt="Excel Logo"> Excel</a>&nbsp;&nbsp;
                                     @endif
+                                </div>
+                                <div class="formula">
+                                    <span>Peak Milk Production (kg): <b>Maximum milk production</b></span>                         
                                 </div>
                             </div>
                             <div class="card-body">

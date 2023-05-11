@@ -32,9 +32,9 @@ class ServiceReportController extends Controller
         $farmOrComId = preg_replace('/[^0-9]/', '', $request->farmOrCommunityId);
         if (Auth::user()->permission == 1) {
             if ($fOrC == 'f') {
-                $services = Service::whereFarm_id($farmOrComId)->whereNotIn('animal_info_id', isCulling())->get();
+                $services = Service::with(['animalInfo','bullId'])->whereFarm_id($farmOrComId)->whereNotIn('animal_info_id', isCulling())->get();
             } else {
-                $services = Service::whereCommunity_cat_id($farmOrComId)->whereNotIn('animal_info_id', isCullingUser())->get();
+                $services = Service::with(['animalInfo','bullId'])->whereCommunity_cat_id($farmOrComId)->whereNotIn('animal_info_id', isCullingUser())->get();
             }
         }
         return view('admin.service.index', compact('services'));
@@ -63,9 +63,9 @@ class ServiceReportController extends Controller
         }
 
         if (Auth::user()->permission == 1) {
-            $services = Service::where($farm, '=', $farm_id)->whereNotIn('animal_info_id', isCulling())->get();
+            $services = Service::with(['animalInfo','bullId'])->where($farm, '=', $farm_id)->whereNotIn('animal_info_id', isCulling())->get();
         } else {
-            $services = Service::where('user_id', Auth::user()->id)->whereNotIn('animal_info_id', isCullingUser())->get();
+            $services = Service::with(['animalInfo','bullId'])->where('user_id', Auth::user()->id)->whereNotIn('animal_info_id', isCullingUser())->get();
         }
 
         $pdf = PDF::loadView('admin.service.pdf', compact('services'));

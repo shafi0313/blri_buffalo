@@ -32,9 +32,9 @@ class MilkProductionReportController extends Controller
         $farmOrComId = preg_replace('/[^0-9]/', '', $request->farmOrCommunityId);
         if (Auth::user()->permission == 1) {
             if ($fOrC == 'f') {
-                $milkProductions = MilkProduction::whereFarm_id($farmOrComId)->whereNotIn('animal_info_id', isCulling())->get();
+                $milkProductions = MilkProduction::with(['animalInfo'])->whereFarm_id($farmOrComId)->whereNotIn('animal_info_id', isCulling())->get();
             } else {
-                $milkProductions = MilkProduction::whereCommunity_cat_id($farmOrComId)->whereNotIn('animal_info_id', isCullingUser())->get();
+                $milkProductions = MilkProduction::with(['animalInfo'])->whereCommunity_cat_id($farmOrComId)->whereNotIn('animal_info_id', isCullingUser())->get();
             }
         }
         return view('admin.milk_production.index', compact('milkProductions'));
@@ -63,9 +63,9 @@ class MilkProductionReportController extends Controller
         }
 
         if (Auth::user()->permission == 1) {
-            $milkProductions = MilkProduction::where($farm, '=', $farm_id)->get();
+            $milkProductions = MilkProduction::with(['animalInfo'])->where($farm, '=', $farm_id)->get();
         } else {
-            $milkProductions = MilkProduction::where('user_id', Auth::user()->id)->get();
+            $milkProductions = MilkProduction::with(['animalInfo'])->where('user_id', Auth::user()->id)->get();
         }
 
         $pdf = PDF::loadView('admin.milk_production.pdf', compact('milkProductions'));

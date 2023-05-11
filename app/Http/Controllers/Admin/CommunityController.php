@@ -13,8 +13,7 @@ class CommunityController extends Controller
 {
     public function index()
     {
-        $communitys = Community::with(['communityCat'])->get();
-
+        $communitys = Community::with(['communityCat','farm'])->get();
         return view('admin.community.index', compact('communitys'));
     }
 

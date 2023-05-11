@@ -24,9 +24,9 @@ class DeadCulledController extends Controller
     public function exportIntoPdf()
     {
         if (Auth::user()->permission == 1) {
-            $deadCulleds = DeadCulled::all();
+            $deadCulleds = DeadCulled::with(['animalInfo'])->get();
         } else {
-            $deadCulleds = DeadCulled::where('user_id', Auth::user()->id)->get();
+            $deadCulleds = DeadCulled::with(['animalInfo'])->where('user_id', Auth::user()->id)->get();
         }
 
         $pdf = PDF::loadView('admin.dead_culled.pdf', compact('deadCulleds'));
@@ -36,9 +36,9 @@ class DeadCulledController extends Controller
     public function index()
     {
         if (Auth::user()->permission == 1) {
-            $deadCulleds = DeadCulled::all();
+            $deadCulleds = DeadCulled::with(['animalInfo'])->get();
         } else {
-            $deadCulleds = DeadCulled::where('user_id', Auth::user()->id)->get();
+            $deadCulleds = DeadCulled::with(['animalInfo'])->where('user_id', Auth::user()->id)->get();
         }
         return view('admin.dead_culled.index', compact('deadCulleds'));
     }

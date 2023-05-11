@@ -32,9 +32,9 @@ class ParasiteReportController extends Controller
         $farmOrComId = preg_replace('/[^0-9]/', '', $request->farmOrCommunityId);
         if (Auth::user()->permission == 1) {
             if ($fOrC == 'f') {
-                $parasites = Parasite::whereFarm_id($farmOrComId)->whereNotIn('animal_info_id', isCulling())->get();
+                $parasites = Parasite::with(['animalInfo'])->whereFarm_id($farmOrComId)->whereNotIn('animal_info_id', isCulling())->get();
             } else {
-                $parasites = Parasite::whereCommunity_cat_id($farmOrComId)->whereNotIn('animal_info_id', isCullingUser())->get();
+                $parasites = Parasite::with(['animalInfo'])->whereCommunity_cat_id($farmOrComId)->whereNotIn('animal_info_id', isCullingUser())->get();
             }
         }
         return view('admin.parasite.index', compact('parasites'));
@@ -63,9 +63,9 @@ class ParasiteReportController extends Controller
         }
 
         if (Auth::user()->permission == 1) {
-            $parasites = Parasite::where($farm, '=', $farm_id)->whereNotIn('animal_info_id', isCulling())->get();
+            $parasites = Parasite::with(['animalInfo'])->where($farm, '=', $farm_id)->whereNotIn('animal_info_id', isCulling())->get();
         } else {
-            $parasites = Parasite::where('user_id', Auth::user()->id)->whereNotIn('animal_info_id', isCullingUser())->get();
+            $parasites = Parasite::with(['animalInfo'])->where('user_id', Auth::user()->id)->whereNotIn('animal_info_id', isCullingUser())->get();
         }
 
         $pdf = PDF::loadView('admin.parasite.pdf', compact('parasites'));

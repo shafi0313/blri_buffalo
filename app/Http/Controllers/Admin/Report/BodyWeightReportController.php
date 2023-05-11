@@ -33,9 +33,9 @@ class BodyWeightReportController extends Controller
         $farmOrComId = preg_replace('/[^0-9]/', '', $request->farmOrCommunityId);
         if (Auth::user()->permission == 1) {
             if ($fOrC == 'f') {
-                $productionRecords = BodyWeight::whereFarm_id($farmOrComId)->whereNotIn('animal_info_id', isCulling())->get();
+                $productionRecords = BodyWeight::with(['animalInfo'])->whereFarm_id($farmOrComId)->whereNotIn('animal_info_id', isCulling())->get();
             } else {
-                $productionRecords = BodyWeight::whereCommunity_cat_id($farmOrComId)->whereNotIn('animal_info_id', isCullingUser())->get();
+                $productionRecords = BodyWeight::with(['animalInfo'])->whereCommunity_cat_id($farmOrComId)->whereNotIn('animal_info_id', isCullingUser())->get();
             }
         }
         return view('admin.report.body_weight.report', compact('productionRecords'));
@@ -64,9 +64,9 @@ class BodyWeightReportController extends Controller
         }
 
         if (Auth::user()->permission == 1) {
-            $productionRecords = BodyWeight::where($farm, '=', $farm_id)->whereNotIn('animal_info_id', isCulling())->get();
+            $productionRecords = BodyWeight::with(['animalInfo'])->where($farm, '=', $farm_id)->whereNotIn('animal_info_id', isCulling())->get();
         } else {
-            $productionRecords = BodyWeight::where('user_id', Auth::user()->id)->whereNotIn('animal_info_id', isCullingUser())->get();
+            $productionRecords = BodyWeight::with(['animalInfo'])->where('user_id', Auth::user()->id)->whereNotIn('animal_info_id', isCullingUser())->get();
         }
 
         $pdf = PDF::loadView('admin.body_weight.pdf', compact('productionRecords'));

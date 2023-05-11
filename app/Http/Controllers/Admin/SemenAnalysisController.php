@@ -23,9 +23,9 @@ class SemenAnalysisController extends Controller
     public function exportIntoPdf()
     {
         if (Auth::user()->permission == 1) {
-            $semenAnalyses = SemenAnalysis::whereNotIn('animal_info_id', isCulling())->get();
+            $semenAnalyses = SemenAnalysis::with(['animalInfo'])->whereNotIn('animal_info_id', isCulling())->get();
         } else {
-            $semenAnalyses = SemenAnalysis::where('user_id', Auth::user()->id)->whereNotIn('animal_info_id', isCullingUser())->get();
+            $semenAnalyses = SemenAnalysis::with(['animalInfo'])->where('user_id', Auth::user()->id)->whereNotIn('animal_info_id', isCullingUser())->get();
         }
 
         $pdf = PDF::loadView('admin.semen_analysis.pdf', compact('semenAnalyses'));
@@ -35,9 +35,9 @@ class SemenAnalysisController extends Controller
     public function index()
     {
         if (Auth::user()->permission == 1) {
-            $semenAnalyses = SemenAnalysis::whereNotIn('animal_info_id', isCulling())->get();
+            $semenAnalyses = SemenAnalysis::with(['animalInfo'])->whereNotIn('animal_info_id', isCulling())->get();
         } else {
-            $semenAnalyses = SemenAnalysis::where('user_id', Auth::user()->id)->whereNotIn('animal_info_id', isCullingUser())->get();
+            $semenAnalyses = SemenAnalysis::with(['animalInfo'])->where('user_id', Auth::user()->id)->whereNotIn('animal_info_id', isCullingUser())->get();
         }
         return view('admin.semen_analysis.index', compact('semenAnalyses'));
     }

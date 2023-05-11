@@ -25,9 +25,9 @@ class DistributionController extends Controller
     public function exportIntoPdf()
     {
         if (Auth::user()->permission == 1) {
-            $distributions = Distribution::whereNotIn('animal_info_id', isCulling())->get();
+            $distributions = Distribution::with(['animalInfo'])->whereNotIn('animal_info_id', isCulling())->get();
         } else {
-            $distributions = Distribution::where('user_id', Auth::user()->id)->whereNotIn('animal_info_id', isCullingUser())->get();
+            $distributions = Distribution::with(['animalInfo'])->where('user_id', Auth::user()->id)->whereNotIn('animal_info_id', isCullingUser())->get();
         }
         $pdf = PDF::loadView('admin.distribution.pdf', compact('distributions'));
         return $pdf->download('distribution.pdf');
@@ -36,9 +36,9 @@ class DistributionController extends Controller
     public function index()
     {
         if (Auth::user()->permission == 1) {
-            $distributions = Distribution::whereNotIn('animal_info_id', isCulling())->get();
+            $distributions = Distribution::with(['animalInfo'])->whereNotIn('animal_info_id', isCulling())->get();
         } else {
-            $distributions = Distribution::where('user_id', Auth::user()->id)->whereNotIn('animal_info_id', isCullingUser())->get();
+            $distributions = Distribution::with(['animalInfo'])->where('user_id', Auth::user()->id)->whereNotIn('animal_info_id', isCullingUser())->get();
         }
         return view('admin.distribution.index', compact('distributions'));
     }

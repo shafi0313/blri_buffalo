@@ -33,9 +33,9 @@ class MorphometricReportController extends Controller
         $farmOrComId = preg_replace('/[^0-9]/', '', $request->farmOrCommunityId);
         if (Auth::user()->permission == 1) {
             if ($fOrC == 'f') {
-                $morphometrics = Morphometric::whereFarm_id($farmOrComId)->whereNotIn('animal_info_id', isCulling())->get();
+                $morphometrics = Morphometric::with(['animalInfo'])->whereFarm_id($farmOrComId)->whereNotIn('animal_info_id', isCulling())->get();
             } else {
-                $morphometrics = Morphometric::whereCommunity_cat_id($farmOrComId)->whereNotIn('animal_info_id', isCullingUser())->get();
+                $morphometrics = Morphometric::with(['animalInfo'])->whereCommunity_cat_id($farmOrComId)->whereNotIn('animal_info_id', isCullingUser())->get();
             }
         }
         return view('admin.report.morphometric.index', compact('morphometrics'));
@@ -64,9 +64,9 @@ class MorphometricReportController extends Controller
         }
 
         if (Auth::user()->permission == 1) {
-            $morphometrics = Morphometric::where($farm, '=', $farm_id)->whereNotIn('animal_info_id', isCulling())->get();
+            $morphometrics = Morphometric::with(['animalInfo'])->where($farm, '=', $farm_id)->whereNotIn('animal_info_id', isCulling())->get();
         } else {
-            $morphometrics = Morphometric::where('user_id', Auth::user()->id)->whereNotIn('animal_info_id', isCullingUser())->get();
+            $morphometrics = Morphometric::with(['animalInfo'])->where('user_id', Auth::user()->id)->whereNotIn('animal_info_id', isCullingUser())->get();
         }
 
         $pdf = PDF::loadView('admin.morphometric.pdf', compact('morphometrics'));

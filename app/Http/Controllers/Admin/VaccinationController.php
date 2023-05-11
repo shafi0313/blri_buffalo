@@ -177,7 +177,7 @@ class VaccinationController extends Controller
 
     public function show($group)
     {
-        $vaccinations = Vaccination::whereGroup($group)->get();
+        $vaccinations = Vaccination::with('animalInfo')->whereGroup($group)->get();
         return view('admin.vaccination.report', compact('vaccinations'));
     }
 

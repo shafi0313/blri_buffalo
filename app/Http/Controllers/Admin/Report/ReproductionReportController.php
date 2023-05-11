@@ -32,9 +32,9 @@ class ReproductionReportController extends Controller
         $farmOrComId = preg_replace('/[^0-9]/', '', $request->farmOrCommunityId);
         if (Auth::user()->permission == 1) {
             if ($fOrC == 'f') {
-                $reproductions = Reproduction::whereFarm_id($farmOrComId)->whereNotIn('animal_info_id', isCulling())->get();
+                $reproductions = Reproduction::with(['animalInfo'])->whereFarm_id($farmOrComId)->whereNotIn('animal_info_id', isCulling())->get();
             } else {
-                $reproductions = Reproduction::whereCommunity_cat_id($farmOrComId)->whereNotIn('animal_info_id', isCullingUser())->get();
+                $reproductions = Reproduction::with(['animalInfo'])->whereCommunity_cat_id($farmOrComId)->whereNotIn('animal_info_id', isCullingUser())->get();
             }
         }
         return view('admin.report.reproduction.report', compact('reproductions'));
@@ -63,9 +63,9 @@ class ReproductionReportController extends Controller
         }
 
         if (Auth::user()->permission == 1) {
-            $reproductions = Reproduction::where($farm, '=', $farm_id)->whereNotIn('animal_info_id', isCulling())->get();
+            $reproductions = Reproduction::with(['animalInfo'])->where($farm, '=', $farm_id)->whereNotIn('animal_info_id', isCulling())->get();
         } else {
-            $reproductions = Reproduction::where('user_id', Auth::user()->id)->whereNotIn('animal_info_id', isCullingUser())->get();
+            $reproductions = Reproduction::with(['animalInfo'])->where('user_id', Auth::user()->id)->whereNotIn('animal_info_id', isCullingUser())->get();
         }
 
         $pdf = PDF::loadView('admin.reproduction.pdf', compact('reproductions'));

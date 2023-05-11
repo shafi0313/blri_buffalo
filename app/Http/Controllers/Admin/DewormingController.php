@@ -205,7 +205,7 @@ class DewormingController extends Controller
 
     public function show($group)
     {
-        $dewormings = Deworming::whereGroup($group)->get();
+        $dewormings = Deworming::with(['animalInfo'])->whereGroup($group)->get();
         return view('admin.deworming.report', compact('dewormings'));
     }
 

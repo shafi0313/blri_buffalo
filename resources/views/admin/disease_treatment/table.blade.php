@@ -29,9 +29,9 @@
                 <td>{{ $diseaseTreatment->diseaseSign->disease->name ?? ''}} </td>
                 <td>
                     <table>
-                        @foreach ($diseaseTreatment->diseaseSigns as $clinicalSign)
+                        @foreach ($diseaseTreatment->diseaseSigns as $clinic)
                             <tr>
-                                <td>{{ $clinicalSign->clinicalSign->name }}, </td>
+                                <td>{{ $clinic->clinicalSign->name }}, </td>
                             </tr>
                         @endforeach
                         @isset($diseaseTreatment->other)

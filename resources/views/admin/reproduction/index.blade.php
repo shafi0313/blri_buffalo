@@ -30,7 +30,7 @@
                                 @endif
                             </div>
                             <div class="formula">
-                                <span>calving Interval: <b>Service date deference calving date</b></span>                         
+                                <span>calving Interval: <b>Deference between Service date and calving date</b></span>                         
                             </div>
                         </div>
                         <div class="card-body">

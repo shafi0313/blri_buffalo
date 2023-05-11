@@ -32,9 +32,9 @@ class DiseaseTreatmentReportController extends Controller
         $farmOrComId = preg_replace('/[^0-9]/', '', $request->farmOrCommunityId);
         if (Auth::user()->permission == 1) {
             if ($fOrC == 'f') {
-                $diseaseTreatments = DiseaseTreatment::whereFarm_id($farmOrComId)->whereNotIn('animal_info_id', isCulling())->get();
+                $diseaseTreatments = DiseaseTreatment::with(['animalInfo','diseaseSign','diseaseSigns'])->whereFarm_id($farmOrComId)->whereNotIn('animal_info_id', isCulling())->get();
             } else {
-                $diseaseTreatments = DiseaseTreatment::whereCommunity_cat_id($farmOrComId)->whereNotIn('animal_info_id', isCullingUser())->get();
+                $diseaseTreatments = DiseaseTreatment::with(['animalInfo','diseaseSign','diseaseSigns'])->whereCommunity_cat_id($farmOrComId)->whereNotIn('animal_info_id', isCullingUser())->get();
             }
         }
         return view('admin.disease_treatment.index', compact('diseaseTreatments'));

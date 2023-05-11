@@ -23,9 +23,9 @@ class ParasiteController extends Controller
     public function exportIntoPdf()
     {
         if (Auth::user()->permission == 1) {
-            $parasites = Parasite::all();
+            $parasites = Parasite::with(['animalInfo'])->get();
         } else {
-            $parasites = Parasite::where('user_id', Auth::user()->id)->get();
+            $parasites = Parasite::with(['animalInfo'])->where('user_id', Auth::user()->id)->get();
         }
 
         $pdf = PDF::loadView('admin.parasite.pdf', compact('parasites'));
@@ -35,9 +35,9 @@ class ParasiteController extends Controller
     public function index()
     {
         if (Auth::user()->permission == 1) {
-            $parasites = Parasite::all();
+            $parasites = Parasite::with(['animalInfo'])->get();
         } else {
-            $parasites = Parasite::where('user_id', Auth::user()->id)->get();
+            $parasites = Parasite::with(['animalInfo'])->where('user_id', Auth::user()->id)->get();
         }
         return view('admin.parasite.index', compact('parasites'));
     }

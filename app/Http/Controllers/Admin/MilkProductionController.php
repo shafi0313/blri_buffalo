@@ -25,9 +25,9 @@ class MilkProductionController extends Controller
     public function exportIntoPdf()
     {
         if (Auth::user()->permission == 1) {
-            $milkProductions = MilkProduction::latest()->orderBy('created_at')->whereNotIn('animal_info_id', isCulling())->get();
+            $milkProductions = MilkProduction::with(['animalInfo'])->latest()->orderBy('created_at')->whereNotIn('animal_info_id', isCulling())->get();
         } else {
-            $milkProductions = MilkProduction::where('user_id', Auth::user()->id)->whereNotIn('animal_info_id', isCullingUser())->get();
+            $milkProductions = MilkProduction::with(['animalInfo'])->where('user_id', Auth::user()->id)->whereNotIn('animal_info_id', isCullingUser())->get();
         }
 
         $pdf = PDF::loadView('admin.milk_production.pdf', compact('milkProductions'));
@@ -37,9 +37,9 @@ class MilkProductionController extends Controller
     public function index()
     {
         if (Auth::user()->permission == 1) {
-            $milkProductions = MilkProduction::latest()->orderBy('created_at')->whereNotIn('animal_info_id', isCulling())->get();
+            $milkProductions = MilkProduction::with(['animalInfo'])->latest()->orderBy('created_at')->whereNotIn('animal_info_id', isCulling())->get();
         } else {
-            $milkProductions = MilkProduction::where('user_id', Auth::user()->id)->whereNotIn('animal_info_id', isCullingUser())->get();
+            $milkProductions = MilkProduction::with(['animalInfo'])->where('user_id', Auth::user()->id)->whereNotIn('animal_info_id', isCullingUser())->get();
         }
         return view('admin.milk_production.index', compact('milkProductions'));
     }

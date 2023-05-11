@@ -11,8 +11,7 @@ class DiseaseController extends Controller
 {
     public function index()
     {
-        $diseases = Disease::all();
-
+        $diseases = Disease::with('clinicalSigns')->get();
         return view('admin.category.disease.index', compact('diseases'));
     }
 

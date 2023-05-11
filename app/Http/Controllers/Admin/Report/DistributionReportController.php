@@ -32,9 +32,9 @@ class DistributionReportController extends Controller
         $farmOrComId = preg_replace('/[^0-9]/', '', $request->farmOrCommunityId);
         if (Auth::user()->permission == 1) {
             if ($fOrC == 'f') {
-                $distributions = Distribution::whereFarm_id($farmOrComId)->whereNotIn('animal_info_id', isCulling())->get();
+                $distributions = Distribution::with(['animalInfo'])->whereFarm_id($farmOrComId)->whereNotIn('animal_info_id', isCulling())->get();
             } else {
-                $distributions = Distribution::whereCommunity_cat_id($farmOrComId)->whereNotIn('animal_info_id', isCullingUser())->get();
+                $distributions = Distribution::with(['animalInfo'])->whereCommunity_cat_id($farmOrComId)->whereNotIn('animal_info_id', isCullingUser())->get();
             }
         }
         return view('admin.distribution.index', compact('distributions'));
@@ -63,9 +63,9 @@ class DistributionReportController extends Controller
         }
 
         if (Auth::user()->permission == 1) {
-            $distributions = Distribution::where($farm, '=', $farm_id)->whereNotIn('animal_info_id', isCulling())->get();
+            $distributions = Distribution::with(['animalInfo'])->where($farm, '=', $farm_id)->whereNotIn('animal_info_id', isCulling())->get();
         } else {
-            $distributions = Distribution::where('user_id', Auth::user()->id)->whereNotIn('animal_info_id', isCullingUser())->get();
+            $distributions = Distribution::with(['animalInfo'])->where('user_id', Auth::user()->id)->whereNotIn('animal_info_id', isCullingUser())->get();
         }
 
         $pdf = PDF::loadView('admin.distribution.pdf', compact('distributions'));

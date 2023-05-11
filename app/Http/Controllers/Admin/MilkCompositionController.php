@@ -37,7 +37,7 @@ class MilkCompositionController extends Controller
     public function index()
     {
         if (Auth::user()->permission == 1) {
-            $milkCompositions = MilkComposition::with('animalInfo')->whereNotIn('animal_info_id', isCulling())->get();
+            $milkCompositions = MilkComposition::with(['animalInfo'])->whereNotIn('animal_info_id', isCulling())->get();
         } else {
             $milkCompositions = MilkComposition::with('animalInfo')->where('user_id', Auth::user()->id)->whereNotIn('animal_info_id', isCullingUser())->get();
         }
@@ -341,7 +341,7 @@ class MilkCompositionController extends Controller
 
     public function show($id)
     {
-        $milkCompositions = MilkComposition::with('animalInfo')->where('animal_info_id', $id)->whereNotIn('animal_info_id', isCulling())->get();
+        $milkCompositions = MilkComposition::with(['animalInfo','farm'])->where('animal_info_id', $id)->whereNotIn('animal_info_id', isCulling())->get();
         return view('admin.milk_composition.show', compact('milkCompositions'));
     }
 

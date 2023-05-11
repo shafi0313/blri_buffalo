@@ -27,9 +27,9 @@ class ServiceController extends Controller
     public function exportIntoPdf()
     {
         if (Auth::user()->permission == 1) {
-            $services = Service::latest()->get();
+            $services = Service::with(['animalInfo','bullId'])->latest()->get();
         } else {
-            $services = Service::where('user_id', Auth::user()->id)->get();
+            $services = Service::with(['animalInfo','bullId'])->where('user_id', Auth::user()->id)->get();
         }
 
         $pdf = PDF::loadView('admin.service.pdf', compact('services'));
@@ -39,9 +39,9 @@ class ServiceController extends Controller
     public function index()
     {
         if (Auth::user()->permission == 1) {
-            $services = Service::latest()->get();
+            $services = Service::with(['animalInfo','bullId'])->latest()->get();
         } else {
-            $services = Service::where('user_id', Auth::user()->id)->get();
+            $services = Service::with(['animalInfo','bullId'])->where('user_id', Auth::user()->id)->get();
         }
         return view('admin.service.index', compact('services'));
     }

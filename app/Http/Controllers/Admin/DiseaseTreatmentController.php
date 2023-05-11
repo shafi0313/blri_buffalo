@@ -26,9 +26,9 @@ class DiseaseTreatmentController extends Controller
     public function exportIntoPdf()
     {
         if (Auth::user()->permission == 1) {
-            $diseaseTreatments = DiseaseTreatment::whereNotIn('animal_info_id', isCulling())->get();
+            $diseaseTreatments = DiseaseTreatment::with(['animalInfo'])->whereNotIn('animal_info_id', isCulling())->get();
         } else {
-            $diseaseTreatments = DiseaseTreatment::where('user_id', Auth::user()->id)->whereNotIn('animal_info_id', isCullingUser())->get();
+            $diseaseTreatments = DiseaseTreatment::with(['animalInfo'])->where('user_id', Auth::user()->id)->whereNotIn('animal_info_id', isCullingUser())->get();
         }
 
         $pdf = PDF::loadView('admin.disease_treatment.pdf', compact('diseaseTreatments'));
@@ -38,9 +38,9 @@ class DiseaseTreatmentController extends Controller
     public function index()
     {
         if (Auth::user()->permission == 1) {
-            $diseaseTreatments = DiseaseTreatment::whereNotIn('animal_info_id', isCulling())->get();
+            $diseaseTreatments = DiseaseTreatment::with(['animalInfo','diseaseSign.disease','diseaseSigns'])->whereNotIn('animal_info_id', isCulling())->get();
         } else {
-            $diseaseTreatments = DiseaseTreatment::where('user_id', Auth::user()->id)->whereNotIn('animal_info_id', isCullingUser())->get();
+            $diseaseTreatments = DiseaseTreatment::with(['animalInfo'])->where('user_id', Auth::user()->id)->whereNotIn('animal_info_id', isCullingUser())->get();
         }
         return view('admin.disease_treatment.index', compact('diseaseTreatments'));
     }

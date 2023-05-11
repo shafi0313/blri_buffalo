@@ -34,9 +34,9 @@ class AnimalInfoReportController extends Controller
         $farmOrComId = preg_replace('/[^0-9]/', '', $request->farmOrCommunityId);
         if (Auth::user()->permission == 1) {
             if ($fOrC == 'f') {
-                $animalInfos = AnimalInfo::whereFarm_id($farmOrComId)->whereIs_culling(0)->get();
+                $animalInfos = AnimalInfo::with('getCommunity','animalCat','location.getLocation')->whereFarm_id($farmOrComId)->whereIs_culling(0)->get();
             } else {
-                $animalInfos = AnimalInfo::whereCommunity_cat_id($farmOrComId)->whereIs_culling(0)->get();
+                $animalInfos = AnimalInfo::with('getCommunity','animalCat','location.getLocation')->whereCommunity_cat_id($farmOrComId)->whereIs_culling(0)->get();
             }
         }
         return view('admin.report.animal_info.report', compact('animalInfos'));
@@ -67,9 +67,9 @@ class AnimalInfoReportController extends Controller
         }
 
         if (Auth::user()->permission == 1) {
-            $animalInfos = AnimalInfo::where($farm, '=', $farm_id)->whereIs_culling(0)->get();
+            $animalInfos = AnimalInfo::with('getCommunity','animalCat','location.getLocation')->where($farm, '=', $farm_id)->whereIs_culling(0)->get();
         } else {
-            $animalInfos = AnimalInfo::where('user_id', Auth::user()->id)->whereIs_culling(0)->get();
+            $animalInfos = AnimalInfo::with('getCommunity','animalCat','location.getLocation')->where('user_id', Auth::user()->id)->whereIs_culling(0)->get();
         }
 
         $pdf = PDF::loadView('admin.animal_info.pdf', compact('animalInfos'))->setPaper('a4', 'landscape');
