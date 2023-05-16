@@ -194,6 +194,16 @@
     @include('admin.layout.footer')
 </div>
 @push('custom_scripts')
+    <script>
+        // $(document).ready(function(){
+            
+        //     if($(input[name='milk_type']).val() == 'ind'){
+        //         $('.singleInput').empty().trigger('change')
+        //     }else{
+        //         $('.singleInput').empty().trigger('change')
+        //     }
+        // });
+    </script>
 
 @endpush
 @endsection

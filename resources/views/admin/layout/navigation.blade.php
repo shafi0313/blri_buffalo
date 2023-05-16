@@ -299,7 +299,7 @@
                         'report.parasite.*',
                     ]) }}">
                     <a data-toggle="collapse" href="#report.animalInfo">
-                        <i class="fas fa-heartbeat"></i>
+                        <i class="fa-solid fa-clipboard-list fa-lg"></i>
                         <p>Report</p>
                         <span class="caret"></span>
                     </a>

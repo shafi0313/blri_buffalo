@@ -58,6 +58,7 @@
                 $(".group").hide();
                 $(".singleInput").attr('disabled', false);
                 $(".groupInput").attr('disabled', true);
+                // $(".groupInput").empty().trigger('change');
                 $("form").on('submit', function(e) {
                     let community_id = $("#subFarm").val()
                     let animal_info = $("#animal_info").val()
@@ -91,6 +92,7 @@
                 $("#to, #from").attr("required", true);
                 $(".group").show();
                 $(".singleInput").attr('disabled', true);
+                // $(".singleInput").empty().trigger('change');
                 $(".groupInput").attr('disabled', false);
                 $(".total_vaccinated").show();
                 $("form").on('submit', function(e) {

@@ -31,23 +31,16 @@
                                             <th style="width: 35px">SL</th>
                                             <th>Name</th>
                                             <th style="display: none"></th>
-                                            {{-- <th class="no-sort" style="text-align:center;width:150px" >Action</th> --}}
                                             <th class="no-sort" style="text-align:center;width:150px" >Action</th>
                                         </tr>
                                     </thead>
-                                    {{-- <tfoot>
-                                        <tr>
-                                            <th></th>
-                                            <th></th>
-                                        </tr>
-                                    </tfoot> --}}
                                     <tbody>
                                         @php $x=1; @endphp
                                         @foreach ($diseases as $disease)
                                         <tr>
-                                            <td class="text-center">{{ $x++ }} </td>
+                                            <td class="text-center bg-primary text-light">{{ $x++ }} </td>
 
-                                            <td>{{ $disease->name }} </td>
+                                            <td class="bg-primary text-light">{{ $disease->name }} </td>
                                             <td>
                                                 <div class="form-button-action">
                                                     <span class="btn btn-link btn-success btn-lg addSub" data-toggle="modal" data-target="#add-sub" data-id="{{$disease->id}}" data-name="{{$disease->name}}"><i class="fas fa-plus"></i></span>
@@ -65,7 +58,7 @@
                                                 @foreach ($disease->clinicalSigns as $clinicalSign)
                                                 <tr>
                                                     <td></td>
-                                                    <td>{{ $clinicalSign->name }}</td>
+                                                    <td><i class="fa-regular fa-hand-point-right"></i>&nbsp;&nbsp; {{ $clinicalSign->name }}</td>
                                                     <td>
                                                         <div class="form-button-action">
                                                             <span class="btn btn-link btn-success btn-lg addSubEdit" data-toggle="modal" data-url="{{route('admin.clinicalSign.subCatUpdate', $clinicalSign->id)}}" data-target="#add-sub-edit" data-id="{{$clinicalSign->id}}" data-name="{{$clinicalSign->name}}"><i class="fas fa-edit"></i></span>
