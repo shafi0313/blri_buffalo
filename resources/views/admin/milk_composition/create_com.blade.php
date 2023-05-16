@@ -82,9 +82,19 @@
                                         @endphp
                                     @endif
 
-                                    <div class="form-group col-md-3">
+                                    {{-- <div class="form-group col-md-3">
                                         <label for="date">{{$dateText}} <span class="t_r">*</span></label>
                                         <input name="date" type="date" class="form-control @error('date') is-invalid @enderror" value="{{ $dateVal }}" required>
+                                        @error('date')
+                                            <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div> --}}
+
+                                    <div class="form-group col-md-3">
+                                        <label for="date">Today's Date <span class="t_r">*</span></label>
+                                        <input name="date" type="date"
+                                            class="form-control @error('date') is-invalid @enderror"
+                                            value="{{ old('date') }}" required>
                                         @error('date')
                                             <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
