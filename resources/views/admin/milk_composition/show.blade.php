@@ -47,7 +47,10 @@
                                                 <th>SNF</th>
                                                 <th>Protein(%)</th>
                                                 <th>Water</th>
+                                                <th>Temperature</th>
+                                                <th>Freezing Point</th>
                                                 <th>Salt</th>
+                                                <th>Remark</th>
                                                 <th class="no-sort" style="text-align:center;width:80px">Action</th>
                                             </tr>
                                         </thead>
@@ -71,7 +74,10 @@
                                                     <td>{{ $milkComposition->snf }}</td>
                                                     <td>{{ $milkComposition->protein }}</td>
                                                     <td>{{ $milkComposition->water }}</td>
+                                                    <td>{{ $milkComposition->temperature }}</td>
+                                                    <td>{{ $milkComposition->freezing_point }}</td>
                                                     <td>{{ $milkComposition->salt }}</td>
+                                                    <td>{{ $milkComposition->remark }}</td>
                                                     <td>
                                                         <div class="form-button-action">
                                                             <a href="{{ route('milk-composition.edit', $milkComposition->id) }}"

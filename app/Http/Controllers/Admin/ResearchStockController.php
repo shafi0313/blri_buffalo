@@ -17,8 +17,6 @@ class ResearchStockController extends Controller
 
     public function researchStock(Request $request)
     {
-
-
         $form_date = $request->get('form_date');
         $to_date = $request->get('to_date');
         $form_date_month = Carbon::parse($form_date)->format('m');

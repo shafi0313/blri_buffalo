@@ -44,7 +44,10 @@
                     <th>SNF</th>
                     <th>Protein(%)</th>
                     <th>Water</th>
+                    <th>Temperature</th>
+                    <th>Freezing Point</th>
                     <th>Salt</th>
+                    <th>Remark</th>
                 </tr>
             </thead>
             <tbody>
@@ -67,7 +70,10 @@
                         <td>{{ $milkComposition->snf }}</td>
                         <td>{{ $milkComposition->protein }}</td>
                         <td>{{ $milkComposition->water }}</td>
+                        <td>{{ $milkComposition->temperature }}</td>
+                        <td>{{ $milkComposition->freezing_point }}</td>
                         <td>{{ $milkComposition->salt }}</td>
+                        <td>{{ $milkComposition->remark }}</td>
                     </tr>
                 @endforeach
             </tbody>
