@@ -114,6 +114,19 @@
                                             @enderror
                                         </div>
 
+                                        {{-- @if ($milkCompositions->count() < 1) --}}
+                                            <div class="form-group col-md-3">
+                                                <label for="calving_date">Milk Calving Date <span
+                                                        class="t_r">*</span></label>
+                                                <input name="calving_date" type="date"
+                                                    class="form-control @error('calving_date') is-invalid @enderror"
+                                                    id="calving_date" value="{{ old('calving_date') }}" required>
+                                                @error('calving_date')
+                                                    <div class="alert alert-danger">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+                                        {{-- @endif --}}
+
                                         <div class="form-group col-md-3">
                                             <label for="date">Today's Date <span class="t_r">*</span></label>
                                             <input name="date" type="date"

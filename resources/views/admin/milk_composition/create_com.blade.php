@@ -60,7 +60,7 @@
                                     
                                     @include('admin.animal_tag.group.user_female')
 
-                                    @if ($milkCompositions->count() < 1)
+                                    {{-- @if ($milkCompositions->count() < 1) --}}
                                         <div class="form-group col-md-3">
                                             <label for="calving_date">Milk Calving Date <span class="t_r">*</span></label>
                                             <input name="calving_date" type="date" class="form-control @error('calving_date') is-invalid @enderror" id="calving_date" value="{{old('calving_date')}}" required>
@@ -68,7 +68,7 @@
                                                 <div class="alert alert-danger">{{ $message }}</div>
                                             @enderror
                                         </div>
-                                    @endif
+                                    {{-- @endif --}}
 
                                     @if ($milkCompositions->count() < 1)
                                         @php
