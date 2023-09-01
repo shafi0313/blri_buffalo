@@ -67,7 +67,7 @@
                                     </div> --}}
                                     {{-- @include('admin.animal_tag.female.user') --}}
 
-                                    @if ($milkCompositions->count() < 1)
+                                    {{-- @if ($milkCompositions->count() < 1) --}}
                                         <div class="form-group col-md-3">
                                             <label for="calving_date">Milk Calving Date <span class="t_r">*</span></label>
                                             <input name="calving_date" type="date" class="form-control @error('calving_date') is-invalid @enderror" id="calving_date" value="{{$milkComposition->calving_date}}" required>
@@ -75,14 +75,14 @@
                                                 <div class="alert alert-danger">{{ $message }}</div>
                                             @enderror
                                         </div>
-                                    @endif
+                                    {{-- @endif --}}
 
                                     {{-- @php
                                             $dateText = '';
                                             $$dateVal = '';
                                     @endphp --}}
 
-                                    @if ($milkCompositions->count() < 1)
+                                    {{-- @if ($milkCompositions->count() < 1)
                                         @php
                                             $dateText = '14th Day Date';
                                             $dateVal = \Carbon\Carbon::now()->format('Y-m-d');
@@ -93,16 +93,16 @@
                                             $dateText = $milkData->day_count + 28 .'Day Date';
                                             $dateVal =  \Carbon\Carbon::parse($milkData->date)->addDays(28)->format('Y-m-d');
                                         @endphp
-                                    @endif
+                                    @endif --}}
 
 
-                                    <div class="form-group col-md-3">
+                                    {{-- <div class="form-group col-md-3">
                                         <label for="date">{{$dateText}} <span class="t_r">*</span></label>
                                         <input name="date" type="date" class="form-control @error('date') is-invalid @enderror" value="{{ $dateVal }}" required>
                                         @error('date')
                                             <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
-                                    </div>
+                                    </div> --}}
 
                                     <div class="form-group col-md-3">
                                         <label for="production">Milk Production (kg) <span class="t_r">*</span></label>
