@@ -35,7 +35,7 @@
                                 </div>
                             @endif
                             <form action="{{ route('milk-composition.update', $milkComposition->id)}}" method="post">
-                                @csrf
+                                @csrf @method('PUT')
                                 @isset($milkData->day_count)
                                     @php $day_count = $milkData->day_count+28; @endphp
                                 @else
@@ -69,8 +69,8 @@
 
                                     {{-- @if ($milkCompositions->count() < 1) --}}
                                         <div class="form-group col-md-3">
-                                            <label for="calving_date">Milk Calving Date <span class="t_r">*</span></label>
-                                            <input name="calving_date" type="date" class="form-control @error('calving_date') is-invalid @enderror" id="calving_date" value="{{$milkComposition->calving_date}}" required>
+                                            <label for="calving_date">Milk Calving Date </label>
+                                            <input name="calving_date" type="date" class="form-control @error('calving_date') is-invalid @enderror" id="calving_date" value="{{$milkComposition->calving_date}}">
                                             @error('calving_date')
                                                 <div class="alert alert-danger">{{ $message }}</div>
                                             @enderror
@@ -194,7 +194,7 @@
                                 </div>
 
                                 <div align="center" class="mr-auto card-action">
-                                    <button type="submit" class="btn btn-success">Submit</button>
+                                    <button type="submit" class="btn btn-success">Update</button>
                                     <button type="reset" class="btn btn-danger">Reset</button>
                                 </div>
                             </form>

@@ -199,7 +199,7 @@ class MilkCompositionController extends Controller
             $communityCats   = CommunityCat::select(['id', 'name'])->get();
             return view('admin.milk_composition.edit', compact('milkComposition', 'animalInfos', 'farms', 'communityCats'));
         } else {
-            $milkComposition = MilkComposition::with('animalInfo')->find($id);
+            $milkComposition = MilkComposition::with(['animalInfo','communityCat'])->find($id);
             $milkData        = MilkComposition::where('user_id', Auth::user()->id)->wherePeriod_count(0)->latest()->first();
             $communities     = Community::whereCommunity_cat_id(CommunityCat::whereUser_id(Auth::user()->id)->first('id')->id)->get(['id', 'no', 'name']);
             return view('admin.milk_composition.edit_com', compact('milkComposition', 'milkData', 'communities'));
@@ -212,7 +212,7 @@ class MilkCompositionController extends Controller
     {
         $this->validate($request, [
             // 'animal_info_id' => 'required_if:tattoo_no,==,NULL',
-            'date'           => 'required',
+            'date'           => 'nullable|date',
             'production'     => 'required',
             'fat'            => 'required',
             'density'        => 'required',
