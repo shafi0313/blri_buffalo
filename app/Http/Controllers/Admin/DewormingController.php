@@ -63,23 +63,23 @@ class DewormingController extends Controller
     {
         $this->validate($request, [
             'medicine_name'  => 'required|max:100',
-            'deworming_date'  => 'required|date',
-            'dose'  => 'required|max:100',
+            'deworming_date' => 'required|date',
+            'dose'           => 'required|max:100',
         ]);
 
-        $fOrC = preg_replace('/[^a-z A-Z]/', '', $request->farmOrCommunityId);
-        $farmOrComId = preg_replace('/[^0-9]/', '', $request->farmOrCommunityId);
+        $fOrC         = preg_replace('/[^a-z A-Z]/', '', $request->farmOrCommunityId);
+        $farmOrComId  = preg_replace('/[^0-9]/', '', $request->farmOrCommunityId);
         $communityCat = CommunityCat::where('user_id', Auth::user()->id)->first();
 
         $getGroup = Deworming::max('group') + 1;
         if ($request->dew_type == 'single') {
             $data = [
                 'animal_info_id' => $request->animal_info_id ?? $request->tattoo_no,
-                'user_id' => Auth::user()->id,
-                'group' => $getGroup,
-                'medicine_name' => $request->medicine_name,
+                'user_id'        => Auth::user()->id,
+                'group'          => $getGroup,
+                'medicine_name'  => $request->medicine_name,
                 'deworming_date' => $request->deworming_date,
-                'dose' => $request->dose,
+                'dose'           => $request->dose,
                 // 'total_vaccinated' => 1,
             ];
             if (Auth::user()->permission == 1) {
@@ -110,62 +110,34 @@ class DewormingController extends Controller
             foreach ($animals as $key => $value) {
                 $data = [
                     'animal_info_id' => $animals[$key],
-                    'user_id' => Auth::user()->id,
-                    'group' => $getGroup,
-                    'medicine_name' => $request->medicine_name,
+                    'user_id'        => Auth::user()->id,
+                    'group'          => $getGroup,
+                    'medicine_name'  => $request->medicine_name,
                     'deworming_date' => $request->deworming_date,
-                    'dose' => $request->dose,
+                    'dose'           => $request->dose,
                 ];
                 // $data['total_vaccinated'] = count($animals);
                 if (Auth::user()->permission == 1) {
                     if ($fOrC=='f') {
-                        $data['farm_id'] = $farmOrComId;
+                        $data['farm_id']      = $farmOrComId;
                         $data['community_id'] = $request->community_id;
                     } else {
                         $data['community_cat_id'] = $farmOrComId;
-                        $data['community_id'] = $request->community_id;
+                        $data['community_id']     = $request->community_id;
                     }
                 } else {
-                    $data['community_cat_id'] = $communityCat->id; // for community
-                    $data['community_id'] = $request->community_id;
+                    $data['community_cat_id'] = $communityCat->id;       // for community
+                    $data['community_id']     = $request->community_id;
                 }
                 Deworming::create($data);
             }
         }
-
-
-
-        // if (!empty($request->single) && empty($request->to)) {
-        //     $data = [
-        //         'animal_info_id' => $request->single,
-        //         'user_id' => Auth::user()->id,
-        //         'medicine_name' => $request->medicine_name,
-        //         'deworming_date' => $request->deworming_date,
-        //         'dose' => $request->dose,
-        //     ];
-        //     Deworming::create($data);
-        // }else{
-        //     $animals = AnimalInfo::whereBetween('id',[$request->to, $request->from])->get()->pluck('id');
-        //     foreach($animals as $key => $value){
-        //         $data = [
-        //             'animal_info_id' => $animals[$key],
-        //             'user_id' => Auth::user()->id,
-        //             'medicine_name' => $request->medicine_name,
-        //             'deworming_date' => $request->deworming_date,
-        //             'dose' => $request->dose,
-        //         ];
-        //         Deworming::create($data);
-        //     }
-        // }
-
         try {
-            // Deworming::create($data);
             toast('Success', 'success');
-            // return redirect()->route('deworming.index');
             return back();
         } catch(\Exception $ex) {
             toast('Failed', 'error');
-            return redirect()->back();
+            return back();
         }
     }
 
@@ -186,9 +158,9 @@ class DewormingController extends Controller
                 // 'animal_info_id' => $request->animal_info_id ?? $request->tattoo_no,
                 // 'user_id' => Auth::user()->id,
                 // 'group' => $getGroup,
-                'medicine_name' => $request->medicine_name,
+                'medicine_name'  => $request->medicine_name,
                 'deworming_date' => $request->deworming_date,
-                'dose' => $request->dose,
+                'dose'           => $request->dose,
                 // 'total_vaccinated' => 1,
             ];
 

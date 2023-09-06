@@ -60,14 +60,14 @@ class VaccinationController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'vaccine_name' => 'required|max:155',
-            'vaccine_date' => 'required|date',
-            'dose' => 'nullable|max:155',
+            'vaccine_name'     => 'required|max:155',
+            'vaccine_date'     => 'required|date',
+            'dose'             => 'nullable|max:155',
             'total_vaccinated' => 'nullable|max:155',
         ]);
 
-        $fOrC = preg_replace('/[^a-z A-Z]/', '', $request->farmOrCommunityId);
-        $farmOrComId = preg_replace('/[^0-9]/', '', $request->farmOrCommunityId);
+        $fOrC         = preg_replace('/[^a-z A-Z]/', '', $request->farmOrCommunityId);
+        $farmOrComId  = preg_replace('/[^0-9]/', '', $request->farmOrCommunityId);
         $communityCat = CommunityCat::where('user_id', Auth::user()->id)->first();
 
         $getGroup = Vaccination::max('group') + 1;
