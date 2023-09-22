@@ -1,66 +1,121 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Buffalo Research Digital Data Repository
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Welcome to the Buffalo Research Digital Data Repository, a web-based application developed by the Bangladesh Livestock Research Institute under the Ministry of Fisheries and Livestock. This repository is designed to streamline research, management, and data analysis for the buffalo farming industry. Leveraging PHP 8, Laravel 10, AJAX, JavaScript, jQuery, and Bootstrap, it offers a powerful solution for buffalo researchers and farmers.
 
-## About Laravel
+## Table of Contents
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+1. [Introduction](#introduction)
+2. [Key Features](#key-features)
+3. [System Requirements](#system-requirements)
+4. [Installation Guide](#installation-guide)
+5. [Configuration](#configuration)
+6. [Usage](#usage)
+7. [Contributing](#contributing)
+8. [License](#license)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Introduction
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+The Buffalo Research Digital Data Repository is a comprehensive system designed for buffalo farming and research. It empowers users to manage, analyze, and derive insights from buffalo-related data, including farm settings, animal records, health management, and reporting.
 
-## Learning Laravel
+## Key Features
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### Farm Settings
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+- **Research Farm:** Create and manage research farm profiles.
+- **Community Farm:** Establish and update community farm records.
+- **Individual Farm:** Maintain records of individual farms.
+- **Animal Category:** Define and categorize animals.
+- **Disease & Clinical Sign:** Manage diseases and clinical signs.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Animal Record
 
-## Laravel Sponsors
+- **Animal Info:** Record general information about each buffalo.
+- **Morphometric:** Capture morphometric measurements.
+- **Calves Body Weight:** Monitor body weight data for calves.
+- **Reproduction:** Maintain mating and pregnancy records.
+- **Milk Production:** Document milk production data.
+- **Milk Composition:** Record milk composition.
+- **Semen Analysis:** Manage semen analysis data.
+- **Service:** Track animal services.
+- **Distribution:** Archive data about buffalo distribution.
+- **Culling:** Log culling information.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+### Health Management
 
-### Premium Partners
+- **Disease and Treatment:** Document disease occurrences and treatments.
+- **Vaccination:** Manage vaccination records.
+- **Deworming:** Record deworming activities.
+- **Parasite:** Track parasitic infections and treatments.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+### Reporting
+
+Generate customized reports for various aspects of buffalo management, health, and research.
+
+## System Requirements
+
+Ensure your server meets these requirements:
+
+- PHP 8
+- Laravel 10
+- Web server (e.g., Apache, Nginx)
+- MySQL database
+- Composer (for PHP dependency management)
+
+## Installation Guide
+
+1. Clone this repository:
+
+   ```shell
+   git clone https://github.com/your/repository.git
+
+2. Clone this repository:
+
+   ```shell
+   composer install
+    ```
+3. Create a `.env` file from `.env.example` and configure it with your database settings:
+
+   ```shell
+   cp .env.example .env 
+   ```  
+   Update .env with your database credentials.
+4. Generate an application key:
+
+   ```shell
+   php artisan key:generate
+    ```
+6. Run database migrations and seeders:
+
+   ```shell
+   php artisan migrate --seed
+    ```
+7. Start the development server:
+
+   ```shell
+   php artisan serve
+   ```
+Access the repository at http://localhost:8000.
+
+## Configuration
+Customize the repository by modifying .env to suit your requirements.
+
+## Usage
+Detailed instructions and guides are available in the application's user documentation. Sections include Farm Settings, Animal Record, Health Management, and Reporting.
 
 ## Contributing
+I welcome contributions. To contribute, fork this repository, create a new branch, make your changes, and submit a pull request.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+1. **Fork the Repository.**
+2. Create a new branch for your feature or bug fix: `git checkout -b feature/your-feature-name`.
+3. Implement your changes and commit them: `git commit -m "Add your feature"`.
+4. Push your changes to your fork: `git push origin feature/your-feature-name`.
+5. Create a pull request to the main repository.
 
-## Code of Conduct
+## Contact
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+For any inquiries or assistance, please feel free to reach out to the project maintainers:
 
-## Security Vulnerabilities
+- Email: msh.shafiul@gmail.com
+- Website: www.softgiantbd.com
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Thank you for choosing the Business Management System for your business needs!
