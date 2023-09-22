@@ -118,4 +118,3 @@ For any inquiries or assistance, please feel free to reach out to the project ma
 - Email: msh.shafiul@gmail.com
 - Website: www.softgiantbd.com
 
-Thank you for choosing the Business Management System for your business needs!
