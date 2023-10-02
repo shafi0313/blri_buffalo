@@ -175,10 +175,30 @@
                     ]) }}"
                         id="animal">
                         <ul class="nav nav-collapse">
-                            <li class="{{ activeSubNav(['animalInfo.*','animal-info.*']) }}">
+                            <li>
+                                <a data-toggle="collapse" href="#animalInfo">
+                                    <span class="sub-item">Animal Info.</span>
+                                    <span class="caret"></span>
+                                </a>
+                                <div class="collapse {{ openNav(['animalInfo.*', 'animal-info.*']) }}" id="animalInfo">
+                                    <ul class="nav nav-collapse subnav">
+                                        <li {{ activeSubNav(['animalInfo.index']) }}>
+                                            <a href="{{ route('animalInfo.index') }}">
+                                                <span class="sub-item">Manage</span>
+                                            </a>
+                                        </li>
+                                        <li {{ activeSubNav(['animal-info.*']) }}>
+                                            <a href="{{ route('animal-info.create') }}">
+                                                <span class="sub-item">Add</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            {{-- <li class="{{ activeSubNav(['animalInfo.*','animal-info.*']) }}">
                                 <a href="{{ route('animalInfo.index') }}"><span class="sub-item">Animal
                                         Info.</span></a>
-                            </li>
+                            </li> --}}
                             <li class="{{ activeSubNav('morphometric.*') }}">
                                 <a href="{{ route('morphometric.index') }}">
                                     <span class="sub-item">Morphometric</span>
@@ -246,11 +266,6 @@
                     <div class="collapse {{ openNav(['disease-and-treatment.*', 'vaccination.*', 'deworming.*', 'parasite.*']) }}"
                         id="hm">
                         <ul class="nav nav-collapse">
-                            {{-- <li class="{{$sm=='farm'?'active':''}}">
-                                <a href="">
-                                    <span class="sub-item">Health Management</span>
-                                </a>
-                            </li> --}}
                             <li class="{{ activeSubNav('disease-and-treatment.*') }}">
                                 <a href="{{ route('disease-and-treatment.index') }}">
                                     <span class="sub-item">Disease and Treatment</span>
@@ -266,11 +281,6 @@
                                     <span class="sub-item">Deworming</span>
                                 </a>
                             </li>
-                            {{-- <li class="{{$sm=='dipping'?'active':''}}">
-                                <a href="{{ route('dipping.index') }}">
-                                    <span class="sub-item">Dipping</span>
-                                </a>
-                            </li> --}}
                             <li class="{{ activeSubNav('parasite.*') }}">
                                 <a href="{{ route('parasite.index') }}">
                                     <span class="sub-item">Parasite</span>
@@ -394,113 +404,6 @@
                         </ul>
                     </div>
                 </li>
-
-                {{-- Report  --}}
-                {{-- <li class="nav-item {{$p=='report'?'active submenu':''}}">
-                    <a data-toggle="collapse" href="#report">
-                        <i class="fas fa-file"></i>
-                        <p>Report</p>
-                        <span class="caret"></span>
-                    </a>
-                    <div class="collapse {{$p=='report'?'show':''}}" id="report">
-                        <ul class="nav nav-collapse">
-                            <li class="{{$sm=='farm'?'active':''}}">
-                                <a href="{{ route('researchStock.selectDate') }}">
-                                    <span class="sub-item">BLRI Stock Report</span>
-                                </a>
-                            </li>
-                            <li class="{{$sm=='farm'?'active':''}}">
-                                <a href="{{ route('communityStock.selectDate') }}">
-                                    <span class="sub-item">Community Farm Stock Report</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </li> --}}
-
-
-
-                {{-- <li class="nav-item {{$p=='report'?'active':''}}">
-					<a data-toggle="collapse" href="#submenu">
-						<i class="fas fa-bars"></i>
-						<p>Report</p>
-						<span class="caret"></span>
-					</a>
-					<div class="collapse {{$p=='report'?'show':''}}" id="submenu">
-						<ul class="nav nav-collapse">
-							<li>
-								<a data-toggle="collapse" href="#subnav1">
-									<span class="sub-item">BLRI</span>
-									<span class="caret"></span>
-								</a>
-								<div class="collapse {{$sm=='blriReport'?'show':''}}" id="subnav1">
-									<ul class="nav nav-collapse subnav">
-										<li>
-											<a href="{{ route('researchStock.selectDate') }}">
-												<span class="sub-item">Stock Report</span>
-											</a>
-										</li>
-                                        <li class="{{$ssm=='blriDiseaseIn'?'active':''}}">
-											<a href="{{route('report.blri.disease.selectDate')}}">
-												<span class="sub-item">Disease Incidence Report</span>
-											</a>
-										</li>
-										<li class="{{$ssm=='BlriDeathReport'?'active':''}}">
-											<a href="{{ route('report.blri.death.selectDate') }}">
-												<span class="sub-item">Death Report</span>
-											</a>
-										</li>
-										<li class="{{$ssm=='BlriKidMorReport'?'active':''}}">
-											<a href="{{ route('report.blri.kidMortality.selectDate') }}">
-												<span class="sub-item">Calf Mortality Report</span>
-											</a>
-										</li>
-										<li class="{{$ssm=='BlriBirthReport'?'active':''}}">
-											<a href="{{ route('report.blri.bitrh.selectDate') }}">
-												<span class="sub-item">Body Report</span>
-											</a>
-										</li>
-									</ul>
-								</div>
-							</li>
-							<li>
-								<a data-toggle="collapse" href="#subnav2">
-									<span class="sub-item">Community</span>
-									<span class="caret"></span>
-								</a>
-								<div class="collapse {{$sm=='community'?'show':''}}" id="subnav2">
-									<ul class="nav nav-collapse subnav">
-										<li>
-											<a href="{{ route('communityStock.selectDate') }}">
-												<span class="sub-item">Stock Report</span>
-											</a>
-										</li>
-										<li class="{{$ssm=='diseaseIn'?'active':''}}">
-											<a href="{{route('report.disease.selectDate')}}">
-												<span class="sub-item">Disease Incidence Report</span>
-											</a>
-										</li>
-										<li class="{{$ssm=='deathReport'?'active':''}}">
-											<a href="{{ route('report.death.selectDate') }}">
-												<span class="sub-item">Death Report</span>
-											</a>
-										</li>
-										<li class="{{$ssm=='kidMorReport'?'active':''}}">
-											<a href="{{ route('report.kidMortality.selectDate') }}">
-												<span class="sub-item">Calf Mortality Report</span>
-											</a>
-										</li>
-										<li class="{{$ssm=='birthReport'?'active':''}}">
-											<a href="{{ route('report.bitrh.selectDate') }}">
-												<span class="sub-item">Body Report</span>
-											</a>
-										</li>
-									</ul>
-								</div>
-							</li>
-						</ul>
-					</div>
-				</li> --}}
 
                 {{-- <li class="nav-item {{$p=='visitor'?'active':''}}">
                     <a class="dropdown-item" href="{{ route('VisitorInfo') }}" >

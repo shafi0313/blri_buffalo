@@ -125,18 +125,18 @@ class AnimalInfoController extends Controller
     {
         $this->validate($request, [
             'animal_tag' => 'nullable|max:50',
-            'ear_tag' => 'nullable|max:50',
-            'sire' => 'nullable|max:64',
-            'dam' => 'nullable|max:64',
-            'color' => 'nullable|max:50',
-            'sex' => 'required',
-            'birth_wt' => 'required',
+            'ear_tag'    => 'nullable|max:50',
+            'sire'       => 'nullable|max:64',
+            'dam'        => 'nullable|max:64',
+            'color'      => 'nullable|max:50',
+            'sex'        => 'required',
+            'birth_wt'   => 'required',
             'generation' => 'required',
-            'paity' => 'nullable|integer',
-            'dam_milk' => 'nullable|numeric',
-            'd_o_b' => 'required|date',
+            'paity'      => 'nullable|integer',
+            'dam_milk'   => 'nullable|numeric',
+            'd_o_b'      => 'required|date',
             'death_date' => 'nullable|date',
-            'remark' => 'nullable|max:100',
+            'remark'     => 'nullable|max:100',
         ]);
 
         $animal_sub_cat_id = $request->animal_sub_cat_id;
@@ -148,118 +148,48 @@ class AnimalInfoController extends Controller
         DB::beginTransaction();
         $animalSl = AnimalInfo::max('animal_sl') + 1;
         $data = [
-            'user_id' => auth()->user()->id,
-            'animal_cat_id' => $request->animal_cat_id,
+            'user_id'           => auth()->user()->id,
+            'animal_cat_id'     => $request->animal_cat_id,
             'animal_sub_cat_id' => $animal_sub_cat_id,
-            'sire' => $request->sire,
-            'dam' => $request->dam,
-            'type' => $request->type,
+            'sire'              => $request->sire,
+            'dam'               => $request->dam,
+            'type'              => $request->type,
             'identification_no' => $request->identification_no,
-            'buffalo_id' => $request->buffalo_id,
-            'tattoo_no' => $request->tattoo_no,
-            'animal_sl' => $animalSl,
-            'color' => $request->color,
-            'age_distribution' => $request->age_distribution,
-            'sex' => $request->sex,
-            'birth_wt' => $request->birth_wt,
-            'generation' => $request->generation,
-            'paity' => $request->paity,
-            'dam_milk' => $request->dam_milk,
-            'd_o_b' => $request->d_o_b,
-            'season_o_birth' => $request->season_o_birth,
-            'death_date' => $request->death_date,
-            'age_distribution' => $request->age_distribution,
-            'remark' => $request->remark,
+            'buffalo_id'        => $request->buffalo_id,
+            'tattoo_no'         => $request->tattoo_no,
+            'animal_sl'         => $animalSl,
+            'color'             => $request->color,
+            'age_distribution'  => $request->age_distribution,
+            'sex'               => $request->sex,
+            'birth_wt'          => $request->birth_wt,
+            'generation'        => $request->generation,
+            'paity'             => $request->paity,
+            'dam_milk'          => $request->dam_milk,
+            'd_o_b'             => $request->d_o_b,
+            'season_o_birth'    => $request->season_o_birth,
+            'death_date'        => $request->death_date,
+            'age_distribution'  => $request->age_distribution,
+            'remark'            => $request->remark,
         ];
 
         if (Auth::user()->permission != 1) {
-            $communityCat = CommunityCat::where('user_id', Auth::user()->id)->first();
-            $community = Community::whereId($request->community_id)->first()->no;
+            $communityCat  = CommunityCat::where('user_id', Auth::user()->id)->first();
+            $community     = Community::whereId($request->community_id)->first()->no;
             $getAnimal_tag = AnimalInfo::where('community_cat_id', $communityCat->id)->where('community_id', $request->community_id)->count() + 1;
-            $animal_tag = substr($communityCat->name, 0, 1).$community.$getAnimal_tag;
+            $animal_tag    = substr($communityCat->name, 0, 1).$community.$getAnimal_tag;
         }
 
         if (Auth::user()->permission == 1) {
-            $data['farm_id'] = $request->farm_id;
+            $data['farm_id']          = $request->farm_id;
             $data['community_cat_id'] = $request->community_cat_id;
-            // $data['community_id'] = $request->community_id;
-            $data['animal_tag'] = $request->animal_tag;
+            $data['animal_tag']       = $request->animal_tag;
         } else {
             $data['community_cat_id'] = $communityCat->id;
-            $data['community_id'] = $request->community_id;
-            $data['animal_tag'] = $request->ear_tag;
-            $data['ear_tag'] = $request->ear_tag;
+            $data['community_id']     = $request->community_id;
+            $data['animal_tag']       = $request->ear_tag;
+            $data['ear_tag']          = $request->ear_tag;
         }
         $animalInfo = AnimalInfo::create($data);
-        // Reproduction kidding date create or update
-        // $dbGetAnimalInfo = AnimalInfo::select(['id','dam','d_o_b'])->where('dam', $request->dam)->first();
-        // if (!empty($dbGetAnimalInfo)) {
-        //     $dbGetReproduction = Reproduction::where('animal_info_id', $dbGetAnimalInfo->id)->first();
-        //     // $data = \Carbon\Carbon::parse($dbGetAnimalInfo->d_o_b)->diff( $request->d_o_b)->format('%y years %m months');
-        //     if ($dbGetReproduction==null || $dbGetReproduction->count() < 1) {
-        //         $reproduction = [
-        //         'user_id' => auth()->user()->id,
-        //         'animal_info_id' => $dbGetAnimalInfo->id,
-        //         'calving_1st_date' => $request->d_o_b,
-        //     ];
-        //     if (Auth::user()->permission == 1) {
-        //         $reproduction['farm_id'] = $request->farm_id;
-        //         $reproduction['community_cat_id'] = $request->community_cat_id;
-        //         // $reproduction['community_id'] = $request->community_id;
-        //         // $reproduction['animal_tag'] = $request->animal_tag;
-        //     } else {
-        //         $reproduction['community_cat_id'] = $communityCat->id;
-        //         $reproduction['community_id'] = $request->community_id;
-        //         // $reproduction['animal_tag'] = $animal_tag;
-        //         // $reproduction['ear_tag'] = $request->ear_tag;
-        //     }
-        //         Reproduction::create($reproduction);
-        //     } else {
-        //         if ($dbGetReproduction->calving_1st_date == null) {
-        //             $reproduction['calving_1st_date'] = $request->d_o_b;
-        //         // $reproduction['litter_size_1st_kidding'] = $request->litter_size;
-        //         } elseif ($dbGetReproduction->calving_2nd_date == null) {
-        //             $reproduction['calving_2nd_date'] = $request->d_o_b;
-        //         // $reproduction['calving_2nd_liter'] = $request->litter_size;
-        //         } elseif ($dbGetReproduction->calving_3rd_date == null) {
-        //             $reproduction['calving_3rd_date'] = $request->d_o_b;
-        //         // $reproduction['calving_3rd_liter'] = $request->litter_size;
-        //         } elseif ($dbGetReproduction->calving_4th_date == null) {
-        //             $reproduction['calving_4th_date'] = $request->d_o_b;
-        //         // $reproduction['calving_4th_liter'] = $request->litter_size;
-        //         } elseif ($dbGetReproduction->calving_5th_date == null) {
-        //             $reproduction['calving_5th_date'] = $request->d_o_b;
-        //         // $reproduction['calving_5th_liter'] = $request->litter_size;
-        //         } elseif ($dbGetReproduction->calving_6th_date == null) {
-        //             $reproduction['calving_6th_date'] = $request->d_o_b;
-        //         // $reproduction['calving_6th_liter'] = $request->litter_size;
-        //         } elseif ($dbGetReproduction->calving_7th_date == null) {
-        //             $reproduction['calving_7th_date'] = $request->d_o_b;
-        //         // $reproduction['calving_7th_liter'] = $request->litter_size;
-        //         } elseif ($dbGetReproduction->calving_8th_date == null) {
-        //             $reproduction['calving_8th_date'] = $request->d_o_b;
-        //         // $reproduction['calving_8th_liter'] = $request->litter_size;
-        //         } elseif ($dbGetReproduction->calving_9th_date == null) {
-        //             $reproduction['calving_9th_date'] = $request->d_o_b;
-        //         // $reproduction['calving_9th_liter'] = $request->litter_size;
-        //         } elseif ($dbGetReproduction->calving_10th_date == null) {
-        //             $reproduction['calving_10th_date'] = $request->d_o_b;
-        //             // $reproduction['calving_10th_liter'] = $request->litter_size;
-        //         }
-        //         if (Auth::user()->permission == 1) {
-        //             $reproduction['farm_id'] = $request->farm_id;
-        //             $reproduction['community_cat_id'] = $request->community_cat_id;
-        //             // $reproduction['community_id'] = $request->community_id;
-        //             // $reproduction['animal_tag'] = $request->animal_tag;
-        //         } else {
-        //             $reproduction['community_cat_id'] = $communityCat->id;
-        //             $reproduction['community_id'] = $request->community_id;
-        //             // $reproduction['animal_tag'] = $animal_tag;
-        //             // $reproduction['ear_tag'] = $request->ear_tag;
-        //         }
-        //         Reproduction::where('id', $dbGetReproduction->id)->update($reproduction);
-        //     }
-        // }
 
         if (!is_null($request->birth_wt)) {
             $bodyWt = [
@@ -270,7 +200,6 @@ class AnimalInfoController extends Controller
             if (Auth::user()->permission == 1) {
                 $bodyWt['farm_id']          = $request->farm_id;
                 $bodyWt['community_cat_id'] = $request->community_cat_id;
-            // $bodyWt['community_id'] = $request->community_id;
             } else {
                 $bodyWt['community_cat_id'] = $communityCat->id;
                 $bodyWt['community_id']     = $request->community_id;
@@ -300,20 +229,17 @@ class AnimalInfoController extends Controller
 
         $locationData = [
             'animal_info_id' => $animalInfo->id,
-            'district_id' => $district_id->id,
-            'lat' => $request->lat,
-            'lon' => $request->lon,
+            'district_id'    => $district_id->id,
+            'lat'            => $request->lat,
+            'lon'            => $request->lon,
         ];
         Location::create($locationData);
 
-        // $animalInfo = $animalInfoStoreRequest->validated();
         try {
             DB::commit();
             toast('Success', 'success');
-            // return redirect()->route('animal-info.index');
             return back();
         } catch (\Exception $ex) {
-            // // return $ex->getMessage();
             DB::rollBack();
             toast('Error'. $ex->getMessage(), 'error');
             return redirect()->back();
@@ -389,77 +315,28 @@ class AnimalInfoController extends Controller
 
 
         if (Auth::user()->permission != 1) {
-            $communityCat = CommunityCat::where('user_id', Auth::user()->id)->first();
-            $community = Community::whereId($request->community_id)->first()->no;
+            $communityCat  = CommunityCat::where('user_id', Auth::user()->id)->first();
+            $community     = Community::whereId($request->community_id)->first()->no;
             $getAnimal_tag = AnimalInfo::where('community_cat_id', $communityCat->id)->where('community_id', $request->community_id)->count() + 1;
-            $animal_tag = substr($communityCat->name, 0, 1).$community.$getAnimal_tag;
+            $animal_tag    = substr($communityCat->name, 0, 1).$community.$getAnimal_tag;
         }
 
 
         if (Auth::user()->permission == 1) {
-            $request->farm_id!='' ? $data['farm_id'] = $request->farm_id : false;
-            $request->community_cat_id!='' ? $data['community_cat_id'] = $request->community_cat_id : false;
-            $request->community_id != 0 ? $data['community_id'] = $request->community_id : false;
-            $request->animal_tag !='' ? $data['animal_tag'] = $request->animal_tag : false;
+            $request->farm_id          != '' ? $data['farm_id']          = $request->farm_id : false;
+            $request->community_cat_id != '' ? $data['community_cat_id'] = $request->community_cat_id : false;
+            $request->community_id     != 0 ? $data['community_id']      = $request->community_id : false;
+            $request->animal_tag       != '' ? $data['animal_tag']       = $request->animal_tag : false;
         } else {
             $communityCat->id!='' ? $data['community_cat_id'] = $communityCat->id : false;
             $request->community_id != 0 ? $data['community_id'] = $request->community_id : false;
             if ($request->if_farm_change==1) {
-                $animal_tag!='' ? $data['animal_tag'] = $animal_tag : false;
+                $animal_tag != '' ? $data['animal_tag'] = $animal_tag : false;
             }
 
             $request->ear_tag!='' ? $data['ear_tag'] = $request->ear_tag : false;
         }
-
-        $animalInfo = AnimalInfo::whereId($id)->update($data);
-
-        // Reproduction kidding date create or update
-
-        // $dbGetAnimalInfo = AnimalInfo::select(['id','dam','d_o_b'])->where('dam', $request->dam)->first();
-        // if (!empty($dbGetAnimalInfo)) {
-        //     $dbGetReproduction = Reproduction::where('animal_info_id', $dbGetAnimalInfo->id)->first();
-        //     if ($dbGetReproduction==null || $dbGetReproduction->count() < 1) {
-        //         $reproduction = [
-        //         'user_id' => auth()->user()->id,
-        //         'animal_info_id' => $dbGetAnimalInfo->id,
-        //         'calving_1st_date' => $request->d_o_b,
-        //     ];
-        //         Reproduction::create($reproduction);
-        //     } else {
-        //         if ($dbGetReproduction->calving_1st_date == null) {
-        //             $reproduction['calving_1st_date'] = $request->d_o_b;
-        //             $reproduction['litter_size_1st_kidding'] = $request->litter_size;
-        //         } elseif ($dbGetReproduction->calving_2nd_date == null) {
-        //             $reproduction['calving_2nd_date'] = $request->d_o_b;
-        //             $reproduction['calving_2nd_liter'] = $request->litter_size;
-        //         } elseif ($dbGetReproduction->calving_3rd_date == null) {
-        //             $reproduction['calving_3rd_date'] = $request->d_o_b;
-        //             $reproduction['calving_3rd_liter'] = $request->litter_size;
-        //         } elseif ($dbGetReproduction->calving_4th_date == null) {
-        //             $reproduction['calving_4th_date'] = $request->d_o_b;
-        //             $reproduction['calving_4th_liter'] = $request->litter_size;
-        //         } elseif ($dbGetReproduction->calving_5th_date == null) {
-        //             $reproduction['calving_5th_date'] = $request->d_o_b;
-        //             $reproduction['calving_5th_liter'] = $request->litter_size;
-        //         } elseif ($dbGetReproduction->calving_6th_date == null) {
-        //             $reproduction['calving_6th_date'] = $request->d_o_b;
-        //             $reproduction['calving_6th_liter'] = $request->litter_size;
-        //         } elseif ($dbGetReproduction->calving_7th_date == null) {
-        //             $reproduction['calving_7th_date'] = $request->d_o_b;
-        //             $reproduction['calving_7th_liter'] = $request->litter_size;
-        //         }elseif ($dbGetReproduction->calving_8th_date == null) {
-        //             $reproduction['calving_8th_date'] = $request->d_o_b;
-        //             $reproduction['calving_8th_liter'] = $request->litter_size;
-        //         }elseif ($dbGetReproduction->calving_9th_date == null) {
-        //             $reproduction['calving_9th_date'] = $request->d_o_b;
-        //             $reproduction['calving_9th_liter'] = $request->litter_size;
-        //         }elseif ($dbGetReproduction->calving_10th_date == null) {
-        //             $reproduction['calving_10th_date'] = $request->d_o_b;
-        //             $reproduction['calving_10th_liter'] = $request->litter_size;
-        //         }
-        //         Reproduction::where('id', $dbGetReproduction->id)->update($reproduction);
-        //     }
-        // }
+        AnimalInfo::whereId($id)->update($data);
 
         // For location
         // $district_id = DB::table("districts")
@@ -486,8 +363,6 @@ class AnimalInfoController extends Controller
         //     'lon' => $request->lon,
         // ];
         // Location::create($locationData);
-
-        // $animalInfo = $animalInfoStoreRequest->validated();
         try {
             DB::commit();
             toast('Success', 'success');
