@@ -204,28 +204,91 @@
                                     <span class="sub-item">Morphometric</span>
                                 </a>
                             </li>
-                            <li class="{{ activeSubNav('body-weight.*') }}">
+                            <li>
+                                <a data-toggle="collapse" href="#body-weight">
+                                    <span class="sub-item">Calves Body Weight</span>
+                                    <span class="caret"></span>
+                                </a>
+                                <div class="collapse {{ openNav(['body-weight.*']) }}" id="body-weight">
+                                    <ul class="nav nav-collapse subnav">
+                                        <li {{ activeSubNav(['body-weight.index','body-weight.edit']) }}>
+                                            <a href="{{ route('body-weight.index') }}">
+                                                <span class="sub-item">Manage</span>
+                                            </a>
+                                        </li>
+                                        <li {{ activeSubNav(['body-weight.create']) }}>
+                                            <a href="{{ route('body-weight.create') }}">
+                                                <span class="sub-item">Add</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+
+                            {{-- <li class="{{ activeSubNav('body-weight.*') }}">
                                 <a href="{{ route('body-weight.index') }}">
                                     <span class="sub-item">Calves Body Weight</span>
                                 </a>
-                            </li>
+                            </li> --}}
                             <li class="{{ activeSubNav('reproduction-record.*') }}">
                                 <a href="{{ route('reproduction-record.index') }}">
                                     <span class="sub-item">Reproduction</span>
                                 </a>
                             </li>
 
-                            <li class="{{ activeSubNav('milk-production.*') }}">
+                            <li>
+                                <a data-toggle="collapse" href="#milk-production">
+                                    <span class="sub-item">Milk Production</span>
+                                    <span class="caret"></span>
+                                </a>
+                                <div class="collapse {{ openNav(['milk-production.*']) }}" id="milk-production">
+                                    <ul class="nav nav-collapse subnav">
+                                        <li {{ activeSubNav(['milk-production.index','milk-production.edit']) }}>
+                                            <a href="{{ route('milk-production.index') }}">
+                                                <span class="sub-item">Manage</span>
+                                            </a>
+                                        </li>
+                                        <li {{ activeSubNav(['milk-production.create']) }}>
+                                            <a href="{{ route('milk-production.create') }}">
+                                                <span class="sub-item">Add</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+
+                            {{-- <li class="{{ activeSubNav('milk-production.*') }}">
                                 <a href="{{ route('milk-production.index') }}">
                                     <span class="sub-item">Milk Production</span>
                                 </a>
+                            </li> --}}
+
+                            <li>
+                                <a data-toggle="collapse" href="#milk-composition">
+                                    <span class="sub-item">Milk Compositions</span>
+                                    <span class="caret"></span>
+                                </a>
+                                <div class="collapse {{ openNav(['milk-composition.*']) }}" id="milk-composition">
+                                    <ul class="nav nav-collapse subnav">
+                                        <li {{ activeSubNav(['milk-composition.index','milk-composition.edit']) }}>
+                                            <a href="{{ route('milk-composition.index') }}">
+                                                <span class="sub-item">Manage</span>
+                                            </a>
+                                        </li>
+                                        <li {{ activeSubNav(['milk-composition.create']) }}>
+                                            <a href="{{ route('milk-composition.create') }}">
+                                                <span class="sub-item">Add</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
                             </li>
 
-                            <li class="{{ activeSubNav(['milk-composition.*']) }}">
+                            {{-- <li class="{{ activeSubNav(['milk-composition.*']) }}">
                                 <a href="{{ route('milk-composition.index') }}">
                                     <span class="sub-item">Milk Compositions</span>
                                 </a>
-                            </li>
+                            </li> --}}
                             <li class="{{ activeSubNav('semen-analysis.*') }}">
                                 <a href="{{ route('semen-analysis.index') }}">
                                     <span class="sub-item">Semen Analysis</span>
@@ -246,11 +309,6 @@
                                     <span class="sub-item">Culling</span>
                                 </a>
                             </li>
-                            {{-- <li class="{{$sm=='castrationRecord'?'active':''}}">
-                                <a href="{{ route('castration-record.index') }}">
-                                    <span class="sub-item">Castration Record</span>
-                                </a>
-                            </li> --}}
                         </ul>
                     </div>
                 </li>
