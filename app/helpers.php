@@ -3,6 +3,7 @@
 use Carbon\Carbon;
 use App\Models\AnimalInfo;
 use App\Models\DeadCulled;
+use Illuminate\Support\Facades\Cache;
 
 if(!function_exists('UKDate'))
 {
@@ -141,6 +142,9 @@ if (!function_exists('openNav')) {
 if (!function_exists('isCulling')) {
     function isCulling()
     {
+        // return Cache::remember('dead_culleds', 60 * 60 * 2, function () {
+        //     return DeadCulled::all(['animal_info_id']);
+        // });
         return DeadCulled::all(['animal_info_id']);
     }
 }
@@ -148,6 +152,9 @@ if (!function_exists('isCulling')) {
 if (!function_exists('isCullingUser')) {
     function isCullingUser()
     {
+        // return Cache::remember('dead_culleds', 60 * 60 * 2, function () {
+        //     return DeadCulled::whereUser_id(auth()->user()->id)->get(['animal_info_id']);
+        // });
         return DeadCulled::whereUser_id(auth()->user()->id)->get(['animal_info_id']);
     }
 }

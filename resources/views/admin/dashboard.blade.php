@@ -32,6 +32,14 @@
                         color: #002060;
                     }
                 </style>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="alert alert-primary" role="alert">
+                            Name: {{ auth()->user()->name }} <br>
+                            Email: {{ auth()->user()->email }}
+                        </div>
+                    </div>
+                </div>
 
                 <div class="row">
                     <div class="col-md-6">
