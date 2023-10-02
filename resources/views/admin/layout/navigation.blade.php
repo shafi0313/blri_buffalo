@@ -91,11 +91,6 @@
                                         <span class="sub-item">Disease & Clinical Sign</span>
                                     </a>
                                 </li>
-                                {{-- <li class="{{$sm=='clinicalSign'?'active':''}}">
-                                <a href="{{ route('clinical-sign.index') }}">
-                                    <span class="sub-item">Clinical Sign</span>
-                                </a>
-                            </li> --}}
                             </ul>
                         </div>
                     </li>
